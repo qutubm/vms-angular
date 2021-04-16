@@ -8,6 +8,7 @@ const routes: Routes = [
   { path: 'newprofile', component: ProfileEditComponent },
   { path: '', redirectTo: 'profiles', pathMatch: 'full' },
   { path: '**', redirectTo: 'profiles', pathMatch: 'full' }
+  
 ];
 
 @NgModule({
