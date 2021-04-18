@@ -8,8 +8,7 @@ import { Component } from '@angular/core';
               <router-outlet></router-outlet>
             </div>
             `,
-  
-            // <app-profile-list></app-profile-list>  
+            
   styleUrls: ['./vms-app.component.css']
 })
 export class VmsAppComponent {
