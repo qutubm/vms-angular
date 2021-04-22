@@ -6,8 +6,9 @@ import { ProfileListComponent } from './profile/profile-list/profile-list.compon
 const routes: Routes = [
   { path: 'profiles', component: ProfileListComponent },
   { path: 'newprofile', component: ProfileEditComponent },
-  { path: '', redirectTo: 'profiles', pathMatch: 'full' },
+  { path: 'project', loadChildren: () => import('./project/project.module').then(m => m.ProjectModule) },
   { path: 'meeting', loadChildren: () => import('./meeting/meeting.module').then(m => m.MeetingModule) },
+  { path: '', redirectTo: 'profiles', pathMatch: 'full' },
   { path: '**', redirectTo: 'profiles', pathMatch: 'full' }
   
 ];
