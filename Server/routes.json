@@ -1,0 +1,7 @@
+{
+    "/meeting/meeting-list": "/meeting",
+    "/meeting/get/:id": "/meeting/:id",
+    "/meeting/create": "/meeting",
+    "/meeting/update/:id": "/meeting/:id",
+    "/meeting/delete/:id": "/meeting/:id"
+}

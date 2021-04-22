@@ -1,1 +1,49 @@
 <p>meeting-list works!</p>
+<div class="container">
+    <div class="jumbotron">
+      <h1 class="display-sm-3">Meeting</h1>
+      <p class="lead">Volunteers can create a scheduled meeting here.  </p>
+      <hr class="my-3">
+      <div class="lead float-sm-right">
+        <button type="button" class="btn btn-primary mr-2" routerLink="/meeting/meeting-create">
+          <i class="bi bi-file-earmark-plus-fill"> Create Meeting</i>
+        </button>
+      </div>
+    </div>
+  
+    <div class="row">
+      <div class="col-12">
+        <table class="table">
+          <thead>
+            <tr>
+  
+              <th scope="col">Project Name</th>
+              <th scope="col">Meeting Date</th>
+              <th scope="col">Initiated By:</th>
+              <th scope="col">Actions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Lorem Ipsum Project</th>
+              <td>Meeting Date</td>
+              <td>Mr Lorem Ipsum</td>
+              <td>
+                <div class="d-flex">
+                  <button type="button" class="btn btn-primary mr-2" routerLink="/meeting/meeting-detail">
+                    <i class="bi bi-info-square-fill"> Info</i>
+                  </button>
+                  <button type="button" class="btn btn-success mr-2" routerLink="/meeting/meeting-delete">
+                    <i class="bi bi-pencil-square"> Edit</i>
+                  </button>
+                  <button type="button" class="btn btn-danger mr-2" routerLink="/meeting/meeting-edit">
+                    <i class="bi bi-trash-fill"> Delete</i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>

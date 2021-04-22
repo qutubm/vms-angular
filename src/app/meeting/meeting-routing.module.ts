@@ -10,6 +10,8 @@ const routes: Routes = [
       { path: '', component: MeetingListComponent }
     ]
   },
+  { path: 'meeting-create', loadChildren: () => import('./meeting-create/meeting-create.module').then(m => m.MeetingCreateModule) },
+  { path: 'meeting-edit', loadChildren: () => import('./meeting-edit/meeting-edit.module').then(m => m.MeetingEditModule) },
 
 ];
 
