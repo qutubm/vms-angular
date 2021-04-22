@@ -1,21 +1,19 @@
 <div class="container mt-5">
     <form #profileInvite="ngForm">
         <div class="input-group">
-            <div>
-                <label for="profile_invite"
-                       class="">Email address</label>
                 <input type="email"
                        class="form-control col"
                        id="profile_invite"
                        name="profile_invite"
                        placeholder="Enter Email ">
-            </div>
             <div class="input-group-append">
                 <button class="btn btn-primary">
-                    Invite
+                    <i class="bi bi-plus-square-fill"></i>
                 </button>
             </div>
         </div>
+        <hr>
+        <button class="btn btn-primary">Send Email Invitations</button>
     </form>
 </div>
 
