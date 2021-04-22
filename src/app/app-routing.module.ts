@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProfileEditComponent } from './profile/profile-edit/profile-edit.component';
-import { ProfileListComponent } from './profile/profile-list/profile-list.component';
+
 
 const routes: Routes = [
-  { path: 'profiles', component: ProfileListComponent },
-  { path: 'newprofile', component: ProfileEditComponent },
-  { path: '', redirectTo: 'profiles', pathMatch: 'full' },
+  { path: 'project', loadChildren: () => import('./project/project.module').then(m => m.ProjectModule) },
   { path: 'meeting', loadChildren: () => import('./meeting/meeting.module').then(m => m.MeetingModule) },
-  { path: '**', redirectTo: 'profiles', pathMatch: 'full' }
+  { path: 'profiles', loadChildren: () => import('./profiles/profiles.module').then(m => m.ProfilesModule) },
+  { path: 'dashboard', redirectTo: 'profiles', pathMatch: 'full' },
+  { path: 'notification', loadChildren: () => import('./notification/notification.module').then(m => m.NotificationModule) },
+  { path: '**', redirectTo: 'dashboard', pathMatch: 'full' }
   
 ];
 
@@ -16,4 +16,7 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule { 
+
+  
+}

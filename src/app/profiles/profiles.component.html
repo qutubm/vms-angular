@@ -1,0 +1,29 @@
+<div class="container mt-5">
+    <div class="jumbotron">
+        <h1 class="display-sm-3">Profiles List</h1>
+        <p class="lead">Manage Profiles Here.</p>
+        <hr class="my-3">
+        <div class="lead">
+            <button type="button"
+                    class="btn btn-primary mr-2"
+                    routerLink="/profiles/profiles-invite">
+                Invite To Create A Profile
+            </button>
+            <button type="button"
+                    class="btn btn-primary mr-2"
+                    routerLink="/profiles/profiles-create">
+                Create A Profile
+            </button>
+        </div>
+    </div>
+
+    <div class="card bg-light thumbnail">
+        <div class="card-body">
+            <h3> FirstName LastName</h3>
+            <div>Email: </div>
+            <div>Phone: </div>
+        </div>
+    </div>
+
+</div>
+<router-outlet></router-outlet>

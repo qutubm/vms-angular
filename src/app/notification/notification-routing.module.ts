@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
-import { MeetingListComponent } from './meeting-list.component';
+import { NotificationComponent } from './notification.component';
 
-const routes: Routes = [{ path: '', component: MeetingListComponent }];
+const routes: Routes = [{ path: '', component: NotificationComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class MeetingListRoutingModule { }
+export class NotificationRoutingModule { }
