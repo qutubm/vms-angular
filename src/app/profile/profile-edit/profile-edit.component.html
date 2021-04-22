@@ -1,0 +1,239 @@
+<div class="card">
+    <div class="card-header">
+      Profile
+    </div>
+
+    <div class="card-body">
+        <form novalidate (ngSubmit)="save()" [formGroup]="profileForm">
+            <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label"
+                       for="firstNameId">First Name</label>
+                <div class="col-md-8">
+                  <input class="form-control"
+                         id="firstNameId"
+                         type="text"
+                         placeholder="First Name (required)"
+                         formControlName="firstName"
+                         [ngClass]="{'is-invalid': (profileForm.get('firstName').touched ||
+                                                    profileForm.get('firstName').dirty) &&
+                                                    !profileForm.get('firstName').valid }" />
+                  <span class="invalid-feedback">
+                    <span *ngIf="profileForm.get('firstName').errors?.required">
+                      Please enter your first name.
+                    </span>
+                    <span *ngIf="profileForm.get('firstName').errors?.minlength">
+                      The first name must be atleast 2 characters.
+                    </span>
+                    <span *ngIf="profileForm.get('firstName').errors?.maxlength">
+                        The last name must be less than 25 characters.
+                      </span>
+                  </span>
+                </div>
+              </div>
+
+              <div class="form-group row mb-2">
+                <label class="col-md-2 col-form-label"
+                       for="lastNameId">Last Name</label>
+                <div class="col-md-8">
+                  <input class="form-control"
+                         id="lastNameId"
+                         type="text"
+                         placeholder="Last Name (required)"
+                         formControlName="lastName"
+                         [ngClass]="{'is-invalid': (profileForm.get('lastName').touched ||
+                                                    profileForm.get('lastName').dirty) &&
+                                                    !profileForm.get('lastName').valid }" />
+                  <span class="invalid-feedback">
+                    <span *ngIf="profileForm.get('lastName').errors?.required">
+                      Please enter your last name.
+                    </span>
+                    <span *ngIf="profileForm.get('lastName').errors?.minlength">
+                        The first name must be atleast 2 characters.
+                      </span>
+                    <span *ngIf="profileForm.get('lastName').errors?.maxlength">
+                      The last name must be less than 25 characters.
+                    </span>
+                  </span>
+                </div>
+              </div>
+
+                <div class="form-group row mb-2">
+                  <label class="col-md-2 col-form-label"
+                         for="emailId">Email</label>
+                  <div class="col-md-8">
+                    <input class="form-control"
+                           id="emailId"
+                           type="email"
+                           placeholder="Email (required)"
+                           formControlName="email"
+                           [ngClass]="{'is-invalid':  (profileForm.controls.email.touched || 
+                                                       profileForm.controls.email.dirty) &&
+                                                      !profileForm.controls.email.valid  }" />
+                    <span class="invalid-feedback">
+                        <span *ngIf="profileForm.controls.email.errors?.required">
+                            Please enter your email address.
+                        </span>
+                    </span>
+                  </div>
+                </div>
+        
+                <div class="form-group row mb-2">
+                    <label class="col-md-2 col-form-label"
+                           for="phoneId">Phone</label>
+                    <div class="col-md-8">
+                      <input class="form-control"
+                             id="phoneId"
+                             type="tel"
+                             placeholder="Phone"
+                             formControlName="phone"
+                             [ngClass]="{'is-invalid': (profileForm.controls.phone.touched || 
+                                                        profileForm.controls.phone.dirty) &&
+                                                        !profileForm.controls.phone.valid }" />
+                      <span class="invalid-feedback">
+                        <span *ngIf="profileForm.controls.phone.errors?.required">
+                          Please enter your phone number.
+                        </span>
+                        <span *ngIf="profileForm.controls.phone.errors?.minlength">
+                            Phone numbers should be of 10 digits.
+                        </span>
+                        <span *ngIf="profileForm.controls.phone.errors?.maxlength">
+                            Phone numbers should be of 10 digits.
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="form-group row mb-2">
+                    <label class="col-md-2 col-form-label pt-0">Profile Type</label>
+                    <div class="col-md-8">
+                      <div class="form-check form-check-inline">
+                        <label class="form-check-label">
+                          <input class="form-check-input"
+                                 type="radio"
+                                 value="staff"
+                                 true
+                                 formControlName="type">Staff
+                        </label>
+                      </div>
+                      <div class="form-check form-check-inline">
+                        <label class="form-check-label">
+                          <input class="form-check-input"
+                                 type="radio"
+                                 value="volunteer"
+                                 formControlName="type">Volunteer
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="form-group row mb-2">
+                    <label class="col-md-2 col-form-label">Street Address 1</label>
+                    <div class="col-md-8">
+                      <input class="form-control"
+                             id="streetAddress1"
+                             type="text"
+                             placeholder="Street address 1 (required)"
+                             formControlName="streetAddress1"
+                             [ngClass]="{'is-invalid': (profileForm.controls.streetAddress1.touched || 
+                                                        profileForm.controls.streetAddress1.dirty) && 
+                                                       !profileForm.controls.streetAddress1.valid }">
+                      <span class="invalid-feedback">
+                        <span *ngIf="profileForm.controls.streetAddress1.errors?.required">
+                          Please enter your Street Address 1.
+                        </span>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div class="form-group row mb-2">
+                    <label class="col-md-2 col-form-label">Street Address 2</label>
+                    <div class="col-md-8">
+                      <input class="form-control"
+                             id="streetAddress2"
+                             type="text"
+                             placeholder="Street address 2 "
+                             formControlName="streetAddress2" >
+                    </div>
+                  </div>
+
+                  <div class="form-group row mb-2">
+                    <label class="col-md-2 col-form-label" >Suburb, State, Post Code</label>
+                    <div class="col-md-3">
+                      <input class="form-control"
+                             id="suburb"
+                             type="text"
+                             placeholder="Suburb"
+                             formControlName="suburb"
+                             [ngClass]="{'is-invalid': (profileForm.controls.suburb.touched || 
+                                                        profileForm.controls.suburb.dirty) && 
+                                                       !profileForm.controls.suburb.valid }">
+                      <span class="invalid-feedback">
+                          <span *ngIf="profileForm.controls.suburb.errors?.required">
+                              Please enter your Suburb.
+                          </span>
+                      </span>
+                    </div>
+                    <div class="col-md-3">
+                      <select class="form-control"
+                              id="state"
+                              formControlName="state"
+                              [ngClass]="{'is-invalid': (profileForm.controls.state.touched || 
+                                                         profileForm.controls.state.dirty) && 
+                                                        !profileForm.controls.state.valid }">
+                        <option value=""
+                                disabled
+                                selected
+                                hidden>Select a State...</option>
+                        <option value="NSW">NSW</option>
+                        <option value="ACT">ACT</option>
+                        <option value="VIC">VIC</option>
+                        <option value="SA">SA</option>
+                        <option value="QLD">QLD</option>
+                        <option value="TAS">TAS</option>
+                        <option value="NT">NT</option>
+                      </select>
+                      <span class="invalid-feedback">
+                        <span *ngIf="profileForm.controls.state.errors?.required">
+                            Please select your State.
+                        </span>
+                      </span>
+                    </div>
+                    <div class="col-md-2">
+                      <input class="form-control"
+                             id="postcode"
+                             type="number"
+                             placeholder="postcode"
+                             formControlName="postcode"
+                             [ngClass]="{'is-invalid': (profileForm.controls.postcode.touched || 
+                                                        profileForm.controls.postcode.dirty) && 
+                                                       !profileForm.controls.postcode.valid }">
+                      <span class="invalid-feedback">
+                        <span *ngIf="profileForm.controls.postcode.errors?.required">
+                            Please select your Postcode.
+                        </span>
+                      </span>                                 
+                    </div>
+                  </div>
+
+
+                  <div class="form-group row mb-2">
+                    <div class="offset-md-2 col-md-4">
+                      <button class="btn btn-primary mr-3"
+                              type="submit"
+                              style="width:80px"
+                              [title]="profileForm.valid ? 'Save your entered data' : 'Disabled until the form data is valid'"
+                              [disabled]="!profileForm.valid">
+                        Save
+                      </button>
+                      <button class="btn btn-outline-secondary"
+                              type="button" (click)="cancel()">
+                        Cancel
+                      </button>
+                    </div>
+                  </div>
+
+
+        </form>
+    </div>
+</div>
+  

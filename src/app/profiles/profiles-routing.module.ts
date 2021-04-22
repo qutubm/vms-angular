@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ProfilesListComponent } from './profiles-list/profiles-list.component';
+
 import { ProfilesComponent } from './profiles.component';
 
 
@@ -8,13 +8,11 @@ import { ProfilesComponent } from './profiles.component';
 
 const routes: Routes = [
   {
-    path: '', component: ProfilesComponent,
-    children: [
-      { path: '', component: ProfilesListComponent }
-    ]
+    path: '', component: ProfilesComponent
   },
-  { path: 'profiles-list', loadChildren: () => import('./profiles-list/profiles-list.module').then(m => m.ProfilesListModule) },
-  { path: 'profiles-create', loadChildren: () => import('./profiles-create/profiles-create.module').then(m => m.ProfilesCreateModule) }
+  { path: 'profiles-create', loadChildren: () => import('./profiles-create/profiles-create.module').then(m => m.ProfilesCreateModule) },
+  { path: 'profiles-invite', loadChildren: () => import('./profiles-invite/profiles-invite.module').then(m => m.ProfilesInviteModule) },
+  { path: 'profiles-detail', loadChildren: () => import('./profiles-detail/profiles-detail.module').then(m => m.ProfilesDetailModule) }
 ];
 
 @NgModule({
