@@ -7,7 +7,7 @@ const routes: Routes = [
   { path: 'meeting', loadChildren: () => import('./meeting/meeting.module').then(m => m.MeetingModule) },
   { path: 'profiles', loadChildren: () => import('./profiles/profiles.module').then(m => m.ProfilesModule) },
   { path: 'dashboard', redirectTo: 'profiles', pathMatch: 'full' },
-  { path: '**', redirectTo: 'profiles', pathMatch: 'full' }
+  { path: '**', redirectTo: 'dashboard', pathMatch: 'full' }
   
 ];
 
