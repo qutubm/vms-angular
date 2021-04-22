@@ -9,6 +9,7 @@ const routes: Routes = [
   { path: '', redirectTo: 'profiles', pathMatch: 'full' },
   { path: 'meeting', loadChildren: () => import('./meeting/meeting.module').then(m => m.MeetingModule) },
   { path: '**', redirectTo: 'profiles', pathMatch: 'full' }
+  
 ];
 
 @NgModule({
