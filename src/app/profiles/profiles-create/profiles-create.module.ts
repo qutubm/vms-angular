@@ -10,9 +10,8 @@ import { ProfilesCreateComponent } from './profiles-create.component';
   declarations: [ProfilesCreateComponent],
   imports: [
     CommonModule,
-    ProfilesCreateRoutingModule,
     FormsModule,
-    
+    ProfilesCreateRoutingModule,
   ]
 })
 export class ProfilesCreateModule { }
