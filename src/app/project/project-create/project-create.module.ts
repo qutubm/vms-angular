@@ -2,20 +2,22 @@ import { NgModule } from '@angular/core';
 import { ProjectCreateRoutingModule } from './project-create-routing.module';
 import { ProjectCreateComponent } from './project-create.component';
 
-import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
+
 
 
 @NgModule({
   declarations: [ProjectCreateComponent],
   imports: [
-    ProjectCreateRoutingModule,
+    FormsModule,
     CommonModule,
-    FormsModule
+    ProjectCreateRoutingModule,
+
   ],
   exports: [
+    FormsModule,
     CommonModule,
-    FormsModule
   ]
 })
 export class ProjectCreateModule { }
