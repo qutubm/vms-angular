@@ -23,6 +23,8 @@ create TABLE IF NOT EXISTS stakeholder_profile (
     `additional_phone` varchar(10) NULL /* Self-explanatory */
 );
 
+
+
 /* The prof_availability table is used to identify the day (i.e. Monday, Tuesday, etc.), as well as the time that they are available. */
 /* Note: Because they can be available multiple times of the day and time. The prof_availability became an entity on it's own that references the volunteer profile*/
 create TABLE IF NOT EXISTS prof_availability (
@@ -74,6 +76,7 @@ create TABLE IF NOT EXISTS project (
 /* The proj_member table identifies who is associated to what project. */
 create TABLE IF NOT EXISTS proj_member (
 	`proj_id` int NOT NULL, /* Associates the project member table to the project table */
+    `member_name` varchar(50),
     `assigned_volunteer_id` int NOT NULL, /* Associates the volunteer member table to the profile table */
     CONSTRAINT fk_member_project FOREIGN KEY (proj_id) REFERENCES project (proj_id) ON DELETE CASCADE,
     CONSTRAINT fk_member_stakeholder_profile FOREIGN KEY (assigned_volunteer_id) REFERENCES stakeholder_profile (profile_id) ON DELETE CASCADE

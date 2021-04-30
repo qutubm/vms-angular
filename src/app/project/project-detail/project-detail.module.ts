@@ -8,8 +8,8 @@ import { ProjectDetailComponent } from './project-detail.component';
 @NgModule({
   declarations: [ProjectDetailComponent],
   imports: [
+    ProjectDetailRoutingModule,
     CommonModule,
-    ProjectDetailRoutingModule
   ]
 })
 export class ProjectDetailModule { }

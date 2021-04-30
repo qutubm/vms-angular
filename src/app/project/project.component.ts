@@ -10,21 +10,26 @@ import { ProjectService } from '../shared/service/project.service';
 })
 export class ProjectComponent implements OnInit {
 
-  allProjects: any = [];
+  ProjectsModel: Project[];
 
 
   constructor(private route: ActivatedRoute, private projectServices: ProjectService) { }
 
   ngOnInit(): void {
-    this.loadAllProjects();
+    //this.loadAllProjects();
+    this.projectServices.getProject().subscribe(
+      (data: Project[]) => this.ProjectsModel = data,
+      (err: any) => console.log(err),
+      () => console.log("Projects")
+    );
   }
 
-  loadAllProjects() {
-    return this.projectServices.getProject().subscribe((data: {}) => {
-      this.allProjects = data;
-      console.log(data);
-    })
-  }
+  // loadAllProjects() {
+  //   return this.projectServices.getProject().subscribe((data: {}) => {
+  //     this.ProjectsModel = data;
+  //     console.log(this.ProjectsModel);
+  //   })
+  // }
 
   
 

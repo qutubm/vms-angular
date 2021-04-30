@@ -7,10 +7,10 @@ export class Project {
     // `proj_real_due_date` datetime, /* The calculated due date of the project. So long as the staff enters the due date of the task, we can calculate the time the project would be completed. Automatic recalculation can happen as well  */
     // `proj_estimated_due_date` datetime, /* The estimated due date of the project assigned by staff. */
 
-    proj_id: number;
+    proj_id: string;
     proj_name: string;
-    staff_id: number;
-    volunteer_id: number;
+    staff_id: string;
+    volunteer_id: string;
     proj_skills_required: string;
     proj_real_due_date: string;
     proj_estimated_due_date: string;

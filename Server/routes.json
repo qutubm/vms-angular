@@ -1,6 +1,6 @@
 {
     "/project": "",
-    "/project/:id": "/meeting/:id",
+    "/project/:id/product-detail": "/project/:id/product-detail",
     "/meeting/create": "/meeting",
     "/meeting/update/:id": "/meeting/:id",
     "/meeting/delete/:id": "/meeting/:id"

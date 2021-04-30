@@ -4,7 +4,9 @@
     <p class="lead">Manage Projects Here</p>
     <hr class="my-3">
     <div class="lead float-sm-right">
-      <button type="button" class="btn btn-primary mr-2" routerLink="/project/project-create/">
+      <button type="button"
+              class="btn btn-primary mr-2"
+              routerLink="/project/project-create/">
         <i class="bi bi-file-earmark-plus-fill"> Create Meeting</i>
       </button>
     </div>
@@ -17,25 +19,24 @@
           <tr>
             <th scope="col">Project Name:</th>
             <th scope="col">Expected Due Date:</th>
-            <th scope="col">Initiated By:</th>
+            <th scope="col">Authorised Personel:</th>
             <th scope="col">Actions: </th>
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <th scope="row">Lorem Ipsum Project</th>
-            <td>Project Expected Date</td>
-            <td>Mr Lorem Ipsum</td>
+          <tr *ngFor="let show_project of ProjectsModel">
+            <th scope="row">{{show_project.proj_name}}</th>
+            <td>{{show_project.proj_name}}</td>
+            <td>{{show_project.proj_skills_required}}</td>
             <td>
               <div class="d-flex">
-                <button type="button"
-                        class="btn btn-primary mr-2"
-                        routerLink="/project/project-detail">
-                  <i class="bi bi-info-square-fill"> Info</i>
-                </button>
+                  <button type="button"
+                          class="btn btn-primary mr-2" [routerLink]="[show_project.project_id, 'project-detail']">
+                    <i class="bi bi-info-square-fill"> Info</i> 
+                  </button>
                 <button type="button"
                         class="btn btn-success mr-2"
-                        routerLink="/project/project-edit">
+                        [routerLink]="[show_project.project_id, 'project-detail']">
                   <i class="bi bi-pencil-square"> Edit</i>
                 </button>
                 <button type="button"

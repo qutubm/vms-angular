@@ -10,12 +10,17 @@ import { ProjectEditComponent } from './project-edit/project-edit.component';
 
 const routes: Routes = [
   { path: '', component: ProjectComponent },
+
+  { path: ':id/project-detail', loadChildren: () => import('./project-detail/project-detail.module').then(m => m.ProjectDetailModule)},
+  { path: 'project-edit', loadChildren: () => import('./project-edit/project-edit.module').then(m => m.ProjectEditModule)},
+  { path: 'project-create', loadChildren: () => import('./project-create/project-create.module').then(m => m.ProjectCreateModule) },
+  
+
   // { path: 'project-create', component: ProjectCreateComponent },
   // { path: 'project-edit', component: ProjectEditComponent },
-  { path: 'project-create', loadChildren: () => import('./project-create/project-create.module').then(m => m.ProjectCreateModule) },
-  { path: 'project-task', loadChildren: () => import('./project-detail/project-task/project-task.module').then(m => m.ProjectTaskModule) },
-  { path: 'project-edit', loadChildren: () => import('./project-edit/project-edit.module').then(m => m.ProjectEditModule)},
-  { path: 'project-detail', loadChildren: () => import('./project-detail/project-detail.module').then(m => m.ProjectDetailModule) },
+  // { path: 'project-task', loadChildren: () => import('./project-detail/project-task/project-task.module').then(m => m.ProjectTaskModule) },
+
+
   
   ];
 

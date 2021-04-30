@@ -14,8 +14,8 @@ export class ProjectService {
   constructor(private http: HttpClient) { }
 
 
-  getProject(): Observable<Project> {
-    return this.http.get<Project>(this.rest_location)
+  getProject(): Observable<Project[]> {
+    return this.http.get<Project[]>(this.rest_location)
     .pipe(
       retry(1),
       catchError(this.handleError))
