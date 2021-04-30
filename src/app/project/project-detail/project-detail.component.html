@@ -1,57 +1,72 @@
-<ul ngbNav #nav="ngbNav" [(activeId)]="active" class="nav-tabs">
-    <li [ngbNavItem]="1">
-      <a ngbNavLink>One</a>
-      <ng-template ngbNavContent>
-        <p>Raw denim you probably haven't heard of them jean shorts Austin. Nesciunt tofu stumptown aliqua, retro synth
-          master cleanse. Mustache cliche tempor, williamsburg carles vegan helvetica. Reprehenderit butcher retro
-          keffiyeh dreamcatcher synth. Cosby sweater eu banh mi, qui irure terry richardson ex squid. Aliquip placeat
-          salvia cillum iphone. Seitan aliquip quis cardigan american apparel, butcher voluptate nisi qui.</p>
-      </ng-template>
-    </li>
-    <li [ngbNavItem]="2">
-      <a ngbNavLink>Two</a>
-      <ng-template ngbNavContent>
-        <p>Exercitation +1 labore velit, blog sartorial PBR leggings next level wes anderson artisan four loko
-          farm-to-table craft beer twee. Qui photo booth letterpress, commodo enim craft beer mlkshk aliquip jean shorts
-          ullamco ad vinyl cillum PBR. Homo nostrud organic, assumenda labore aesthetic magna delectus mollit. Keytar
-          helvetica VHS salvia yr, vero magna velit sapiente labore stumptown. Vegan fanny pack odio cillum wes anderson
-          8-bit, sustainable jean shorts beard ut DIY ethical culpa terry richardson biodiesel. Art party scenester
-          stumptown, tumblr butcher vero sint qui sapiente accusamus tattooed echo park.</p>
-      </ng-template>
-    </li>
-    <li [ngbNavItem]="3">
-      <a ngbNavLink>Three</a>
-      <ng-template ngbNavContent>
-        <p>Sed commodo, leo at suscipit dictum, quam est porttitor sapien, eget sodales nibh elit id diam. Nulla facilisi.
-          Donec egestas ligula vitae odio interdum aliquet. Duis lectus turpis, luctus eget tincidunt eu, congue et odio.
-          Duis pharetra et nisl at faucibus. Quisque luctus pulvinar arcu, et molestie lectus ultrices et. Sed diam urna,
-          egestas ut ipsum vel, volutpat volutpat neque. Praesent fringilla tortor arcu. Vivamus faucibus nisl enim, nec
-          tristique ipsum euismod facilisis. Morbi ut bibendum est, eu tincidunt odio. Orci varius natoque penatibus et
-          magnis dis parturient montes, nascetur ridiculus mus. Mauris aliquet odio ac lorem aliquet ultricies in eget
-          neque. Phasellus nec tortor vel tellus pulvinar feugiat.</p>
-      </ng-template>
-    </li>
-  </ul>
-  
-  <div [ngbNavOutlet]="nav" class="mt-2"></div>
-  
-  <pre>Active: {{ active }}</pre>
+<div class="container mt-5">
+    <ul ngbNav
+        #nav="ngbNav"
+        [(activeId)]="active"
+        class="nav-tabs">
+        <li [ngbNavItem]="1">
+            <a ngbNavLink>Project Task</a>
+            <ng-template ngbNavContent>
+                <div class="jumbotron mt-3">
+                    <h1 class="display-sm-3">Project</h1>
+                    <p class="lead">Manage Projects Here</p>
+                    <hr class="my-3">
+                    <div class="lead float-sm-right">
+                        <button type="button"
+                                class="btn btn-primary mr-2"
+                                routerLink="/project/project-create/">
+                            <i class="bi bi-file-earmark-plus-fill"> Create Task</i>
+                        </button>
+                    </div>
+                </div>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <div class="container-fluid">
+                            <div class="row">
+                                <h3 class="col">Two</h3>
+                                <div class="d-flex">
+                                    <button type="button"
+                                            class="btn btn-primary mr-2"
+                                            routerLink="/#">
+                                        <i class="bi bi-info-square-fill"> Info</i>
+                                    </button>
+                                    <button type="button"
+                                            class="btn btn-success mr-2"
+                                            routerLink="/#">
+                                        <i class="bi bi-pencil-square"> Edit</i>
+                                    </button>
+                                    <button type="button"
+                                            class="btn btn-danger mr-2"
+                                            routerLink="/#">
+                                        <i class="bi bi-trash-fill"> Delete</i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <hr>
+                        <ul class="list-group">
+                            <li class="list-group-item">Item 2a</li>
+                            <li class="list-group-item">Item 2b</li>
+                        </ul>
+                    </li>
+                </ul>
+            </ng-template>
+        </li>
+        <li [ngbNavItem]="2">
+            <a ngbNavLink>Two</a>
+            <ng-template ngbNavContent>
 
+            </ng-template>
+        </li>
+        <li [ngbNavItem]="3">
+            <a ngbNavLink>Three</a>
+            <ng-template ngbNavContent>
 
-<ul class="list-group">
-    <li class="list-group-item">One</li>
-    <li class="list-group-item">Two
-        <ul class="list-group">
-            <li class="list-group-item">Item 2a</li>
-            <li class="list-group-item">Item 2b</li>
-        </ul>
-    </li>
-    <li class="list-group-item">Three
-        <ul class="list-group">
-            <li class="list-group-item">Item 3a</li>
-            <li class="list-group-item">Item 3b</li>
-        </ul>
-    </li>
-</ul>
+            </ng-template>
+        </li>
+    </ul>
 
+    <div [ngbNavOutlet]="nav"></div>
 
+    <pre>Active: {{ active }}</pre>
+</div>
+<router-outlet></router-outlet>

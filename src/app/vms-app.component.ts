@@ -4,7 +4,7 @@ import { Component } from '@angular/core';
   selector: 'vms-app',
   template: `
             <nav-bar></nav-bar>
-            <div class='container'>
+            <div class='container-fluid'>
               <router-outlet></router-outlet>
             </div>
             `,
