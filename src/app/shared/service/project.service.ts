@@ -13,6 +13,11 @@ export class ProjectService {
 
   constructor(private http: HttpClient) { }
 
+  httpOptions = {
+    headers: new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+  }  
 
   getProject(): Observable<Project[]> {
     return this.http.get<Project[]>(this.rest_location)
@@ -21,13 +26,21 @@ export class ProjectService {
       catchError(this.handleError))
   }
 
-  getProjectByID(id): Observable<Project> {
-    return this.http.get<Project>(this.rest_location + id)
+  getProjectByID(id): Observable<Project[]> {
+    return this.http.get<Project[]>(this.rest_location + id)
     .pipe(
       retry(1),
       catchError(this.handleError)
     )
   }
+
+  createEmployee(employee): Observable<Project[]> {
+    return this.http.post<Project[]>(this.rest_location + '/employees', JSON.stringify(employee), this.httpOptions)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }  
   
 
 
