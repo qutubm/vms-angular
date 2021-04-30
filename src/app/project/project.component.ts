@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
+import { Project } from '../shared/models/project.model';
+import { ProjectService } from '../shared/service/project.service';
 @Component({
   selector: 'app-project',
   templateUrl: './project.component.html',
@@ -7,9 +10,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProjectComponent implements OnInit {
 
-  // constructor(private projectServices: ProjectServices) { }
+  allProjects: any = [];
+
+
+  constructor(private route: ActivatedRoute, private projectServices: ProjectService) { }
 
   ngOnInit(): void {
+    this.loadAllProjects();
   }
+
+  loadAllProjects() {
+    return this.projectServices.getProject().subscribe((data: {}) => {
+      this.allProjects = data;
+      console.log(data);
+    })
+  }
+
+  
 
 }
