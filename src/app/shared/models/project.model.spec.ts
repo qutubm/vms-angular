@@ -1,7 +1,7 @@
-import { Project } from './project.model';
+import { ProjectModel } from './project.model';
 
 describe('Project', () => {
   it('should create an instance', () => {
-    expect(new Project()).toBeTruthy();
+    expect(new ProjectModel()).toBeTruthy();
   });
 });

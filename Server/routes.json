@@ -1,8 +1,10 @@
 {
-    "/project": "",
-    "/project/:id/product-detail": "/project/:id/product-detail",
-    "/meeting/create": "/meeting",
-    "/meeting/update/:id": "/meeting/:id",
-    "/meeting/delete/:id": "/meeting/:id"
+
+    "/project": "/project",
+    "/project/:id/": "/project/:id",
+    "/project/:id/project-detail/": "/project/:id",
+    "/project/:id/project-edit/": "/project/:id",
+    "/project/:id/project-create/": "/project/:id"
+
 }
 

@@ -6,7 +6,7 @@
     <div class="lead float-sm-right">
       <button type="button"
               class="btn btn-primary mr-2"
-              routerLink="/project/project-create/">
+              routerLink="/project-create">
         <i class="bi bi-file-earmark-plus-fill"> Create Meeting</i>
       </button>
     </div>
@@ -18,25 +18,31 @@
         <thead>
           <tr>
             <th scope="col">Project Name:</th>
-            <th scope="col">Expected Due Date:</th>
             <th scope="col">Authorised Personel:</th>
-            <th scope="col">Actions: </th>
+            <th scope="col">Team Leader:</th>
+            <th scope="col">Expected Due Date:</th>
+            <th scope="col">Real Due Date:</th>
+            <th scope="col">Actions:</th>
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let show_project of ProjectsModel">
+          <ng-template></ng-template>
+          <tr *ngFor="let show_project of ProjectModel">
             <th scope="row">{{show_project.proj_name}}</th>
-            <td>{{show_project.proj_name}}</td>
-            <td>{{show_project.proj_skills_required}}</td>
+            <td>{{show_project.staff_id}}</td>
+            <td>{{show_project.volunteer_id}}</td>
+            <td>{{show_project.proj_estimated_due_date}}</td>
+            <td>{{show_project.proj_real_due_date}}</td>
             <td>
               <div class="d-flex">
-                  <button type="button"
-                          class="btn btn-primary mr-2" [routerLink]="[show_project.project_id, 'project-detail']">
-                    <i class="bi bi-info-square-fill"> Info</i> 
-                  </button>
+                <button type="button"
+                        class="btn btn-primary mr-2"
+                        [routerLink]="[show_project.id, 'project-detail']">
+                  <i class="bi bi-info-square-fill"> Info</i>
+                </button>
                 <button type="button"
                         class="btn btn-success mr-2"
-                        [routerLink]="[show_project.project_id, 'project-detail']">
+                        [routerLink]="[show_project.id, 'project-edit']">
                   <i class="bi bi-pencil-square"> Edit</i>
                 </button>
                 <button type="button"

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { Project } from '../shared/models/project.model';
+import { ProjectModel } from '../shared/models/project.model';
 import { ProjectService } from '../shared/service/project.service';
 @Component({
   selector: 'app-project',
@@ -10,15 +10,18 @@ import { ProjectService } from '../shared/service/project.service';
 })
 export class ProjectComponent implements OnInit {
 
-  ProjectsModel: Project[];
+  ProjectModel: ProjectModel[] = [];
+  
+  
 
-
-  constructor(private route: ActivatedRoute, private projectServices: ProjectService) { }
+  constructor(private projectServices: ProjectService) { }
 
   ngOnInit(): void {
     //this.loadAllProjects();
     this.projectServices.getProject().subscribe(
-      (data: Project[]) => this.ProjectsModel = data,
+      (project_data: ProjectModel[]) => {
+        this.ProjectModel = project_data
+      },
       (err: any) => console.log(err),
       () => console.log("Projects")
     );

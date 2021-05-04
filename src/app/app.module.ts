@@ -21,10 +21,12 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     
   ],
   imports: [
-    FormsModule,
     CommonModule,
+    FormsModule,
+
     BrowserModule,
     AppRoutingModule,
+
 
   ],
   exports: [

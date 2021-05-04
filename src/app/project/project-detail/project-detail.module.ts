@@ -4,6 +4,7 @@ import { CommonModule } from '@angular/common';
 
 import { ProjectDetailRoutingModule } from './project-detail-routing.module';
 import { ProjectDetailComponent } from './project-detail.component';
+import { ProjectService } from '../../shared/service/project.service';
 
 
 
@@ -14,8 +15,11 @@ import { ProjectDetailComponent } from './project-detail.component';
     NgbModule,
     CommonModule,
   ],
-  exports:[
+  exports: [
     NgbModule,
+  ],
+  providers: [
+    ProjectService,
   ]
 })
 export class ProjectDetailModule { }

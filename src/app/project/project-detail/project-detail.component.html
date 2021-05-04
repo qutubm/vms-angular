@@ -7,8 +7,9 @@
             <a ngbNavLink>Project Task</a>
             <ng-template ngbNavContent>
                 <div class="jumbotron mt-3">
-                    <h1 class="display-sm-3">Project</h1>
-                    <p class="lead">Manage Projects Here</p>
+                    <h1 class="display-sm-3">{{ProjectModel.proj_name}}</h1>
+                    <p class="lead">Project Team Leader: {{ProjectModel.volunteer_id}}</p>
+                    <p class="lead">Assigned Staff: {{ProjectModel.staff_id}}</p>
                     <hr class="my-3">
                     <div class="lead float-sm-right">
                         <button type="button"
@@ -22,7 +23,7 @@
                     <li class="list-group-item">
                         <div class="container-fluid">
                             <div class="row">
-                                <h3 class="col">Two</h3>
+                                <h3 class="col"></h3>
                                 <div class="d-flex">
                                     <button type="button"
                                             class="btn btn-primary mr-2"
@@ -52,20 +53,27 @@
             </ng-template>
         </li>
         <li [ngbNavItem]="2">
-            <a ngbNavLink>Two</a>
+            <a ngbNavLink>Project Information</a>
             <ng-template ngbNavContent>
-
             </ng-template>
         </li>
         <li [ngbNavItem]="3">
-            <a ngbNavLink>Three</a>
+            <a ngbNavLink>Project FAQ</a>
             <ng-template ngbNavContent>
-
+                <!-- <div class="card bg-light thumbnail">
+                    <div class="card-body">
+                        <h3> FirstName LastName</h3>
+                        <div>Email: </div>
+                        <div>Phone: </div>
+                    </div>
+                </div> -->
             </ng-template>
         </li>
     </ul>
 
-    <div [ngbNavOutlet]="nav"></div>
+    <div [ngbNavOutlet]="nav">
+
+    </div>
 
     <pre>Active: {{ active }}</pre>
 </div>

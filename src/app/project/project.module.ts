@@ -14,10 +14,10 @@ import { ProjectService } from '../shared/service/project.service';
     ProjectComponent,
   ],
   imports: [
-    ProjectRoutingModule,
     FormsModule,
     CommonModule,
     HttpClientModule,
+    ProjectRoutingModule,
   ],
   providers:[
    ProjectService,
