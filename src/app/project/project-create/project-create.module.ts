@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { ProjectCreateRoutingModule } from './project-create-routing.module';
 import { ProjectCreateComponent } from './project-create.component';
 
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 
 
@@ -10,14 +10,16 @@ import { CommonModule } from '@angular/common';
 @NgModule({
   declarations: [ProjectCreateComponent],
   imports: [
-    FormsModule,
+    ReactiveFormsModule,
     CommonModule,
     ProjectCreateRoutingModule,
 
   ],
   exports: [
-    FormsModule,
-    CommonModule,
+    ReactiveFormsModule,
+    CommonModule
   ]
 })
-export class ProjectCreateModule { }
+export class ProjectCreateModule { 
+  
+}

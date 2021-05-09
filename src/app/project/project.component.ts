@@ -11,13 +11,16 @@ import { ProjectService } from '../shared/service/project.service';
 export class ProjectComponent implements OnInit {
 
   ProjectModel: ProjectModel[] = [];
+  listStaffMembers: any[] = [];
   
-  
-
   constructor(private projectServices: ProjectService) { }
 
   ngOnInit(): void {
-    //this.loadAllProjects();
+    this.loadProjects();
+  }
+
+
+  loadProjects() {
     this.projectServices.getProject().subscribe(
       (project_data: ProjectModel[]) => {
         this.ProjectModel = project_data
@@ -27,13 +30,14 @@ export class ProjectComponent implements OnInit {
     );
   }
 
-  // loadAllProjects() {
-  //   return this.projectServices.getProject().subscribe((data: {}) => {
-  //     this.ProjectsModel = data;
-  //     console.log(this.ProjectsModel);
-  //   })
-  // }
+  deleteProjectByID(id) {
+    console.log(id);
+    if (window.confirm('Are you sure, you want to delete?')){
+      this.projectServices.deleteProjectByID(id).subscribe(() => {
+        this.loadProjects();
+      })
+    }
+  }
 
-  
 
 }

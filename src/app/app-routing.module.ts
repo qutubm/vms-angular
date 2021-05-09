@@ -7,7 +7,7 @@ const routes: Routes = [
   { path: 'meeting', loadChildren: () => import('./meeting/meeting.module').then(m => m.MeetingModule) },
   { path: 'profiles', loadChildren: () => import('./profiles/profiles.module').then(m => m.ProfilesModule) },
   { path: 'notification', loadChildren: () => import('./notification/notification.module').then(m => m.NotificationModule) },
-  { path: '', redirectTo: 'profiles', pathMatch: 'full' },
+  { path: '', redirectTo: 'Dashboard', pathMatch: 'full' },
   { path: '**', redirectTo: 'project', pathMatch: 'full' }
   
 ];

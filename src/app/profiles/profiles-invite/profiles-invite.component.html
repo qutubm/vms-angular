@@ -1,20 +1,64 @@
 <div class="container mt-5">
-    <form #profileInvite="ngForm">
+    <form>
         <div class="input-group">
-                <input type="email"
-                       class="form-control col"
-                       id="profile_invite"
-                       name="profile_invite"
-                       placeholder="Enter Email ">
+            <input type="email"
+                   class="form-control col"
+                   id="profile_invite"
+                   name="profile_invite"
+                   placeholder="Enter Email ">
+            <div class="form-check">
+                <input class="form-check-input"
+                       type="radio"
+                       name="role"
+                       id="volunteer"
+                       checked>
+                <label class="form-check-label"
+                       for="flexRadioDefault1">
+                    Volunteer
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input"
+                       type="radio"
+                       name="role"
+                       id="staff"
+                       >
+                <label class="form-check-label"
+                       for="flexRadioDefault2">
+                    Staff
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input"
+                       type="radio"
+                       name="role"
+                       id="staff"
+                       >
+                <label class="form-check-label"
+                       for="flexRadioDefault2">
+                    Teamleader
+                </label>
+            </div>
             <div class="input-group-append">
-                <button class="btn btn-primary">
+                <button class="btn btn-primary"
+                        (click)="addEmailFromList(txtUserEmail, rdbRole)">
                     <i class="bi bi-plus-square-fill"></i>
                 </button>
             </div>
         </div>
+
         <hr>
+
         <button class="btn btn-primary">Send Email Invitations</button>
     </form>
-</div>
 
-{{profileInvite | json}}
+    <hr>
+    <ul class="list-group">
+        <li class="list-group-item d-flex"
+            *ngFor="let person of invitation_listOfEmails; let i = btnEmailIndex;">
+            <p class="p-0 m-0 flex-grow-1">{{person.user_email}}</p>
+            <button class="btn btn-danger"
+                    (click)="deleteEmailFromList(btnEmailIndex)">DELETE</button>
+        </li>
+    </ul>
+</div>

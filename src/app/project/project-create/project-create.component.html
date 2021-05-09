@@ -1,34 +1,32 @@
 <div class="container">
-<form #projectCreate="ngForm">
+<form (ngSubmit)="createProject()" [formGroup]="projectCreate">
     <div class="container mt-5">
         <div class="container row">
             <div class="col">
-                <h1>Create A Project</h1>
+                <h1>Create Project:</h1>
             </div>
 
             <button class="btn btn-primary">Create Project</button>
 
         </div>
-        <hr>
-
     </div>
+    <hr>
     <div class="form-group">
         <label for="project_name">Project Name: </label>
-
         <input type="text"
                class="form-control col"
                id="project_name"
                name="project_name"
-               placeholder="Enter Project Name">
-
+               placeholder="Enter Project Name" formControlName="project_name">
     </div>
     <div class="form-group">
-        <label for="project_date">Project Expected Date Of Completion: </label>
+        <label for="project_date">Project Expected Date of Completion: </label>
         <input type="date"
                class="form-control col"
                id="project_date"
                name="project_date"
-               placeholder="Enter Project Name">
+               placeholder="Enter Expected Date of Completion" formControlName="project_date"
+               >
     </div>
     <hr>
     <div class="form-group">
@@ -37,8 +35,7 @@
             <input type="email"
                    class="form-control col"
                    id="project_staff"
-                   name="project_staff"
-                   placeholder="Enter Email ">
+                   name="project_staff" formControlName="project_staff">
             <div class="input-group-append">
                 <button class="btn btn-primary">
                     <i class="bi bi-plus-square-fill"></i>
@@ -54,8 +51,7 @@
                    class="form-control col"
                    id="project_volunteers"
                    name="profile_invite"
-                   placeholder="Enter Email "
-                   ngModel>
+                   placeholder="Enter Email" formControlName="project_volunteers">
             <div class="input-group-append">
                 <button class="btn btn-primary">
                     <i class="bi bi-plus-square-fill"></i>
@@ -65,5 +61,4 @@
     </div>
 </form>
 </div>
-
 <!-- {{ projectCreate.value | json }} -->

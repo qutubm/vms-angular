@@ -1,3 +1,5 @@
+import { ProjectMembers } from '../models/project-members.model';
+
 export class ProjectModel {
     // `proj_id` int NOT NULL AUTO_INCREMENT PRIMARY KEY, /* The second parent table that associates the task*/
     // `proj_name` varchar(50) NOT NULL, /* The name of the project*/
@@ -14,4 +16,5 @@ export class ProjectModel {
     proj_skills_required: string;
     proj_real_due_date: string;
     proj_estimated_due_date: string;
+    project_members: Array<ProjectMembers> = [];
 }

@@ -7,12 +7,10 @@ import { ProfilesComponent } from './profiles.component';
 
 
 const routes: Routes = [
-  {
-    path: '', component: ProfilesComponent
-  },
-  { path: 'profiles-create', loadChildren: () => import('./profiles-create/profiles-create.module').then(m => m.ProfilesCreateModule) },
+  { path: '', component: ProfilesComponent},
   { path: 'profiles-invite', loadChildren: () => import('./profiles-invite/profiles-invite.module').then(m => m.ProfilesInviteModule) },
-  { path: 'profiles-detail', loadChildren: () => import('./profiles-detail/profiles-detail.module').then(m => m.ProfilesDetailModule) }
+  { path: 'profiles-create', loadChildren: () => import('./profiles-create/profiles-create.module').then(m => m.ProfilesCreateModule) },
+  { path: 'profiles-detail/:id', loadChildren: () => import('./profiles-detail/profiles-detail.module').then(m => m.ProfilesDetailModule) }
 ];
 
 @NgModule({
@@ -20,4 +18,7 @@ const routes: Routes = [
   exports: [RouterModule]
 })
 
-export class ProfilesRoutingModule { }
+export class ProfilesRoutingModule { 
+
+  
+}

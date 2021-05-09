@@ -1,16 +1,91 @@
 {
-  "Project": [
+  "profiles": [
     {
       "id": 1,
-      "project_id": 1,
-      "proj_name": "Lemons Project",
-      "staff_id": "Scott",
-      "volunteer_id": "Qutub",
-      "proj_skills_required": "Angular, ASP.NetCore",
-      "proj_real_due_date": "proj_real_due_date",
-      "proj_estimated_due_date": "proj_estimated_due_date"
+      "profile_id": 1,
+      "role": "s",
+      "email": "lance@email.com",
+      "password": "Jibberish",
+      "first_name": "Lance",
+      "last_name": "Bongon",
+      "suburb": "Melbourne",
+      "state": "Victoria",
+      "phone": "123467890",
+      "additional_email": "lance2@email.com",
+      "additional_phone": "lance3@email.com"
     },
-
+    {
+      "id": 2,
+      "profile_id": 1,
+      "role": "string",
+      "email": "string",
+      "password": "string",
+      "first_name": "string",
+      "last_name": "string",
+      "suburb": "string",
+      "state": "string",
+      "phone": "string",
+      "additional_email": "string",
+      "additional_phone": "string"
+    },
+    {
+      "id": 3,
+      "profile_id": 1,
+      "role": "string",
+      "email": "string",
+      "password": "string",
+      "first_name": "string",
+      "last_name": "string",
+      "suburb": "string",
+      "state": "string",
+      "phone": "string",
+      "additional_email": "string",
+      "additional_phone": "string"
+    },
+    {
+      "id": 4,
+      "profile_id": 1,
+      "role": "string",
+      "email": "string",
+      "password": "string",
+      "first_name": "string",
+      "last_name": "string",
+      "suburb": "string",
+      "state": "string",
+      "phone": "string",
+      "additional_email": "string",
+      "additional_phone": "string"
+    },
+    {
+      "id": 5,
+      "profile_id": 1,
+      "role": "string",
+      "email": "string",
+      "password": "string",
+      "first_name": "string",
+      "last_name": "string",
+      "suburb": "string",
+      "state": "string",
+      "phone": "string",
+      "additional_email": "string",
+      "additional_phone": "string"
+    },
+    {
+      "id": 6,
+      "profile_id": 1,
+      "role": "string",
+      "email": "string",
+      "password": "string",
+      "first_name": "string",
+      "last_name": "string",
+      "suburb": "string",
+      "state": "string",
+      "phone": "string",
+      "additional_email": "string",
+      "additional_phone": "string"
+    }
+  ],
+  "project": [
     {
       "id": 2,
       "project_id": 2,
@@ -19,7 +94,24 @@
       "volunteer_id": "The lemons",
       "proj_skills_required": "Angular, ASP.NetCore",
       "proj_real_due_date": "proj_real_due_date",
-      "proj_estimated_due_date": "proj_estimated_due_date"
+      "proj_estimated_due_date": "proj_estimated_due_date",
+      "proj_members": [
+        {
+          "proj_id": 2,
+          "proj_member_id": 3,
+          "proj_member_name": "Archie"
+        },
+        {
+          "proj_id": 2,
+          "proj_member_id": 3,
+          "proj_member_name": "Archie"
+        },
+        {
+          "proj_id": 2,
+          "proj_member_id": 3,
+          "proj_member_name": "Archie"
+        }
+      ]
     },
     {
       "id": 3,
@@ -29,7 +121,74 @@
       "volunteer_id": "Greg",
       "proj_skills_required": "Angular, ASP.NetCore",
       "proj_real_due_date": "proj_real_due_date",
-      "proj_estimated_due_date": "proj_estimated_due_date"
+      "proj_estimated_due_date": "proj_estimated_due_date",
+      "proj_members": [
+        {
+          "id": 1,
+          "proj_id": 1,
+          "proj_member_id": 3,
+          "proj_member_name": "Archie"
+        },
+        {
+          "id": 2,
+          "proj_id": 2,
+          "proj_member_id": 3,
+          "proj_member_name": "Archie"
+        },
+        {
+          "id": 3,
+          "proj_id": 3,
+          "proj_member_id": 3,
+          "proj_member_name": "Archie"
+        }
+      ]
+    },
+    {
+      "id": 4,
+      "project_id": 3,
+      "proj_name": "Oranges Project",
+      "staff_id": "Jonh Doe",
+      "volunteer_id": "Greg Doe",
+      "proj_skills_required": "Angular, ASP.NetCore",
+      "proj_real_due_date": "proj_real_due_date",
+      "proj_estimated_due_date": "proj_estimated_due_date",
+      "proj_members": [
+        {
+          "id": 1,
+          "proj_id": 1,
+          "proj_member_id": 3,
+          "proj_member_name": "Archie"
+        },
+        {
+          "id": 2,
+          "proj_id": 2,
+          "proj_member_id": 3,
+          "proj_member_name": "Archie"
+        },
+        {
+          "id": 3,
+          "proj_id": 3,
+          "proj_member_id": 3,
+          "proj_member_name": "Archie"
+        }
+      ]
+    }
+  ],
+  "project_members": [
+    {
+      "id": 1,
+      "prof_id": 1,
+      "prof_name": "John Doe"
+    },
+    {
+      "id": 1,
+      "prof_id": 1,
+      "prof_name": "Maria Doe"
+    },
+    {
+      "id": 1,
+      "prof_id": 1,
+      "prof_name": "Kid Doe"
     }
   ]
 }

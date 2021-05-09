@@ -9,10 +9,15 @@ import { ProjectEditComponent } from './project-edit/project-edit.component';
 
 
 const routes: Routes = [
-  { path: '', component: ProjectComponent },
+  { path: '', component: ProjectComponent,
+    children: [
+      { path: '/project-create', loadChildren: () => import('./project-create/project-create.module').then(m => m.ProjectCreateModule) }
+    ]
+  },
+  { path: 'project-create', loadChildren: () => import('./project-create/project-create.module').then(m => m.ProjectCreateModule) },
   { path: ':id/project-detail', loadChildren: () => import('./project-detail/project-detail.module').then(m => m.ProjectDetailModule)},
   { path: ':id/project-edit', loadChildren: () => import('./project-edit/project-edit.module').then(m => m.ProjectEditModule)},
-  { path: 'project-create', loadChildren: () => import('./project-create/project-create.module').then(m => m.ProjectCreateModule) },
+  
   
 
   // { path: 'project-create', component: ProjectCreateComponent },
