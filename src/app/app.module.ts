@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbTypeahead } from '@ng-bootstrap/ng-bootstrap';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms'
 import { CommonModule } from '@angular/common';
 
@@ -25,16 +25,15 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     ReactiveFormsModule,
     BrowserModule,
     AppRoutingModule,
-
-
+    NgbModule,
   ],
   exports: [
     CommonModule,
-    NgbModule,
     FormsModule,
     ReactiveFormsModule,
+    NgbModule,
   ],
   providers: [],
-  bootstrap: [VmsAppComponent]
+  bootstrap: [VmsAppComponent, NgbModule]
 })
 export class AppModule { }

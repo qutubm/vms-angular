@@ -1,17 +1,20 @@
 <div class="container mt-5">
-  <form (ngSubmit)="postData()" [formGroup]="profileCreate">
+  <form [formGroup]="profileCreate"
+        (ngSubmit)="postData()">
     <div class="form-group">
       <label for="profile_email">Email address</label>
       <input type="email"
              class="form-control"
              id="profile_email"
              name="profile_email"
-             placeholder="Enter email" formControlName="profile_email">
+             placeholder="Enter email"
+             formControlName="profile_email">
     </div>
     <div class="form-group">
       <label for="profile-password">Password</label>
       <input type="password"
              class="form-control"
+             [class.is-invalid]="profileCreate.get('profile_email').invalid && profileCreate.get('profile_email').touched"
              id="profile_password"
              name="profile_password"
              placeholder="Enter Password"
@@ -23,7 +26,8 @@
              class="form-control"
              id="profile_passwordConfirmed"
              name="profile_passwordConfirmed"
-             placeholder="Confirm Password" formControlName="profile_passwordConfirmed">
+             placeholder="Confirm Password"
+             formControlName="profile_passwordConfirmed">
     </div>
     <div class="form-group">
       <label for="profile_firstName">First Name:</label>
@@ -31,7 +35,8 @@
              class="form-control"
              id="profile_firstName"
              name="profile_firstName"
-             placeholder="Enter First Name" formControlName="profile_firstName">
+             placeholder="Enter First Name"
+             formControlName="profile_firstName">
     </div>
     <div class="form-group">
       <label for="profile_LastName">Last Name:</label>
@@ -39,7 +44,8 @@
              class="form-control"
              id="profile_LastName"
              name="profile_LastName"
-             placeholder="Enter Last Name" formControlName="profile_lastName">
+             placeholder="Enter Last Name"
+             formControlName="profile_lastName">
     </div>
     <div class="form-group">
       <label for="profile_suburb">Suburb</label>
@@ -47,17 +53,20 @@
              class="form-control"
              id="profile_suburb"
              name="profile_suburb"
-             placeholder="Enter Suburb" formControlName="profile_suburb">
+             placeholder="Enter Suburb"
+             formControlName="profile_suburb">
     </div>
     <div class="form-group">
       <label for="profile_state">State</label>
-      <input type="text"
-             class="form-control"
-             id="profile_state"
-             name="profile_state"
-             placeholder="State" formControlName="profile_state">
+      <input id="typeahead-basic"
+      type="text"
+      class="form-control"
+      [ngbTypeahead]="search" />
     </div>
     <button type="submit"
-            class="btn btn-primary" (click)="postData()" [disabled]="!profileCreate.valid">Submit</button>
+            class="btn btn-primary"
+            (click)="postData()"
+            [disabled]="!profileCreate.valid">Submit</button>
   </form>
+  
 </div>
