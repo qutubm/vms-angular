@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
 import { VmsAppComponent } from './vms-app.component';
 import { NavBarComponent } from './nav/nav-bar.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
-
+import { SharedModule } from './shared/shared.module';
 
 
 @NgModule({
@@ -20,20 +20,15 @@ import { DashboardComponent } from './dashboard/dashboard.component';
     
   ],
   imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
     BrowserModule,
+    SharedModule,
     AppRoutingModule,
-    NgbModule,
+
   ],
   exports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NgbModule,
+    SharedModule,
   ],
   providers: [],
-  bootstrap: [VmsAppComponent, NgbModule]
+  bootstrap: [VmsAppComponent]
 })
 export class AppModule { }

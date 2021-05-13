@@ -6,39 +6,7 @@
                    id="profile_invite"
                    name="profile_invite"
                    placeholder="Enter Email ">
-            <div class="form-check">
-                <input class="form-check-input"
-                       type="radio"
-                       name="role"
-                       id="volunteer"
-                       checked>
-                <label class="form-check-label"
-                       for="flexRadioDefault1">
-                    Volunteer
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input"
-                       type="radio"
-                       name="role"
-                       id="staff"
-                       >
-                <label class="form-check-label"
-                       for="flexRadioDefault2">
-                    Staff
-                </label>
-            </div>
-            <div class="form-check">
-                <input class="form-check-input"
-                       type="radio"
-                       name="role"
-                       id="staff"
-                       >
-                <label class="form-check-label"
-                       for="flexRadioDefault2">
-                    Teamleader
-                </label>
-            </div>
+
             <div class="input-group-append">
                 <button class="btn btn-primary"
                         (click)="addEmailFromList(txtUserEmail, rdbRole)">
@@ -46,7 +14,43 @@
                 </button>
             </div>
         </div>
+        <div class="container col-md-5">
+            <div class="input-group">
+                <div class="form-check">
+                    <input class="form-check-input"
+                           type="radio"
+                           name="role"
+                           id="volunteer"
+                           checked>
+                    <label class="form-check-label"
+                           for="flexRadioDefault1">
+                        Volunteer
+                    </label>
+                </div>
 
+                <div class="form-check">
+                    <input class="form-check-input"
+                           type="radio"
+                           name="role"
+                           id="staff">
+                    <label class="form-check-label"
+                           for="flexRadioDefault2">
+                        Staff
+                    </label>
+                </div>
+                <div class="form-check col">
+                    <input class="form-check-input"
+                           type="radio"
+                           name="role"
+                           id="staff">
+                    <label class="form-check-label"
+                           for="flexRadioDefault2">
+                        Teamleader
+                    </label>
+                </div>
+
+            </div>
+        </div>
         <hr>
 
         <button class="btn btn-primary">Send Email Invitations</button>

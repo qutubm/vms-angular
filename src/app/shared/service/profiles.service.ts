@@ -3,14 +3,13 @@ import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-
 import { ProfilesModel } from '../models/profiles.model';
-//import { ProfilesRestricted } from '../models/profiles.model';
 
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class ProfilesService {
 
   Profiles: any = []; //Can be used to determine
@@ -39,11 +38,13 @@ export class ProfilesService {
         catchError(this.handleError));
   }
 
-  
-  getProfileByRole(role) {
-    //To do: Figure out how to best consume rest services based on role. Problem: The suburb, state, and phone cannot be viewed by the volunteer. 
+  createProfileByRole(profile) {
+    return this.http.post<ProfilesModel>(this.rest_locationProfile, JSON.stringify(profile), this.httpOptions)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
   }
-
 
   deleteEmployee(id){
     return this.http.delete<ProfilesModel>(this.rest_locationProfile + '/delete/' + id, this.httpOptions)
@@ -52,8 +53,6 @@ export class ProfilesService {
       catchError(this.handleError)
     )
   }
-
-
 
   handleError(error) {
     let errorMessage = '';
@@ -67,9 +66,4 @@ export class ProfilesService {
     window.alert(errorMessage);
     return throwError(errorMessage);
   }
-
-
-
-
-
 }

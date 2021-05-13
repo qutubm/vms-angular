@@ -12,7 +12,10 @@ export class ProfilesComponent implements OnInit {
 
   ProfilesModel: ProfilesModel[] = [];
 
-  constructor(private profilesServices: ProfilesService) { }
+  constructor(private profilesServices: ProfilesService) { 
+
+    
+  }
 
   ngOnInit(): void {
     this.loadProfiles();

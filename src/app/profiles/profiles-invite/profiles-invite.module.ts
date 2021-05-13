@@ -4,14 +4,14 @@ import { FormsModule } from '@angular/forms';
 
 import { ProfilesInviteRoutingModule } from './profiles-invite-routing.module';
 import { ProfilesInviteComponent } from './profiles-invite.component';
+import { SharedModule } from '../../../app/shared/shared.module';
 
 
 @NgModule({
   declarations: [ProfilesInviteComponent],
   imports: [
-    CommonModule,
+    SharedModule,
     ProfilesInviteRoutingModule,
-    FormsModule
   ]
 })
 export class ProfilesInviteModule { }

@@ -1,29 +1,31 @@
-import { Component, OnInit } from '@angular/core';
-import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
+import { Component, Input, OnInit } from '@angular/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+
 import { Observable, OperatorFunction } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 
+import { ActivatedRoute, Router } from '@angular/router';
+import { ProfilesService } from '../../shared/service/profiles.service';
 
-const states = ['Alabama', 'Alaska', 'American Samoa', 'Arizona', 'Arkansas', 'California', 'Colorado',
-  'Connecticut', 'Delaware', 'District Of Columbia', 'Federated States Of Micronesia', 'Florida', 'Georgia',
-  'Guam', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine',
-  'Marshall Islands', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana',
-  'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
-  'Northern Mariana Islands', 'Ohio', 'Oklahoma', 'Oregon', 'Palau', 'Pennsylvania', 'Puerto Rico', 'Rhode Island',
-  'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virgin Islands', 'Virginia',
-  'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
+
+const states = ['Victoria', 'New South Wales', 'Tasmania', 'Queensland'];
 
 @Component({
   selector: 'app-profiles-create',
   templateUrl: './profiles-create.component.html',
   styleUrls: ['./profiles-create.component.css']
 })
+
 export class ProfilesCreateComponent implements OnInit {
+  
+  @Input() profileDetails = { profile_email: '', profile_password: '', profile_passwordConfirmed: '', profile_firstName:'', profile_lastName:'', profile_suburb:''}
 
   profileCreate: FormGroup;
-  constructor(private formBuilder: FormBuilder) {
+  
+
+  constructor(private formBuilder: FormBuilder, private profileServices: ProfilesService, private activatedRoute: ActivatedRoute, private router: Router) {
     this.profileCreate = this.formBuilder.group({
-      profile_email: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      profile_email: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"), Validators.minLength(2), Validators.maxLength(50)]],
       profile_password: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
       profile_passwordConfirmed: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
       profile_firstName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
@@ -31,26 +33,20 @@ export class ProfilesCreateComponent implements OnInit {
       profile_suburb: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]]
     })
 
-    //Set value to the form
-    const profilePrefilled = {
-      profile_email: 'Name of Project',
-      profile_password: 'Password',
-      profile_passwordConfirmed: 'Password Confirmed',
-    }
-    //this.profileCreate.setValue(profilePrefilled);
-    //this.profileCreate.patchValue(profilePrefilledVersion2)
-    //this.profileCreate.reset(); //Resets the entered value of all 
   }
 
   ngOnInit(): void {
+
   }
 
-  postData() {
-    //console.log(this.profileCreate.value)// Print the value to the console
-    //console.log("The email is:" + this.profileCreate.get('profile_email').value) // Print the value to the profile create
-  }
 
-  public model: any;
+  createProfile() {
+    this.profileServices.createProfileByRole(this.profileCreate.value).subscribe((data: {}) => {
+      console.log(data)
+      
+    })
+    this.router.navigate(['/profiles'], { relativeTo: this.activatedRoute });
+  }
 
   search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>) =>
     text$.pipe(
@@ -58,38 +54,7 @@ export class ProfilesCreateComponent implements OnInit {
       distinctUntilChanged(),
       map(term => term.length < 2 ? []
         : states.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
-    )
+  )
+
 
 }
-
-
-// import {Observable, OperatorFunction} from 'rxjs';
-// import {debounceTime, distinctUntilChanged, map} from 'rxjs/operators';
-
-// const states = ['Alabama', 'Alaska', 'American Samoa', 'Arizona', 'Arkansas', 'California', 'Colorado',
-//   'Connecticut', 'Delaware', 'District Of Columbia', 'Federated States Of Micronesia', 'Florida', 'Georgia',
-//   'Guam', 'Hawaii', 'Idaho', 'Illinois', 'Indiana', 'Iowa', 'Kansas', 'Kentucky', 'Louisiana', 'Maine',
-//   'Marshall Islands', 'Maryland', 'Massachusetts', 'Michigan', 'Minnesota', 'Mississippi', 'Missouri', 'Montana',
-//   'Nebraska', 'Nevada', 'New Hampshire', 'New Jersey', 'New Mexico', 'New York', 'North Carolina', 'North Dakota',
-//   'Northern Mariana Islands', 'Ohio', 'Oklahoma', 'Oregon', 'Palau', 'Pennsylvania', 'Puerto Rico', 'Rhode Island',
-//   'South Carolina', 'South Dakota', 'Tennessee', 'Texas', 'Utah', 'Vermont', 'Virgin Islands', 'Virginia',
-//   'Washington', 'West Virginia', 'Wisconsin', 'Wyoming'];
-
-
-// @Component({
-//   selector: 'ngbd-typeahead-basic',
-//   templateUrl: './profiles-create.component.html',
-//   styles: [`.form-control { width: 300px; }`]
-// })
-// export class NgbdTypeaheadBasic {
-//   public model: any;
-
-//   search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>) =>
-//     text$.pipe(
-//       debounceTime(200),
-//       distinctUntilChanged(),
-//       map(term => term.length < 2 ? []
-//         : states.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
-//     )
-
-// }

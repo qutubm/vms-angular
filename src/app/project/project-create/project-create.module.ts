@@ -13,7 +13,6 @@ import { CommonModule } from '@angular/common';
     ReactiveFormsModule,
     CommonModule,
     ProjectCreateRoutingModule,
-
   ],
   exports: [
     ReactiveFormsModule,

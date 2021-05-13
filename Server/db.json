@@ -83,6 +83,24 @@
       "phone": "string",
       "additional_email": "string",
       "additional_phone": "string"
+    },
+    {
+      "profile_email": "lbbongon@example.com",
+      "profile_password": "asdf",
+      "profile_passwordConfirmed": "asdf",
+      "profile_firstName": "Lance",
+      "profile_lastName": "LOTTT",
+      "profile_suburb": "Hampton Park",
+      "id": 7
+    },
+    {
+      "profile_email": "lbbongon@example.com",
+      "profile_password": "asdf",
+      "profile_passwordConfirmed": "asdf",
+      "profile_firstName": "Lance",
+      "profile_lastName": "LOTTT",
+      "profile_suburb": "Hampton Park",
+      "id": 8
     }
   ],
   "project": [
