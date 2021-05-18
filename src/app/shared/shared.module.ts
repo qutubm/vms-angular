@@ -1,26 +1,26 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { SharedComponent } from './components/shared.component';
 import { SharedRoutingModule } from './shared-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
-  declarations: [SharedComponent],
+  declarations: [],
   imports: [
     CommonModule,
     FormsModule,
     ReactiveFormsModule,
     SharedRoutingModule,
+    HttpClientModule,
     NgbModule,
   ],
   exports: [
-    SharedComponent, 
     CommonModule,
     FormsModule,
-    ReactiveFormsModule, 
+    ReactiveFormsModule,
+    HttpClientModule,
     NgbModule,
   ]
 })

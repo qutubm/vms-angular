@@ -1,24 +1,14 @@
 export class ProfilesModel {
     profile_id: number;
     role: string;
-    email: string;
-    password: string;
-    first_name: string;
-    last_name: string;
-    suburb: string;
-    state: string;
-    phone: string;
+    profile_email: string;
+    profile_password: string;
+    profile_passwordConfirmed:string;
+    profile_firstName: string;
+    profile_lastName: string;
+    profile_suburb: string;
+    profile_state: string;
+    profile_phone: string;
     additional_email: string;
     additional_phone: string;
 }
-
-
-export class ProfilesRestricted {
-    profile_id: number;
-    role: string; 
-    email: string;
-    password: string;
-    first_name: string;
-    last_name: string;
-}
-

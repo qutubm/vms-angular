@@ -13,7 +13,7 @@ import { ProfilesModel } from '../models/profiles.model';
 export class ProfilesService {
 
   Profiles: any = []; //Can be used to determine
-  rest_locationProfile = 'http://localhost:3000/profiles';
+  rest_locationMeeting = 'http://localhost:3000/profiles';
 
   constructor(private http: HttpClient) { }
 
@@ -25,21 +25,21 @@ export class ProfilesService {
 
 
   getProfiles(): Observable<ProfilesModel[]> {
-    return this.http.get<ProfilesModel[]>(this.rest_locationProfile)
+    return this.http.get<ProfilesModel[]>(this.rest_locationMeeting)
       .pipe(
         retry(1),
         catchError(this.handleError));
   }
 
   getProfilesByID(id): Observable<ProfilesModel> {
-    return this.http.get<ProfilesModel>(this.rest_locationProfile + '/' + id)
+    return this.http.get<ProfilesModel>(this.rest_locationMeeting + '/' + id)
       .pipe(
         retry(1),
         catchError(this.handleError));
   }
 
   createProfile(profile) {
-    return this.http.post<ProfilesModel>(this.rest_locationProfile, JSON.stringify(profile), this.httpOptions)
+    return this.http.post<ProfilesModel>(this.rest_locationMeeting, JSON.stringify(profile), this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)
@@ -47,7 +47,7 @@ export class ProfilesService {
   }
 
   deleteProfileByID(id){
-    return this.http.delete<ProfilesModel>(this.rest_locationProfile + '/' + id)
+    return this.http.delete<ProfilesModel>(this.rest_locationMeeting + '/' + id)
     .pipe(
       retry(1),
       catchError(this.handleError)

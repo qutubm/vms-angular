@@ -20,20 +20,17 @@
         <div class="card bg-light thumbnail"
              *ngFor="let showProfiles of ProfilesModel">
             <div class="card-body">
-                <h3>{{showProfiles.first_name + " " + showProfiles.last_name}}</h3>
-                <div>Email: {{showProfiles.email}} </div>
-                <div>Phone: {{showProfiles.phone}}</div>
+                <h3>{{showProfiles.profile_firstName + " " + showProfiles.profile_lastName}}</h3>
+                <div>Email: {{showProfiles.profile_email}} </div>
+                <div>Phone: {{showProfiles.profile_phone}}</div>
                 <hr>
                 <div class="d-flex">
                     <button type="button"
                             class="btn btn-primary mr-2"
-                            routerLink="/profiles/profiles-invite">
+                            (click)="openVideoPopup()"
+                            routerLink="profiles-detail/1"
+                            skipLocationChange>
                         View Profile
-                    </button>
-                    <button type="button"
-                            class="btn btn-success mr-2"
-                            routerLink="/profiles/profiles-invite">
-                        Edit Profile
                     </button>
                     <button type="button"
                             class="btn btn-danger mr-2"
@@ -44,4 +41,3 @@
             </div>
         </div>
     </div>
-    <router-outlet></router-outlet>

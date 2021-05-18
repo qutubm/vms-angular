@@ -1,142 +1,52 @@
 {
   "profiles": [
     {
-      "id": 1,
-      "profile_id": 1,
-      "role": "s",
-      "email": "lance@email.com",
-      "password": "Jibberish",
-      "first_name": "Lance",
-      "last_name": "Bongon",
-      "suburb": "Melbourne",
-      "state": "Victoria",
-      "phone": "123467890",
-      "additional_email": "lance2@email.com",
-      "additional_phone": "lance3@email.com"
+      "profile_email": "asdf@me.com",
+      "profile_password": "",
+      "profile_passwordConfirmed": "",
+      "profile_firstName": "asdf",
+      "profile_lastName": "asdf",
+      "profile_phone": "01092455123",
+      "profile_suburb": "fas",
+      "profile_state": "VIC",
+      "profile_additionalEmail": "asdf2@me.com",
+      "profile_additionalPhone": "01092455123",
+      "id": 1
     },
     {
-      "id": 2,
-      "profile_id": 1,
-      "role": "string",
-      "email": "string",
-      "password": "string",
-      "first_name": "string",
-      "last_name": "string",
-      "suburb": "string",
-      "state": "string",
-      "phone": "string",
-      "additional_email": "string",
-      "additional_phone": "string"
+      "profile_email": "asdf@me.com",
+      "profile_password": "",
+      "profile_passwordConfirmed": "",
+      "profile_firstName": "asdf",
+      "profile_lastName": "asdf",
+      "profile_phone": "01092455123",
+      "profile_suburb": "fas",
+      "profile_state": "VIC",
+      "profile_additionalEmail": "asdf2@me.com",
+      "profile_additionalPhone": "01092455123",
+      "id": 2
     },
     {
-      "id": 3,
-      "profile_id": 1,
-      "role": "string",
-      "email": "string",
-      "password": "string",
-      "first_name": "string",
-      "last_name": "string",
-      "suburb": "string",
-      "state": "string",
-      "phone": "string",
-      "additional_email": "string",
-      "additional_phone": "string"
-    },
-    {
-      "id": 4,
-      "profile_id": 1,
-      "role": "string",
-      "email": "string",
-      "password": "string",
-      "first_name": "string",
-      "last_name": "string",
-      "suburb": "string",
-      "state": "string",
-      "phone": "string",
-      "additional_email": "string",
-      "additional_phone": "string"
-    },
-    {
-      "id": 5,
-      "profile_id": 1,
-      "role": "string",
-      "email": "string",
-      "password": "string",
-      "first_name": "string",
-      "last_name": "string",
-      "suburb": "string",
-      "state": "string",
-      "phone": "string",
-      "additional_email": "string",
-      "additional_phone": "string"
-    },
-    {
-      "id": 6,
-      "profile_id": 1,
-      "role": "string",
-      "email": "string",
-      "password": "string",
-      "first_name": "string",
-      "last_name": "string",
-      "suburb": "string",
-      "state": "string",
-      "phone": "string",
-      "additional_email": "string",
-      "additional_phone": "string"
-    },
-    {
-      "profile_email": "lbbongon@example.com",
+      "profile_email": "asdf@me.com",
       "profile_password": "asdf",
       "profile_passwordConfirmed": "asdf",
-      "profile_firstName": "Lance",
-      "profile_lastName": "LOTTT",
-      "profile_suburb": "Hampton Park",
-      "id": 7
-    },
-    {
-      "profile_email": "lbbongon@example.com",
-      "profile_password": "asdf",
-      "profile_passwordConfirmed": "asdf",
-      "profile_firstName": "Lance",
-      "profile_lastName": "LOTTT",
-      "profile_suburb": "Hampton Park",
-      "id": 8
+      "profile_firstName": "asdf",
+      "profile_lastName": "asdf",
+      "profile_phone": "01092455123",
+      "profile_suburb": "fas",
+      "profile_state": "VIC",
+      "profile_additionalEmail": "asdf@me.com",
+      "profile_additionalPhone": "01092455123",
+      "id": 3
     }
   ],
   "project": [
     {
       "id": 2,
-      "project_id": 2,
-      "proj_name": "Apples Project",
-      "staff_id": "Greg",
-      "volunteer_id": "The lemons",
-      "proj_skills_required": "Angular, ASP.NetCore",
-      "proj_real_due_date": "proj_real_due_date",
-      "proj_estimated_due_date": "proj_estimated_due_date",
-      "proj_members": [
-        {
-          "proj_id": 2,
-          "proj_member_id": 3,
-          "proj_member_name": "Archie"
-        },
-        {
-          "proj_id": 2,
-          "proj_member_id": 3,
-          "proj_member_name": "Archie"
-        },
-        {
-          "proj_id": 2,
-          "proj_member_id": 3,
-          "proj_member_name": "Archie"
-        }
-      ]
-    },
-    {
-      "id": 3,
       "project_id": 3,
       "proj_name": "Oranges Project",
-      "staff_id": "Bichyu",
-      "volunteer_id": "Greg",
+      "staff_id": "Jonh Doe",
+      "volunteer_id": "Greg Doe",
       "proj_skills_required": "Angular, ASP.NetCore",
       "proj_real_due_date": "proj_real_due_date",
       "proj_estimated_due_date": "proj_estimated_due_date",
@@ -162,7 +72,7 @@
       ]
     },
     {
-      "id": 4,
+      "id": 2,
       "project_id": 3,
       "proj_name": "Oranges Project",
       "staff_id": "Jonh Doe",

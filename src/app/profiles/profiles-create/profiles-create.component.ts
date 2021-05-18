@@ -18,21 +18,21 @@ const states = ['Victoria', 'New South Wales', 'Tasmania', 'Queensland'];
 
 export class ProfilesCreateComponent implements OnInit {
   
-  @Input() profileDetails = { profile_email: '', profile_password: '', profile_passwordConfirmed: '', profile_firstName:'', profile_lastName:'', profile_suburb:''}
-
   profileCreate: FormGroup;
-  
 
   constructor(private formBuilder: FormBuilder, private profileServices: ProfilesService, private activatedRoute: ActivatedRoute, private router: Router) {
     this.profileCreate = this.formBuilder.group({
       profile_email: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"), Validators.minLength(2), Validators.maxLength(50)]],
       profile_password: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
       profile_passwordConfirmed: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
-      profile_firstName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
-      profile_lastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
-      profile_suburb: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]]
+      profile_firstName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      profile_lastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      profile_phone: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      profile_suburb: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      profile_state: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      profile_additionalEmail: ['', [Validators.minLength(2), Validators.maxLength(50)]],
+      profile_additionalPhone: ['', [Validators.minLength(2), Validators.maxLength(50)]],
     })
-
   }
 
   ngOnInit(): void {
@@ -41,11 +41,10 @@ export class ProfilesCreateComponent implements OnInit {
 
 
   createProfile() {
-    this.profileServices.createProfileByRole(this.profileCreate.value).subscribe((data: {}) => {
-      console.log(data)
-      
+    this.profileServices.createProfile(this.profileCreate.value).subscribe((data: {}) => {
+      this.router.navigate(['/profiles'], { relativeTo: this.activatedRoute });
     })
-    this.router.navigate(['/profiles'], { relativeTo: this.activatedRoute });
+    
   }
 
   search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>) =>

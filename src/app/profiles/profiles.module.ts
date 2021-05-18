@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
 import { ProfilesComponent } from './profiles.component';
 import { ProfilesService } from '../shared/service/profiles.service';
-import { HttpClientModule } from '@angular/common/http';
 import { ProfilesRoutingModule } from './profiles-routing.module';
+import { SharedModule } from '../shared/shared.module';
+
+import { ProfilesDetailComponent } from './profiles-detail/profiles-detail.component';
 
 
 
@@ -12,13 +12,16 @@ import { ProfilesRoutingModule } from './profiles-routing.module';
 @NgModule({
   declarations: [ProfilesComponent],
   imports: [
-    CommonModule,
-    FormsModule,
-    HttpClientModule,
-    ProfilesRoutingModule
+    ProfilesRoutingModule,
+    SharedModule,
+    
+  ],
+  exports:[
+    SharedModule,
   ],
   providers:[
     ProfilesService
-  ]
+  ],
+  entryComponents:[ProfilesDetailComponent],
 })
 export class ProfilesModule { }

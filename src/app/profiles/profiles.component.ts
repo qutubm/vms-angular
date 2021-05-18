@@ -1,4 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { ProfilesDetailComponent } from './profiles-detail/profiles-detail.component';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+
 import { ProfilesModel } from '../shared/models/profiles.model';
 import { ProfilesService } from '../shared/service/profiles.service';
 
@@ -12,10 +18,7 @@ export class ProfilesComponent implements OnInit {
 
   ProfilesModel: ProfilesModel[] = [];
 
-  constructor(private profilesServices: ProfilesService) { 
-
-    
-  }
+  constructor(private profilesServices: ProfilesService, public modalService: NgbModal) {   }
 
   ngOnInit(): void {
     this.loadProfiles();
@@ -30,4 +33,12 @@ export class ProfilesComponent implements OnInit {
       () => console.log(this.ProfilesModel),
     );
   }
+
+  //Modal Experiment
+  openVideoPopup(link) {
+    const modalRef = this.modalService.open(ProfilesDetailComponent);
+    modalRef.componentInstance.src = link;
+  }
+
+  
 }
