@@ -1,45 +1,5 @@
 {
-  "profiles": [
-    {
-      "profile_email": "asdf@me.com",
-      "profile_password": "",
-      "profile_passwordConfirmed": "",
-      "profile_firstName": "asdf",
-      "profile_lastName": "asdf",
-      "profile_phone": "01092455123",
-      "profile_suburb": "fas",
-      "profile_state": "VIC",
-      "profile_additionalEmail": "asdf2@me.com",
-      "profile_additionalPhone": "01092455123",
-      "id": 1
-    },
-    {
-      "profile_email": "asdf@me.com",
-      "profile_password": "",
-      "profile_passwordConfirmed": "",
-      "profile_firstName": "asdf",
-      "profile_lastName": "asdf",
-      "profile_phone": "01092455123",
-      "profile_suburb": "fas",
-      "profile_state": "VIC",
-      "profile_additionalEmail": "asdf2@me.com",
-      "profile_additionalPhone": "01092455123",
-      "id": 2
-    },
-    {
-      "profile_email": "asdf@me.com",
-      "profile_password": "asdf",
-      "profile_passwordConfirmed": "asdf",
-      "profile_firstName": "asdf",
-      "profile_lastName": "asdf",
-      "profile_phone": "01092455123",
-      "profile_suburb": "fas",
-      "profile_state": "VIC",
-      "profile_additionalEmail": "asdf@me.com",
-      "profile_additionalPhone": "01092455123",
-      "id": 3
-    }
-  ],
+  "profiles": [],
   "project": [
     {
       "id": 2,
@@ -117,6 +77,12 @@
       "id": 1,
       "prof_id": 1,
       "prof_name": "Kid Doe"
+    }
+  ],
+  "email_invitations": [
+    {
+      "profile_email": "",
+      "profile_role": "T"
     }
   ]
 }

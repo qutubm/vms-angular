@@ -1,4 +1,4 @@
-<div class="container mt-5">
+--<div class="container mt-5">
   <div>
     <h1>Create A Profile</h1>
   </div>
@@ -107,8 +107,6 @@
     </div>
     <button type="submit"
             class="btn btn-primary"
-            >Submit</button>
+            [disabled]="!profileCreate.valid" >Submit</button>
   </form>
-  <!-- [disabled]="!profileCreate.valid" -->
-
 </div>

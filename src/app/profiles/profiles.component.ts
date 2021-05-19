@@ -21,10 +21,10 @@ export class ProfilesComponent implements OnInit {
   constructor(private profilesServices: ProfilesService, public modalService: NgbModal) {   }
 
   ngOnInit(): void {
-    this.loadProfiles();
+    this.loadAllProfiles();
   }
 
-  loadProfiles() {
+  loadAllProfiles() {
     this.profilesServices.getProfiles().subscribe(
       (profiles_data: ProfilesModel[]) => {
         this.ProfilesModel = profiles_data
@@ -32,6 +32,14 @@ export class ProfilesComponent implements OnInit {
       (err: any) => console.log(err),
       () => console.log(this.ProfilesModel),
     );
+  }
+
+  deleteProfileById(id) {
+    if (window.confirm('Are you sure, you want to delete?')){
+      this.profilesServices.deleteProfileByID(id).subscribe(() => {
+        this.loadAllProfiles();
+      })
+    }
   }
 
   //Modal Experiment

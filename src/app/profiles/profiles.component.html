@@ -16,9 +16,14 @@
             </button>
         </div>
     </div>
-    <div class="row justify-content-center">
-        <div class="card bg-light thumbnail"
-             *ngFor="let showProfiles of ProfilesModel">
+
+    <p class="border border-primary rounded text-center" *ngIf="!ProfilesModel || ProfilesModel.length === 0">
+       The profile is empty or can't load from server.
+    </p>
+
+    <div class="row"
+         *ngFor="let showProfiles of ProfilesModel">
+        <div class="card bg-light thumbnail">
             <div class="card-body">
                 <h3>{{showProfiles.profile_firstName + " " + showProfiles.profile_lastName}}</h3>
                 <div>Email: {{showProfiles.profile_email}} </div>
@@ -34,7 +39,7 @@
                     </button>
                     <button type="button"
                             class="btn btn-danger mr-2"
-                            routerLink="/profiles/profiles-invite">
+                            (click)="deleteProfileById(showProfiles.id)">
                         Delete Profile
                     </button>
                 </div>
