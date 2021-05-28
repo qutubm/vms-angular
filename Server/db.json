@@ -65,24 +65,22 @@
   "project_members": [
     {
       "id": 1,
-      "prof_id": 1,
+      "proj_id": 1,
+      "prof_id": 2,
       "prof_name": "John Doe"
     },
     {
       "id": 1,
-      "prof_id": 1,
+      "proj_id": 1,
+      "prof_id": 3,
       "prof_name": "Maria Doe"
     },
     {
       "id": 1,
-      "prof_id": 1,
+      "prof_id": 4,
       "prof_name": "Kid Doe"
     }
   ],
   "email_invitations": [
-    {
-      "profile_email": "",
-      "profile_role": "T"
-    }
   ]
 }

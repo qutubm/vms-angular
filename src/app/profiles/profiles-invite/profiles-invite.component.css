@@ -2,7 +2,9 @@
     border-color: red;
 }
 
+
 .ng-touched.ng-valid {
     border-color: green;
 }
+
 

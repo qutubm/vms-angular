@@ -18,11 +18,11 @@ const states = ['Victoria', 'New South Wales', 'Tasmania', 'Queensland'];
 
 export class ProfilesCreateComponent implements OnInit {
   
-  profileCreate: FormGroup;
+  profileForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private profileServices: ProfilesService, private activatedRoute: ActivatedRoute, private router: Router) {
-    this.profileCreate = this.formBuilder.group({
-      profile_email: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"), Validators.minLength(2), Validators.maxLength(50)]],
+    this.profileForm = this.formBuilder.group({
+      profileCreate_email: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"), Validators.maxLength(50)]],
       profile_password: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
       profile_passwordConfirmed: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
       profile_firstName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
@@ -41,7 +41,7 @@ export class ProfilesCreateComponent implements OnInit {
 
 
   createProfile() {
-    this.profileServices.createProfile(this.profileCreate.value).subscribe((data: {}) => {
+    this.profileServices.createProfile(this.profileForm.value).subscribe((data: {}) => {
       this.router.navigate(['/profiles'], { relativeTo: this.activatedRoute });
     })
     

@@ -1,19 +1,27 @@
---<div class="container mt-5">
+<div class="container mt-5">
   <div>
     <h1>Create A Profile</h1>
   </div>
-  <form [formGroup]="profileCreate"
+  <form [formGroup]="profileForm"
         (ngSubmit)="createProfile()">
     <div class="form-group">
       <span class="float-right text-danger">*Required</span>
-      <label for="profile_email">Email address</label>
-      <input id="profile_email"
-             name="profile_email"
-             formControlName="profile_email"
+      <label for="profileCreate_email">Email address</label>
+      <input id="profileCreate_email"
+             name="profileCreate_email"
+             formControlName="profileCreate_email"
              placeholder="Enter email"
              type="email"
              class="form-control">
+      <div
+           *ngIf="profileForm.get('profileCreate_email').invalid && (profileForm.get('profileCreate_email').dirty || profileForm.get('profileCreate_email').touched)">
+        <span></span>
+        <div *ngIf="profileForm.get('profileCreate_email').hasError('required')">
+
+        </div>
+      </div>
     </div>
+
     <div class="form-group">
       <span class="float-right text-danger">*Required</span>
       <label for="profile_password">Password</label>
@@ -106,7 +114,6 @@
              formControlName="profile_additionalPhone">
     </div>
     <button type="submit"
-            class="btn btn-primary"
-            [disabled]="!profileCreate.valid" >Submit</button>
+            class="btn btn-primary">Submit</button>
   </form>
 </div>

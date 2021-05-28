@@ -26,4 +26,6 @@ import { ProjectRoutingModule } from './project-routing.module';
     ProjectService,
   ]
 })
-export class ProjectModule { }
+export class ProjectModule {
+  
+}

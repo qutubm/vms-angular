@@ -9,14 +9,14 @@ import { ProfilesCreateComponent } from './profiles-create.component';
 @NgModule({
   declarations: [ProfilesCreateComponent],
   imports: [
-    SharedModule,
     ProfilesCreateRoutingModule,
-  ],
-  exports: [
-    ProfilesCreateComponent
-  ],
-  bootstrap: [
-    ProfilesCreateComponent
+    SharedModule,
   ]
+  // exports: [
+  //   ProfilesCreateComponent
+  // ],
+  // bootstrap: [
+  //   ProfilesCreateComponent
+  // ]
 })
 export class ProfilesCreateModule { }
