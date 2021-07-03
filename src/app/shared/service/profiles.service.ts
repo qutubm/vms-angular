@@ -12,47 +12,52 @@ import { ProfilesModel } from '../models/profiles.model';
 
 export class ProfilesService {
 
-  Profiles: any = []; //Can be used to determine
-  rest_locationProfile = 'http://localhost:3000/profiles';
+  ProfilesModel: ProfilesModel[] = []; //Can be used to determine
+  rest_locationProfile = 'https://vmswebapi20210604233544.azurewebsites.net/api/profile/getprofiles';
 
   constructor(private http: HttpClient) { }
 
   httpOptions = {
     headers: new HttpHeaders({
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      // 'Accept': 'application/json, text/plain, */*',
+      // 'Access-Encoding': 'gzip, deflate',       
+      // 'Access-Control-Allow-Origin': '*',       
+      // 'Access-Control-Allow-Methods': 'GET, POST, PATCH, PUT, DELETE, OPTIONS',       
+      // 'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Auth-Token'
     })
   }
 
 
-  getProfiles(): Observable<ProfilesModel[]> {
-    return this.http.get<ProfilesModel[]>(this.rest_locationProfile)
+  getProfiles(): Observable<any[]> {
+    return this.http.get<any>(this.rest_locationProfile)
       .pipe(
         retry(1),
         catchError(this.handleError));
   }
 
-  getProfilesByID(id): Observable<ProfilesModel> {
-    return this.http.get<ProfilesModel>(this.rest_locationProfile + '/' + id)
-      .pipe(
-        retry(1),
-        catchError(this.handleError));
-  }
+  // getProfilesByID(id): Observable<Profiles> {
+  //   return this.http.get<Profiles>(this.rest_locationProfile + '/' + id)
+  //     .pipe(
+  //       retry(1),
+  //       catchError(this.handleError));
+  // }
 
-  createProfile(profile) {
-    return this.http.post<ProfilesModel>(this.rest_locationProfile, JSON.stringify(profile), this.httpOptions)
-    .pipe(
-      retry(1),
-      catchError(this.handleError)
-    )
-  }
+  // createProfile(profile) {
+  //   return this.http.post<Profiles>(this.rest_locationProfile, JSON.stringify(profile), this.httpOptions)
+  //   .pipe(
+  //     retry(1),
+  //     catchError(this.handleError)
+  //   )
+  // }
 
-  deleteProfileByID(id){
-    return this.http.delete<ProfilesModel>(this.rest_locationProfile + '/' + id)
-    .pipe(
-      retry(1),
-      catchError(this.handleError)
-    )
-  }
+  // deleteProfileByID(id){
+  //   return this.http.delete<Profiles>(this.rest_locationProfile + '/' + id)
+  //   .pipe(
+  //     retry(1),
+  //     catchError(this.handleError)
+  //   )
+  // }
 
   handleError(error) {
     let errorMessage = '';

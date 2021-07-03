@@ -16,7 +16,7 @@ import { ProfilesService } from '../shared/service/profiles.service';
 
 export class ProfilesComponent implements OnInit {
 
-  ProfilesModel: ProfilesModel[] = [];
+  ProfilesModel: any[];
 
   constructor(private profilesServices: ProfilesService, public modalService: NgbModal) {   }
 
@@ -26,27 +26,33 @@ export class ProfilesComponent implements OnInit {
 
   loadAllProfiles() {
     this.profilesServices.getProfiles().subscribe(
-      (profiles_data: ProfilesModel[]) => {
+      (profiles_data: any[]) => {
         this.ProfilesModel = profiles_data
+        console.log(this.ProfilesModel);
       },
       (err: any) => console.log(err),
-      () => console.log(this.ProfilesModel),
+      //() => console.log(this.ProfilesModel),
     );
   }
 
-  deleteProfileById(id) {
-    if (window.confirm('Are you sure, you want to delete?')){
-      this.profilesServices.deleteProfileByID(id).subscribe(() => {
-        this.loadAllProfiles();
-      })
-    }
+  processProfiles() {
+    
+    this.ProfilesModel
   }
 
-  //Modal Experiment
-  openVideoPopup(link) {
-    const modalRef = this.modalService.open(ProfilesDetailComponent);
-    modalRef.componentInstance.src = link;
-  }
+  // deleteProfileById(id) {
+  //   if (window.confirm('Are you sure, you want to delete?')){
+  //     this.profilesServices.deleteProfileByID(id).subscribe(() => {
+  //       this.loadAllProfiles();
+  //     })
+  //   }
+  // }
+
+  // //Modal Experiment
+  // openVideoPopup(link) {
+  //   const modalRef = this.modalService.open(ProfilesDetailComponent);
+  //   modalRef.componentInstance.src = link;
+  // }
 
   
 }
