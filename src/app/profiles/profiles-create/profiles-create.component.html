@@ -6,28 +6,28 @@
         (ngSubmit)="createProfile()">
     <div class="form-group">
       <span class="float-right text-danger">*Required</span>
-      <label for="profileCreate_email">Email address</label>
-      <input id="profileCreate_email"
-             name="profileCreate_email"
-             formControlName="profileCreate_email"
+      <label for="email">Email address</label>
+      <input id="email"
+             name="email"
+             formControlName="email"
              placeholder="Enter email"
              type="email"
              class="form-control">
       <div
-           *ngIf="profileForm.get('profileCreate_email').invalid && (profileForm.get('profileCreate_email').dirty || profileForm.get('profileCreate_email').touched)">
+           *ngIf="profileForm.get('email').invalid && (profileForm.get('email').dirty || profileForm.get('email').touched)">
         <span></span>
-        <div *ngIf="profileForm.get('profileCreate_email').hasError('required')">
+        <div *ngIf="profileForm.get('email').hasError('required')">
 
         </div>
       </div>
     </div>
 
-    <div class="form-group">
+    <!-- <div class="form-group">
       <span class="float-right text-danger">*Required</span>
-      <label for="profile_password">Password</label>
-      <input id="profile_password"
-             name="profile_password"
-             formControlName="profile_password"
+      <label for="password">Password</label>
+      <input id="password"
+             name="password"
+             formControlName="password"
              placeholder="Enter Password"
              type="password"
              class="form-control">
@@ -41,77 +41,89 @@
              placeholder="Confirm Password"
              type="password"
              class="form-control">
-    </div>
+    </div> -->
     <div class="form-group">
-      <label for="profile_firstName">First Name:</label>
+      <label for="firstName">First Name:</label>
       <span class="float-right text-danger">*Required</span>
-      <input id="profile_firstName"
-             name="profile_firstName"
-             formControlName="profile_firstName"
+      <input id="firstName"
+             name="firstName"
+             formControlName="firstName"
              placeholder="Enter First Name"
              type="text"
              class="form-control">
     </div>
     <div class="form-group">
-      <label for="profile_lastName">Last Name:</label>
+      <label for="lastName">Last Name:</label>
       <span class="float-right text-danger">*Required</span>
-      <input type="text"
-             class="form-control"
-             id="profile_lastName"
-             name="profile_lastName"
+      <input 
+            id="lastName"
+             name="lastName"
+             formControlName="lastName"
              placeholder="Enter Last Name"
-             formControlName="profile_lastName">
+             type="text"
+             class="form-control">
     </div>
     <div class="form-group">
-      <label for="profile_phone">Phone</label>
+      <label for="phone">Phone</label>
       <span class="float-right text-danger">*Required</span>
       <input type="tel"
              class="form-control"
-             id="profile_phone"
-             name="profile_phone"
+             id="phone"
+             name="phone"
              placeholder="Enter Phone"
-             formControlName="profile_phone">
+             formControlName="phone">
     </div>
     <div class="form-group">
-      <label for="profile_suburb">Suburb</label>
+      <label for="suburb">Suburb</label>
       <span class="float-right text-danger">*Required</span>
       <input type="text"
              class="form-control"
-             id="profile_suburb"
-             name="profile_suburb"
+             id="suburb"
+             name="suburb"
              placeholder="Enter Suburb"
-             formControlName="profile_suburb">
+             formControlName="suburb">
     </div>
     <div class="form-group">
-      <label for="profile_state">State</label>
+      <label for="state">State</label>
       <span class="float-right text-danger">*Required</span>
-      <input id="profile_state"
-             name="profile_state"
+      <input id="state"
+             name="state"
              type="text"
              class="form-control"
              [ngbTypeahead]="search"
-             formControlName="profile_state" />
+             formControlName="state"
+             placeholder="Enter State" />
+    </div>
+    <div class="form-group">
+      <label for="postcode">Postcode</label>
+      <span class="float-right text-warning">*Optional</span>
+      <input type="tel"
+             class="form-control"
+             id="postcode"
+             name="postcode"
+             placeholder="Enter Phone"
+             formControlName="postcode">
     </div>
     <hr>
     <div class="form-group">
-      <label for="profile_additionalEmail">Additional Email (Optional)</label>
+      <label for="additionalEmail">Additional Email (Optional)</label>
       <span class="float-right text-warning">*Optional</span>
-      <input id="profile_additionalEmail"
-             name="profile_additionalEmail"
-             formControlName="profile_additionalEmail"
+      <input id="additionalEmail"
+             name="additionalEmail"
+             formControlName="additionalEmail"
              placeholder="Enter Email"
              type="email"
              class="form-control">
     </div>
     <div class="form-group">
-      <label for="profile_additionalPhone">Additional Phone (Optional)</label>
+      <label for="additionalPhone">Additional Phone (Optional)</label>
       <span class="float-right text-warning">*Optional</span>
       <input type="tel"
              class="form-control"
-             id="profile_additionalPhone"
-             name="profile_additionalPhone"
+             id="additionalPhone"
+             name="additionalPhone"
              placeholder="Enter Phone"
-             formControlName="profile_additionalPhone">
+             formControlName="additionalPhone">
     </div>
     <button type="submit"
             class="btn btn-primary">Submit</button>

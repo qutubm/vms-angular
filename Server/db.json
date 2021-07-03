@@ -1,86 +1,23 @@
 {
-  "profiles": [],
-  "project": [
+  "Profiles": [
     {
-      "id": 2,
-      "project_id": 3,
-      "proj_name": "Oranges Project",
-      "staff_id": "Jonh Doe",
-      "volunteer_id": "Greg Doe",
-      "proj_skills_required": "Angular, ASP.NetCore",
-      "proj_real_due_date": "proj_real_due_date",
-      "proj_estimated_due_date": "proj_estimated_due_date",
-      "proj_members": [
-        {
-          "id": 1,
-          "proj_id": 1,
-          "proj_member_id": 3,
-          "proj_member_name": "Archie"
-        },
-        {
-          "id": 2,
-          "proj_id": 2,
-          "proj_member_id": 3,
-          "proj_member_name": "Archie"
-        },
-        {
-          "id": 3,
-          "proj_id": 3,
-          "proj_member_id": 3,
-          "proj_member_name": "Archie"
-        }
-      ]
-    },
-    {
-      "id": 2,
-      "project_id": 3,
-      "proj_name": "Oranges Project",
-      "staff_id": "Jonh Doe",
-      "volunteer_id": "Greg Doe",
-      "proj_skills_required": "Angular, ASP.NetCore",
-      "proj_real_due_date": "proj_real_due_date",
-      "proj_estimated_due_date": "proj_estimated_due_date",
-      "proj_members": [
-        {
-          "id": 1,
-          "proj_id": 1,
-          "proj_member_id": 3,
-          "proj_member_name": "Archie"
-        },
-        {
-          "id": 2,
-          "proj_id": 2,
-          "proj_member_id": 3,
-          "proj_member_name": "Archie"
-        },
-        {
-          "id": 3,
-          "proj_id": 3,
-          "proj_member_id": 3,
-          "proj_member_name": "Archie"
-        }
-      ]
+      "Id": "81636f24-b5a2-4240-84f2-f70968fa0b88",
+      "FirstName": "Scott",
+      "LastName": "Scott",
+      "Email": "scott.walters@thebreak.org.au",
+      "Phone": "0411112222",
+      "AdditionalEmail": "",
+      "AdditionalPhone": "",
+      "Type": "Staff",
+      "StreetAddress1": "123 George Street",
+      "StreetAddress2": "string",
+      "Suburb": "South Bank",
+      "State": "VIC",
+      "Postcode": "3001",
+      "Deleted": "N"
     }
   ],
-  "project_members": [
-    {
-      "id": 1,
-      "proj_id": 1,
-      "prof_id": 2,
-      "prof_name": "John Doe"
-    },
-    {
-      "id": 1,
-      "proj_id": 1,
-      "prof_id": 3,
-      "prof_name": "Maria Doe"
-    },
-    {
-      "id": 1,
-      "prof_id": 4,
-      "prof_name": "Kid Doe"
-    }
-  ],
-  "email_invitations": [
-  ]
+  "Success": true,
+  "Message": null,
+  "Errors": []
 }

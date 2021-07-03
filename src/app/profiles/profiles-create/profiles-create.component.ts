@@ -18,20 +18,22 @@ const states = ['Victoria', 'New South Wales', 'Tasmania', 'Queensland'];
 
 export class ProfilesCreateComponent implements OnInit {
   
-  profileForm: FormGroup;
+  public profileForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private profileServices: ProfilesService, private activatedRoute: ActivatedRoute, private router: Router) {
     this.profileForm = this.formBuilder.group({
-      profileCreate_email: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"), Validators.maxLength(50)]],
-      profile_password: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
-      profile_passwordConfirmed: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
-      profile_firstName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      profile_lastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      profile_phone: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      profile_suburb: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      profile_state: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      profile_additionalEmail: ['', [Validators.minLength(2), Validators.maxLength(50)]],
-      profile_additionalPhone: ['', [Validators.minLength(2), Validators.maxLength(50)]],
+      email: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"), Validators.maxLength(50)]],
+      //password: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
+      //passwordConfirmed: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
+      firstName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      lastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      phone: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      suburb: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      state: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      postcode: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      additionalEmail: ['', [Validators.minLength(2), Validators.maxLength(50)]],
+      additionalPhone: ['', [Validators.minLength(2), Validators.maxLength(50)]],
+      deleted: ['', [Validators.minLength(2), Validators.maxLength(50)]],
     })
   }
 
@@ -41,10 +43,10 @@ export class ProfilesCreateComponent implements OnInit {
 
 
   createProfile() {
+    console.log(this.profileForm.value);
     this.profileServices.createProfile(this.profileForm.value).subscribe((data: {}) => {
       this.router.navigate(['/profiles'], { relativeTo: this.activatedRoute });
     })
-    
   }
 
   

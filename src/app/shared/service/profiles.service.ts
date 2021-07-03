@@ -4,6 +4,7 @@ import { retry, catchError } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { ProfilesModel } from '../models/profiles.model';
+import { Profile } from '../models/profiles.model';
 
 
 @Injectable({
@@ -13,7 +14,7 @@ import { ProfilesModel } from '../models/profiles.model';
 export class ProfilesService {
 
   ProfilesModel: ProfilesModel[] = []; //Can be used to determine
-  rest_locationProfile = 'https://vmswebapi20210604233544.azurewebsites.net/api/profile/getprofiles';
+  rest_locationProfile = 'https://vmswebapi20210604233544.azurewebsites.net/api/Profile/';
 
   constructor(private http: HttpClient) { }
 
@@ -29,8 +30,8 @@ export class ProfilesService {
   }
 
 
-  getProfiles(): Observable<any[]> {
-    return this.http.get<any>(this.rest_locationProfile)
+  getProfiles(): Observable<ProfilesModel> {
+    return this.http.get<ProfilesModel>(this.rest_locationProfile + 'GetProfiles')
       .pipe(
         retry(1),
         catchError(this.handleError));
@@ -43,13 +44,13 @@ export class ProfilesService {
   //       catchError(this.handleError));
   // }
 
-  // createProfile(profile) {
-  //   return this.http.post<Profiles>(this.rest_locationProfile, JSON.stringify(profile), this.httpOptions)
-  //   .pipe(
-  //     retry(1),
-  //     catchError(this.handleError)
-  //   )
-  // }
+  createProfile(profile) {
+    return this.http.post<Profile>(this.rest_locationProfile + 'AddProfile', JSON.stringify(profile), this.httpOptions)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
 
   // deleteProfileByID(id){
   //   return this.http.delete<Profiles>(this.rest_locationProfile + '/' + id)

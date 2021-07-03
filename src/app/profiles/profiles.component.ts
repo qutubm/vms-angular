@@ -5,7 +5,9 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProfilesDetailComponent } from './profiles-detail/profiles-detail.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
+import { Profile } from '../shared/models/profiles.model';
 import { ProfilesModel } from '../shared/models/profiles.model';
+
 import { ProfilesService } from '../shared/service/profiles.service';
 
 @Component({
@@ -16,7 +18,7 @@ import { ProfilesService } from '../shared/service/profiles.service';
 
 export class ProfilesComponent implements OnInit {
 
-  ProfilesModel: any[];
+  ProfilesModel: Profile[] = []; // ProfilesModel[] = [];
 
   constructor(private profilesServices: ProfilesService, public modalService: NgbModal) {   }
 
@@ -26,20 +28,16 @@ export class ProfilesComponent implements OnInit {
 
   loadAllProfiles() {
     this.profilesServices.getProfiles().subscribe(
-      (profiles_data: any[]) => {
-        this.ProfilesModel = profiles_data
-        console.log(this.ProfilesModel);
+      (profiles_data: ProfilesModel) => {
+        this.ProfilesModel = profiles_data.Profiles
+        //console.log("1st Profile : " + this.ProfilesModel[0]);
       },
       (err: any) => console.log(err),
-      //() => console.log(this.ProfilesModel),
+      () => console.log(this.ProfilesModel),
     );
   }
 
-  processProfiles() {
-    
-    this.ProfilesModel
-  }
-
+  
   // deleteProfileById(id) {
   //   if (window.confirm('Are you sure, you want to delete?')){
   //     this.profilesServices.deleteProfileByID(id).subscribe(() => {
