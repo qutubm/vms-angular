@@ -1,4 +1,4 @@
-export class ProfilesModel {
+export class ProfilesExtra {
     // profile_id: number;
     // role: string;
     // profile_email: string;
@@ -17,7 +17,7 @@ export class ProfilesModel {
    Profiles: Profile[];
 }
 
-export class Profile{
+export class Profile {
     id: string;
     firstName: string;
     lastName: string;

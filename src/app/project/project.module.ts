@@ -4,7 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { ProjectComponent } from './project.component';
-import { ProjectService } from '../shared/service/project.service';
+import { ProjectService } from './project.service';
 import { ProjectRoutingModule } from './project-routing.module';
 
 

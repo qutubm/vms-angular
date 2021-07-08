@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 
 import { ProjectDetailRoutingModule } from './project-detail-routing.module';
 import { ProjectDetailComponent } from './project-detail.component';
-import { ProjectService } from '../../shared/service/project.service';
+import { ProjectService } from '../project.service';
 
 
 

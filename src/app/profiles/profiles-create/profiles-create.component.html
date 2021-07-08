@@ -3,7 +3,7 @@
     <h1>Create A Profile</h1>
   </div>
   <form [formGroup]="profileForm"
-        (ngSubmit)="createProfile()">
+        (ngSubmit)="createProfile(profileForm)" #profileCreateForm="ngForm">
     <div class="form-group">
       <span class="float-right text-danger">*Required</span>
       <label for="email">Email address</label>
@@ -15,9 +15,8 @@
              class="form-control">
       <div
            *ngIf="profileForm.get('email').invalid && (profileForm.get('email').dirty || profileForm.get('email').touched)">
-        <span></span>
         <div *ngIf="profileForm.get('email').hasError('required')">
-
+          Email is required!
         </div>
       </div>
     </div>
@@ -51,12 +50,18 @@
              placeholder="Enter First Name"
              type="text"
              class="form-control">
+      <div
+           *ngIf="profileForm.get('firstName').invalid && (profileForm.get('firstName').dirty || profileForm.get('firstName').touched)">
+        <div *ngIf="profileForm.get('firstName').hasError('required')">
+          FirstName is required!
+        </div>
+      </div>
     </div>
+    <!-- Last Name -->
     <div class="form-group">
       <label for="lastName">Last Name:</label>
       <span class="float-right text-danger">*Required</span>
-      <input 
-            id="lastName"
+      <input id="lastName"
              name="lastName"
              formControlName="lastName"
              placeholder="Enter Last Name"
@@ -66,12 +71,12 @@
     <div class="form-group">
       <label for="phone">Phone</label>
       <span class="float-right text-danger">*Required</span>
-      <input type="tel"
-             class="form-control"
-             id="phone"
+      <input id="phone"
              name="phone"
+             formControlName="phone"
              placeholder="Enter Phone"
-             formControlName="phone">
+             type="tel"
+             class="form-control">
     </div>
     <div class="form-group">
       <label for="suburb">Suburb</label>
@@ -90,9 +95,15 @@
              name="state"
              type="text"
              class="form-control"
-             [ngbTypeahead]="search"
              formControlName="state"
              placeholder="Enter State" />
+      <!-- <input id="state"
+             name="state"
+             type="text"
+             class="form-control"
+             [ngbTypeahead]="search"
+             formControlName="state"
+             placeholder="Enter State" /> -->
     </div>
     <div class="form-group">
       <label for="postcode">Postcode</label>
@@ -125,7 +136,32 @@
              placeholder="Enter Phone"
              formControlName="additionalPhone">
     </div>
+    <input hidden
+           value="Volunteer"
+           formControlName="deleted">
+    <input hidden
+           value="N"
+           formControlName="deleted">
     <button type="submit"
             class="btn btn-primary">Submit</button>
   </form>
+
+  <ng-container *ngIf="profileForm.valid && profileCreateForm.submitted; then thenBlock else elseBlock">
+    This content is not shown
+  </ng-container>
+  <br>
+  <div *ngIf=""></div>
+  <ng-template #thenBlock>
+    <div class="alert alert-danger">
+      content to render when the condition is true.
+    </div>
+  </ng-template>
+
+  <ng-template #elseBlock>
+    <div class="alert alert-danger">
+      content to render when the condition is false.
+    </div>
+  </ng-template>
+
+  {{ this.profileForm.status | json}}
 </div>

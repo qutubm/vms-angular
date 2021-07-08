@@ -5,7 +5,7 @@ import { Observable, OperatorFunction } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProfilesService } from '../../shared/service/profiles.service';
+import { ProfilesService } from '../profiles.service';
 
 
 const states = ['Victoria', 'New South Wales', 'Tasmania', 'Queensland'];
@@ -17,14 +17,20 @@ const states = ['Victoria', 'New South Wales', 'Tasmania', 'Queensland'];
 })
 
 export class ProfilesCreateComponent implements OnInit {
-  
-  public profileForm: FormGroup;
+
+  isProfileValid: boolean;
+  profileForm: FormGroup;
 
   constructor(private formBuilder: FormBuilder, private profileServices: ProfilesService, private activatedRoute: ActivatedRoute, private router: Router) {
+
+  }
+
+  ngOnInit(): void {
     this.profileForm = this.formBuilder.group({
       email: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"), Validators.maxLength(50)]],
       //password: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
       //passwordConfirmed: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
+      type: ['', [Validators.minLength(2), Validators.maxLength(50)]],
       firstName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       lastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
       phone: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
@@ -34,28 +40,30 @@ export class ProfilesCreateComponent implements OnInit {
       additionalEmail: ['', [Validators.minLength(2), Validators.maxLength(50)]],
       additionalPhone: ['', [Validators.minLength(2), Validators.maxLength(50)]],
       deleted: ['', [Validators.minLength(2), Validators.maxLength(50)]],
-    })
-  }
-
-  ngOnInit(): void {
-
-  }
-
-
-  createProfile() {
-    console.log(this.profileForm.value);
-    this.profileServices.createProfile(this.profileForm.value).subscribe((data: {}) => {
-      this.router.navigate(['/profiles'], { relativeTo: this.activatedRoute });
-    })
+    });
   }
 
   
+  createProfile(profileForm: FormGroup) {
+    if (profileForm.valid) {
+      this.isProfileValid = true;
+      // this.profileServices.createProfile(this.profileForm.value).subscribe((data: {}) => {
+      //   this.router.navigate(['/profiles'], { relativeTo: this.activatedRoute });
+      // })
+      console.log(this.profileForm.value);
+    } else {
+      this.isProfileValid = false;
+      console.log("Invalid Form!");
+    }
+  }
+
+
   search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>) =>
     text$.pipe(
       debounceTime(200),
       distinctUntilChanged(),
       map(term => term.length < 2 ? []
         : states.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
-  )
+    )
 
 }

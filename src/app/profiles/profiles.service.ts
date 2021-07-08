@@ -3,8 +3,8 @@ import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
-import { ProfilesModel } from '../models/profiles.model';
-import { Profile } from '../models/profiles.model';
+import { ProfilesExtra } from './profiles.model';
+import { Profile } from './profiles.model';
 
 
 @Injectable({
@@ -13,7 +13,7 @@ import { Profile } from '../models/profiles.model';
 
 export class ProfilesService {
 
-  ProfilesModel: ProfilesModel[] = []; //Can be used to determine
+  ProfilesModel: ProfilesExtra[] = []; //Can be used to determine
   rest_locationProfile = 'https://vmswebapi20210604233544.azurewebsites.net/api/Profile/';
 
   constructor(private http: HttpClient) { }
@@ -30,8 +30,8 @@ export class ProfilesService {
   }
 
 
-  getProfiles(): Observable<ProfilesModel> {
-    return this.http.get<ProfilesModel>(this.rest_locationProfile + 'GetProfiles')
+  getProfiles(): Observable<ProfilesExtra> {
+    return this.http.get<ProfilesExtra>(this.rest_locationProfile + 'GetProfiles')
       .pipe(
         retry(1),
         catchError(this.handleError));

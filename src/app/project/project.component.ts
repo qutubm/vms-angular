@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-import { ProjectModel } from '../shared/models/project.model';
-import { ProjectService } from '../shared/service/project.service';
+import { ProjectsExtra, Projects } from './project.model';
+import { ProjectService } from './project.service';
 @Component({
   selector: 'app-project',
   templateUrl: './project.component.html',
@@ -10,34 +10,37 @@ import { ProjectService } from '../shared/service/project.service';
 })
 export class ProjectComponent implements OnInit {
 
-  ProjectModel: ProjectModel[] = [];
-  listStaffMembers: any[] = [];
+  ProjectsView: Projects[] = [];
+
+  //listStaffMembers: any[] = [];
   
   constructor(private projectServices: ProjectService) { }
 
   ngOnInit(): void {
-    this.loadProjects();
+    this.loadAllProjects();
   }
 
 
-  loadProjects() {
+  loadAllProjects() {
     this.projectServices.getProject().subscribe(
-      (project_data: ProjectModel[]) => {
-        this.ProjectModel = project_data
+      (projects_data: ProjectsExtra) => {        
+        this.ProjectsView = projects_data.Projects;
+        console.log(this.ProjectsView[2].Name);
+        //console.log("1st Profile : " + this.ProfilesModel[0]);
       },
       (err: any) => console.log(err),
-      () => console.log("Projects")
+      () => console.log(this.ProjectsView),
     );
   }
 
-  deleteProjectByID(id) {
-    console.log(id);
-    if (window.confirm('Are you sure, you want to delete?')){
-      this.projectServices.deleteProjectByID(id).subscribe(() => {
-        this.loadProjects();
-      })
-    }
-  }
+  // deleteProjectByID(id) {
+  //   console.log(id);
+  //   if (window.confirm('Are you sure, you want to delete?')){
+  //     this.projectServices.deleteProjectByID(id).subscribe(() => {
+  //       this.loadProjects();
+  //     })
+  //   }
+  // }
 
 
 }

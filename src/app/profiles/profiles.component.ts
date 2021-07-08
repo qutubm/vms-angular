@@ -5,10 +5,10 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { ProfilesDetailComponent } from './profiles-detail/profiles-detail.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-import { Profile } from '../shared/models/profiles.model';
-import { ProfilesModel } from '../shared/models/profiles.model';
+import { Profile } from './profiles.model';
+import { ProfilesExtra } from './profiles.model';
 
-import { ProfilesService } from '../shared/service/profiles.service';
+import { ProfilesService } from './profiles.service';
 
 @Component({
   selector: 'app-profiles',
@@ -28,8 +28,8 @@ export class ProfilesComponent implements OnInit {
 
   loadAllProfiles() {
     this.profilesServices.getProfiles().subscribe(
-      (profiles_data: ProfilesModel) => {
-        this.ProfilesModel = profiles_data.Profiles
+      (profiles_data: ProfilesExtra) => {
+        this.ProfilesModel = profiles_data.Profiles;
         //console.log("1st Profile : " + this.ProfilesModel[0]);
       },
       (err: any) => console.log(err),

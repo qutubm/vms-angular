@@ -2,9 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
-import { ProjectMembers} from '../models/project-members.model'
-import { ProjectModel } from '../models/project.model';
-import { ProjectTaskModel } from '../models/project-task.model'
+import { ProjectMembers} from '../shared/models/project-members.model'
+import { Projects, ProjectsExtra } from './project.model';
+import { ProjectTaskModel } from '../shared/models/project-task.model'
 
 import { retry, catchError } from 'rxjs/operators';
 
@@ -22,7 +22,7 @@ Project Services gets all the information about the project. It will ask the fol
 export class ProjectService {
   
   
-  rest_locationProject = 'http://localhost:3000/project';
+  rest_locationProject = 'https://vmswebapi20210604233544.azurewebsites.net/api/Project/';
 
 
   constructor(private http: HttpClient) { }
@@ -37,23 +37,23 @@ export class ProjectService {
   //   return this.http.get<Profiles[]>(this.rest_location)
   // }
 
-  getProject(): Observable<ProjectModel[]> {
-    return this.http.get<ProjectModel[]>(this.rest_locationProject)
+  getProject(): Observable<ProjectsExtra> {
+    return this.http.get<ProjectsExtra>(this.rest_locationProject + 'GetProjects')
       .pipe(
         retry(1),
         catchError(this.handleError));
   }
 
-  getProjectByID(id): Observable<ProjectModel> {
-    return this.http.get<ProjectModel>(this.rest_locationProject + '/' + id)
+  getProjectByID(id): Observable<ProjectsExtra> {
+    return this.http.get<ProjectsExtra>(this.rest_locationProject + '/' + id)
       .pipe(
         retry(1),
         catchError(this.handleError)
       );
   }
 
-  createProject(projectData): Observable<ProjectModel> {
-    return this.http.post<ProjectModel>(this.rest_locationProject, JSON.stringify(projectData), this.httpOptions)
+  createProject(projectData): Observable<Projects> {
+    return this.http.post<Projects>(this.rest_locationProject, JSON.stringify(projectData), this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)
@@ -62,7 +62,7 @@ export class ProjectService {
 
 
   deleteProjectByID(id){
-    return this.http.delete<ProjectModel>(this.rest_locationProject + '/' + id)
+    return this.http.delete<Projects>(this.rest_locationProject + '/' + id)
     .pipe(
       retry(1),
       catchError(this.handleError)
