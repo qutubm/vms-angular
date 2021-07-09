@@ -36,7 +36,7 @@
               <div class="d-flex">
                 <button type="button"
                         class="btn btn-primary mr-2"
-                        (click)="viewProjectTask(viewProjects.Id)">
+                        [routerLink]="[viewProjects.Id, 'project-detail']">
                   <i class="bi bi-info-square-fill"> Info</i>
                 </button>
                 <button type="button"

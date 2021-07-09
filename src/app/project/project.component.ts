@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-
+import { Component, OnInit, Input } from '@angular/core';
 import { ProjectsExtra, Projects } from './project.model';
 import { ProjectService } from './project.service';
 @Component({
@@ -11,7 +9,7 @@ import { ProjectService } from './project.service';
 export class ProjectComponent implements OnInit {
 
   ProjectsView: Projects[] = [];
-
+  @Input() single_ProjectData: Projects[]
   //listStaffMembers: any[] = [];
   
   constructor(private projectServices: ProjectService) { }
@@ -19,7 +17,7 @@ export class ProjectComponent implements OnInit {
   ngOnInit(): void {
     this.loadAllProjects();
   }
-git 
+
 
   loadAllProjects() {
     this.projectServices.getAllProjects().subscribe(
@@ -44,6 +42,8 @@ git
 
   viewProjectTask(projectIndex){
     let projectObject = this.ProjectsView.filter(x => x.Id === projectIndex);
-    console.log(projectObject);
+    this.single_ProjectData = projectObject;
+
+    console.log(this.single_ProjectData);
   }
 }

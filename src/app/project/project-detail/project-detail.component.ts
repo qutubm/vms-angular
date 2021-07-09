@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 
-//import { ProjectModel } from '../project.model'
+import { Projects, ProjectsExtra } from '../project.model'
 import { ProjectService } from '../project.service';
 
 @Component({
@@ -11,21 +11,27 @@ import { ProjectService } from '../project.service';
 })
 export class ProjectDetailComponent implements OnInit {
   
+  ProjectsView: Projects[] = [];
   ngOnInit(): void {
-
+    this.loadAllProjects();
   }
-   constructor(private actingRoute: ActivatedRoute, private projectsServices: ProjectService) { }
+   constructor(private actingRoute: ActivatedRoute, private projectServices: ProjectService) { }
   // active = 1;
-  // id = this.actingRoute.snapshot.params['id'];
+  projectID = this.actingRoute.snapshot.params['id'];
 
-  // ProjectModel: any;
+
+  loadAllProjects() {
+    this.projectServices.getAllProjects().subscribe(
+      (projects_data: ProjectsExtra) => {        
+        this.ProjectsView = projects_data.Projects;
+        let projectObjectExtraction = this.ProjectsView.filter(x => x.Id === this.projectID);
+        this.ProjectsView = projectObjectExtraction;
+        //console.log("1st Profile : " + this.ProfilesModel[0]
+      },
+      (err: any) => console.log(err),
+      () => console.log(this.ProjectsView),
+    );
+  }
+
   
-  // ngOnInit(): void {
-  //   this.projectsServices.getProjectByID(this.id).subscribe(
-  //     (project_data: ProjectModel) =>
-  //       this.ProjectModel = project_data,
-  //     (err: any) => console.log(err),
-  //     () => console.log("Project is acquired!")
-  //   );
-  // }
 }
