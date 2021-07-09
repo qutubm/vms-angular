@@ -19,17 +19,17 @@ export class ProjectComponent implements OnInit {
   ngOnInit(): void {
     this.loadAllProjects();
   }
-
+git 
 
   loadAllProjects() {
     this.projectServices.getAllProjects().subscribe(
       (projects_data: ProjectsExtra) => {        
         this.ProjectsView = projects_data.Projects;
-        console.log(this.ProjectsView[2].Name);
-        //console.log("1st Profile : " + this.ProfilesModel[0]);
+        //console.log(this.ProjectsView[2].Name);
+        //console.log("1st Profile : " + this.ProfilesModel[0]
       },
-      (err: any) => console.log(err),
-      () => console.log(this.ProjectsView),
+      // (err: any) => console.log(err),
+      // () => console.log(this.ProjectsView),
     );
   }
 
@@ -41,4 +41,9 @@ export class ProjectComponent implements OnInit {
   //     })
   //   }
   // }
+
+  viewProjectTask(projectIndex){
+    let projectObject = this.ProjectsView.filter(x => x.Id === projectIndex);
+    console.log(projectObject);
+  }
 }

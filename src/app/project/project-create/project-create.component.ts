@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
 import { ProjectService } from '../project.service';
 import { ActivatedRoute, Router } from '@angular/router';
+
 @Component({
   selector: 'app-project-create',
   templateUrl: './project-create.component.html',
@@ -9,7 +10,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ProjectCreateComponent implements OnInit {
 
- 
+  
   projectCreate: FormGroup;
   constructor(private formBuilder: FormBuilder, private projectServices: ProjectService, private activatedRoute: ActivatedRoute, private router: Router) {
   }
@@ -52,6 +53,10 @@ export class ProjectCreateComponent implements OnInit {
   deleteVolunteerFromList(emailIndex) {
     //const index: number = this.listStaffMembers.indexOf(emailIndex);
     //this.listStaffMembers.splice(index, 1);
+  }
+
+  viewProjectTask(projectIndex){
+    console.log(projectIndex);
   }
 
 
