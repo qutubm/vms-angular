@@ -37,28 +37,28 @@ export class ProjectService {
   //   return this.http.get<Profiles[]>(this.rest_location)
   // }
 
-  getProject(): Observable<ProjectsExtra> {
+  getAllProjects(): Observable<ProjectsExtra> {
     return this.http.get<ProjectsExtra>(this.rest_locationProject + 'GetProjects')
       .pipe(
         retry(1),
         catchError(this.handleError));
   }
 
-  getProjectByID(id): Observable<ProjectsExtra> {
-    return this.http.get<ProjectsExtra>(this.rest_locationProject + '/' + id)
-      .pipe(
-        retry(1),
-        catchError(this.handleError)
-      );
-  }
+  //getProjectByID(id): Observable<ProjectsExtra> {
+  //   return this.http.get<ProjectsExtra>(this.rest_locationProject + '/' + id)
+  //     .pipe(
+  //       retry(1),
+  //       catchError(this.handleError)
+  //     );
+  // }
 
   createProject(projectData): Observable<Projects> {
-    return this.http.post<Projects>(this.rest_locationProject, JSON.stringify(projectData), this.httpOptions)
+    return this.http.post<Projects>(this.rest_locationProject + 'AddProject', JSON.stringify(projectData), this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)
     )
-  }  
+  }
 
 
   deleteProjectByID(id){

@@ -46,11 +46,11 @@ export class ProfilesComponent implements OnInit {
   //   }
   // }
 
-  // //Modal Experiment
-  // openVideoPopup(link) {
-  //   const modalRef = this.modalService.open(ProfilesDetailComponent);
-  //   modalRef.componentInstance.src = link;
-  // }
+  //Modal Experiment
+  openVideoPopup(link) {
+    const modalRef = this.modalService.open(ProfilesDetailComponent);
+    modalRef.componentInstance.src = link;
+  }
 
   
 }

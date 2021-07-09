@@ -22,7 +22,7 @@ export class ProjectComponent implements OnInit {
 
 
   loadAllProjects() {
-    this.projectServices.getProject().subscribe(
+    this.projectServices.getAllProjects().subscribe(
       (projects_data: ProjectsExtra) => {        
         this.ProjectsView = projects_data.Projects;
         console.log(this.ProjectsView[2].Name);
@@ -41,6 +41,4 @@ export class ProjectComponent implements OnInit {
   //     })
   //   }
   // }
-
-
 }

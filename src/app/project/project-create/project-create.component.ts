@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-
+import { ProjectService } from '../project.service';
+import { ActivatedRoute, Router } from '@angular/router';
 @Component({
   selector: 'app-project-create',
   templateUrl: './project-create.component.html',
@@ -8,36 +9,51 @@ import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms'
 })
 export class ProjectCreateComponent implements OnInit {
 
-  listStaffMembers: any[] = [];
+ 
   projectCreate: FormGroup;
-
-  ngOnInit(): void {
+  constructor(private formBuilder: FormBuilder, private projectServices: ProjectService, private activatedRoute: ActivatedRoute, private router: Router) {
   }
-  constructor(private formBuilder: FormBuilder) {
+  
+  ngOnInit(): void {
     this.projectCreate = this.formBuilder.group({
-      project_name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      project_date: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      project_staff: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      project_volunteers: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      Id: ['', [Validators.maxLength(50)]],
+      Name: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      DueDate: ['', [Validators.maxLength(50)]],
+      CreatedDate: ['', [Validators.maxLength(50)]],
+      EstimatedDueDate: ['', [ Validators.minLength(2), Validators.maxLength(50)]],
+      Type:['', [Validators.maxLength(50)]],
+      SkillsRequired: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      Completed: ['', [Validators.minLength(2), Validators.maxLength(50)]],
     })
   }
 
+
   addVolunteerToList(userInput): void {
-    if (userInput === null || userInput === undefined || userInput == "") {
-      console.warn("Cannot be empty!");
+    if (this.projectCreate.valid) {
+      
     } else {
-      this.listStaffMembers.push({user_email: userInput });
-      console.log(this.listStaffMembers);
+      console.warn("Invalid Create");
+    }
+  }
+
+  createProject() {
+    if (this.projectCreate.valid) {
+      console.log(this.projectCreate.value);
+      this.projectServices.createProject(this.projectCreate.value).subscribe((data: {}) => {
+        this.router.navigate(['/project'], { relativeTo: this.activatedRoute });
+      })
+      
+      console.log(this.projectCreate.value);
+    } else {
+      console.log("Invalid Form!");
     }
   }
 
   deleteVolunteerFromList(emailIndex) {
-    const index: number = this.listStaffMembers.indexOf(emailIndex);
-    this.listStaffMembers.splice(index, 1);
+    //const index: number = this.listStaffMembers.indexOf(emailIndex);
+    //this.listStaffMembers.splice(index, 1);
   }
 
-  createProject() {
 
-  }
 
 }

@@ -47,9 +47,9 @@ export class ProfilesCreateComponent implements OnInit {
   createProfile(profileForm: FormGroup) {
     if (profileForm.valid) {
       this.isProfileValid = true;
-      // this.profileServices.createProfile(this.profileForm.value).subscribe((data: {}) => {
-      //   this.router.navigate(['/profiles'], { relativeTo: this.activatedRoute });
-      // })
+      this.profileServices.createProfile(this.profileForm.value).subscribe((data: {}) => {
+        this.router.navigate(['/profiles'], { relativeTo: this.activatedRoute });
+      })
       console.log(this.profileForm.value);
     } else {
       this.isProfileValid = false;
