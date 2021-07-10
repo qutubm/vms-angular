@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-
 import { ProfilesService } from '../profiles.service';
 import { Profile, ProfilesExtra } from '../profiles.model';
 
@@ -12,40 +11,67 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
   styleUrls: ['./profiles-edit.component.css']
 })
 export class ProfilesEditComponent implements OnInit {
+  profileEditForm: FormGroup;
+  profilesID = this.activatedRoute.snapshot.params['id'];
+  ProfilesData: Profile[] = [];
 
-  constructor(private formBuilder: FormBuilder, private profilesServices: ProfilesService, private activatedRoute: ActivatedRoute, private router: Router) { }
-  profileForm: FormGroup;
-  ProfilesView: Profile[] = [];
-  testvalue: any = 'the mandatory notes';
+  
+  _profileID: string;
+  _profileEmail: string;
+  _profileType: string;
+  _profileFirstName: string;
+  _profileLastName: string;
+  _profilePhone: string;
+  _profilePostcode: string;
+  _profileAdditionalEmail: string;
+  _profileAdditionalPhone: string;
+  _profileDeleted: string;
 
-  profilesData = Profile
+  constructor(private formBuilder: FormBuilder, private profilesServices: ProfilesService, private activatedRoute: ActivatedRoute, private router: Router) {
+  }
+
 
   ngOnInit(): void {
-    this.profileForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"), Validators.maxLength(50)]],
+    this.loadAllProfiles();
+    console.log(this.ProfilesData[0]);
+    this.profileEditForm = this.formBuilder.group({
+      Id: [{ value: this.profilesID, disabled: false }, []],
+      Email: [{ value: this.profilesID, disabled: false }, [Validators.required, Validators.minLength(8)]],
       //password: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
       //passwordConfirmed: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
-      type: ['', [Validators.minLength(2), Validators.maxLength(50)]],
-      firstName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      lastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      phone: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      suburb: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      state: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      postcode: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      additionalEmail: ['', [Validators.minLength(2), Validators.maxLength(50)]],
-      additionalPhone: ['', [Validators.minLength(2), Validators.maxLength(50)]],
-      deleted: ['', [Validators.minLength(2), Validators.maxLength(50)]],
+      Type: ['', [Validators.minLength(2), Validators.maxLength(50)]],
+      FirstName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      LastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      Phone: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      Suburb: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      State: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      Postcode: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      AdditionalEmail: ['', [Validators.minLength(2), Validators.maxLength(50)]],
+      AdditionalPhone: ['', [Validators.minLength(2), Validators.maxLength(50)]],
+      Deleted: ['', [Validators.minLength(2), Validators.maxLength(50)]],
     });
+
   }
 
   loadAllProfiles() {
     this.profilesServices.getProfiles().subscribe(
-      (profiles_data: ProfilesExtra) => {
-        this.ProfilesView = profiles_data.Profiles;
-        //console.log("1st Profile : " + this.ProfilesModel[0]);
+      (profiles: ProfilesExtra) => {
+        this.ProfilesData = profiles.Profiles;
+        let profileDataIndex = this.ProfilesData.findIndex(x => x.Id === this.profilesID);
+        
+        this._profileID = this.ProfilesData[profileDataIndex].Id;
+        this._profileEmail = this.ProfilesData[profileDataIndex].Id;
+        this._profileType = this.ProfilesData[profileDataIndex].Id;
+        this._profileFirstName = this.ProfilesData[profileDataIndex].Id;
+        this._profileLastName = this.ProfilesData[profileDataIndex].Id;
+        this._profileID = this.ProfilesData[profileDataIndex].Id;
+        this._profileID = this.ProfilesData[profileDataIndex].Id;
+        this._profileID = this.ProfilesData[profileDataIndex].Id;
+        this._profileID = this.ProfilesData[profileDataIndex].Id;
+
       },
       (err: any) => console.log(err),
-      () => console.log(this.ProfilesView),
+      () => console.log(this.ProfilesData),
     );
   }
 
@@ -57,7 +83,7 @@ export class ProfilesEditComponent implements OnInit {
       // this.profileServices.createProfile(this.profileForm.value).subscribe((data: {}) => {
       //   this.router.navigate(['/profiles'], { relativeTo: this.activatedRoute });
       // })
-      console.log(this.profileForm.value);
+      //console.log(this.profileForm.value);
     } else {
       //this.isProfileValid = false;
       console.log("Invalid Form!");

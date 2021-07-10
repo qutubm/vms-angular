@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
+import { FormsModule, ReactiveFormsModule }   from '@angular/forms';
 import { ProfilesEditRoutingModule } from './profiles-edit-routing.module';
 import { ProfilesEditComponent } from './profiles-edit.component';
 
@@ -9,7 +9,9 @@ import { ProfilesEditComponent } from './profiles-edit.component';
   declarations: [ProfilesEditComponent],
   imports: [
     CommonModule,
-    ProfilesEditRoutingModule
+    ProfilesEditRoutingModule,
+    ReactiveFormsModule,
+    FormsModule,
   ]
 })
 export class ProfilesEditModule { }

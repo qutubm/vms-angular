@@ -18,18 +18,18 @@ export class ProfilesExtra {
 }
 
 export class Profile {
-    id: string;
-    firstName: string;
-    lastName: string;
-    email: string;
-    phone: string;
-    additionalEmail: string;
-    additionalPhone: string;
-    type: string;
-    streetAddress1: string;
-    streetAddress2: string;
-    suburb: string;
-    state: string;
-    postcode: string;
-    deleted: string;
+    Id: string;
+    FirstName: string;
+    LastName: string;
+    Email: string;
+    Phone: string;
+    AdditionalEmail: string;
+    AdditionalPhone: string;
+    Type: string;
+    StreetAddress1: string;
+    StreetAddress2: string;
+    Suburb: string;
+    State: string;
+    Postcode: string;
+    Deleted: string;
 }
