@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { map, tap } from 'rxjs/operators';
-import { ProjectMembers} from '../shared/models/project-members.model'
 import { Projects, ProjectsExtra } from './project.model';
 import { ProjectTaskModel } from '../shared/models/project-task.model'
 
@@ -69,21 +67,6 @@ export class ProjectService {
     )
   }
 
-
-
-
-
-  
-
-
-  // getAllMembersByID(id): Observable<ProjectMembers[]> {
-  //   return this.http.get<ProjectModel>(this.rest_location + '/' + id)
-  //     .pipe(
-  //       map( (project) =>  project.project_members.map(proj_members => <ProjectMembers[]>{ id: project})),
-  //       tap(mappedItems => console.log(mappedItems))
-  //     );
-  // }
-
   getProjectTask(): Observable<ProjectTaskModel[]> {
     return this.http.get<ProjectTaskModel[]>(this.rest_locationProject)
       .pipe(
@@ -91,8 +74,6 @@ export class ProjectService {
         catchError(this.handleError));
 
   }
-
-
 
   handleError(error) {
     let errorMessage = '';
@@ -106,21 +87,4 @@ export class ProjectService {
     window.alert(errorMessage);
     return throwError(errorMessage);
   }
-
-  // At this moment I can't manipulate nested objects using services.
-  // "members": [1,2,3],
-  // "faq": [
-  //   {
-  //     "faq_question": "faq_question",
-  //     "faq_answer": "faq_answer"
-  //   },
-  //   {
-  //     "faq_question": "faq_question",
-  //     "faq_answer": "faq_answer"
-  //   },
-  //   {
-  //     "faq_question": "faq_question",
-  //     "faq_answer": "faq_answer"
-  //   }
-  // ]
 }

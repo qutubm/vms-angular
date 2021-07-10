@@ -52,6 +52,14 @@ export class ProfilesService {
     )
   }
 
+  editProfile(profile) {
+    return this.http.post<Profile>(this.rest_locationProfile + 'EditProfile', JSON.stringify(profile), this.httpOptions)
+    .pipe(
+      retry(1),
+      catchError(this.handleError)
+    )
+  }
+
   // deleteProfileByID(id){
   //   return this.http.delete<Profiles>(this.rest_locationProfile + '/' + id)
   //   .pipe(

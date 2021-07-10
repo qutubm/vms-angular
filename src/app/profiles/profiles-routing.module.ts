@@ -16,6 +16,7 @@ const routes: Routes = [
   },
   { path: 'profiles-invite', loadChildren: () => import('./profiles-invite/profiles-invite.module').then(m => m.ProfilesInviteModule),  },
   { path: 'profiles-create', loadChildren: () => import('./profiles-create/profiles-create.module').then(m => m.ProfilesCreateModule) },
+  { path: 'profiles-edit/:id', loadChildren: () => import('./profiles-edit/profiles-edit.module').then(m => m.ProfilesEditModule) },
   //{ path: 'profiles-detail', loadChildren: () => import('./profiles-detail/profiles-detail.module').then(m => m.ProfilesDetailModule) },
 
 ];

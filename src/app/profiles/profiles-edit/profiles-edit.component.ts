@@ -1,29 +1,24 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { Component, OnInit } from '@angular/core';
 
-import { Observable, OperatorFunction } from 'rxjs';
-import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
+import { ProfilesService } from '../profiles.service';
+import { Profile, ProfilesExtra } from '../profiles.model';
 
 import { ActivatedRoute, Router } from '@angular/router';
-import { ProfilesService } from '../profiles.service';
-
-
-const states = ['Victoria', 'New South Wales', 'Tasmania', 'Queensland'];
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
-  selector: 'app-profiles-create',
-  templateUrl: './profiles-create.component.html',
-  styleUrls: ['./profiles-create.component.css']
+  selector: 'app-profiles-edit',
+  templateUrl: './profiles-edit.component.html',
+  styleUrls: ['./profiles-edit.component.css']
 })
+export class ProfilesEditComponent implements OnInit {
 
-export class ProfilesCreateComponent implements OnInit {
-
-  isProfileValid: boolean;
+  constructor(private formBuilder: FormBuilder, private profilesServices: ProfilesService, private activatedRoute: ActivatedRoute, private router: Router) { }
   profileForm: FormGroup;
+  ProfilesView: Profile[] = [];
+  testvalue: any = 'the mandatory notes';
 
-  constructor(private formBuilder: FormBuilder, private profileServices: ProfilesService, private activatedRoute: ActivatedRoute, private router: Router) {
-
-  }
+  profilesData = Profile
 
   ngOnInit(): void {
     this.profileForm = this.formBuilder.group({
@@ -43,27 +38,30 @@ export class ProfilesCreateComponent implements OnInit {
     });
   }
 
-  
-  createProfile(profileForm: FormGroup) {
-    if (profileForm.valid) {
-      this.isProfileValid = true;
-      this.profileServices.createProfile(this.profileForm.value).subscribe((data: {}) => {
-        this.router.navigate(['/profiles'], { relativeTo: this.activatedRoute });
-      })
-      console.log(this.profileForm.value);
-    } else {
-      
-      console.log("Invalid Form!");
-    }
+  loadAllProfiles() {
+    this.profilesServices.getProfiles().subscribe(
+      (profiles_data: ProfilesExtra) => {
+        this.ProfilesView = profiles_data.Profiles;
+        //console.log("1st Profile : " + this.ProfilesModel[0]);
+      },
+      (err: any) => console.log(err),
+      () => console.log(this.ProfilesView),
+    );
   }
 
 
-  search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>) =>
-    text$.pipe(
-      debounceTime(200),
-      distinctUntilChanged(),
-      map(term => term.length < 2 ? []
-        : states.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
-    )
+
+  editProfile(profileForm: FormGroup) {
+    if (profileForm.valid) {
+      // this.isProfileValid = true;
+      // this.profileServices.createProfile(this.profileForm.value).subscribe((data: {}) => {
+      //   this.router.navigate(['/profiles'], { relativeTo: this.activatedRoute });
+      // })
+      console.log(this.profileForm.value);
+    } else {
+      //this.isProfileValid = false;
+      console.log("Invalid Form!");
+    }
+  }
 
 }

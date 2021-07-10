@@ -4,16 +4,21 @@
         <p class="lead">Manage Profiles Here.</p>
         <hr class="my-3">
         <div class="lead">
-            <button type="button" class="btn btn-primary mr-2" routerLink="/profiles/profiles-invite">
+            <button type="button"
+                    class="btn btn-primary mr-2"
+                    routerLink="/profiles/profiles-invite">
                 Invite To Create A Profile
             </button>
-            <button type="button" class="btn btn-primary mr-2" routerLink="/profiles/profiles-create">
+            <button type="button"
+                    class="btn btn-primary mr-2"
+                    routerLink="/profiles/profiles-create">
                 Create A Profile
             </button>
         </div>
     </div>
 
-    <p *ngIf="!ProfilesModel || ProfilesModel.length === 0" class="border border-primary rounded text-center">
+    <p *ngIf="!ProfilesModel || ProfilesModel.length === 0"
+       class="border border-primary rounded text-center">
         The profile is empty or can't load from server.
     </p>
 
@@ -21,7 +26,8 @@
 </div>
 <div class="container align-items-center">
     <div class="row ">
-        <div class="card bg-light thumbnail" *ngFor="let showProfiles of ProfilesModel">
+        <div class="card bg-light thumbnail"
+             *ngFor="let showProfiles of ProfilesModel">
             <div class="card-body col-md-6">
                 <h3>{{showProfiles.FirstName + " " + showProfiles.LastName}}</h3>
                 <div>Email: {{showProfiles.Email}} </div>
@@ -30,17 +36,29 @@
                 <div>Email: {{showProfiles.profile_email}} </div>
                 <div>Phone: {{showProfiles.profile_phone}}</div>
                 <hr>-->
-                <div class="d-flex">
-                    <button type="button" class="btn btn-primary mr-2" (click)="openVideoPopup()"
-                        routerLink="profiles-detail/1" skipLocationChange>
-                        View Profile
-                    </button>
-                    <!-- <button type="button"
-                            class="btn btn-danger mr-2"
-                            (click)="deleteProfileById(showProfiles.id)">
-                        Delete Profile
-                    </button> -->
-                </div>
+
+            </div>
+            <div class="d-flex">
+                <!-- <button type="button"
+                        class="btn btn-primary mr-2"
+                        (click)="openVideoPopup()"
+                        routerLink="profiles-detail/1"
+                        skipLocationChange>
+                    View Profile
+                </button> -->
+                <button type="button"
+                        class="btn btn-primary mr-2"
+                        
+                        routerLink="profiles-detail/{{this.showProfiles.Id}}"
+                        skipLocationChange>
+                    View Profile
+                </button>
+                <button type="button"
+                        class="btn btn-danger mr-2"
+                        routerLink="profiles-edit/{{this.showProfiles.Id}}"
+                >
+                    Edit Profile
+                </button>
             </div>
         </div>
     </div>
