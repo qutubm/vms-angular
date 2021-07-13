@@ -34,3 +34,4 @@ export class GetProfileInputModel{
     id : string;
     type: string;
 }
+

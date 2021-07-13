@@ -7,6 +7,7 @@ import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProfilesService } from '../profiles.service';
 import { Profile, ProfileModel } from '../profiles.model';
+import { SelectListItem} from '../../shared/models/selectListItem';
 
 
 const states = ['Victoria', 'New South Wales', 'Tasmania', 'Queensland'];
@@ -20,6 +21,10 @@ const states = ['Victoria', 'New South Wales', 'Tasmania', 'Queensland'];
 export class ProfilesCreateComponent implements OnInit {
 
   isProfileValid: boolean;
+  heading : string;
+  states : SelectListItem[];
+  profileTypes: SelectListItem[];
+
   // public profileForm: FormGroup;
   public profileForm = this.formBuilder.group({
     Id: ['', []],
@@ -65,12 +70,23 @@ export class ProfilesCreateComponent implements OnInit {
   ngOnInit(): void 
   {
 
+    this.profileServices.fetchStates().subscribe( data => {
+      this.states = data;
+      console.log("States : " , this.states);
+    });
+
+    this.profileServices.fetchProfileTypes().subscribe( data => {
+      this.profileTypes = data;
+      console.log("ProfileTypes : " , this.profileTypes);
+    });
+
     console.log("profileId : ", this.profileId);
     console.log("type : ", this.type);
     this.profileForm.controls.Id.setValue(this.profileId);
 
     if((this.profileId != null && this.profileId != undefined && this.profileId != '' ) && (this.type != null && this.type != undefined && this.type != ''))
     {
+        this.heading = "Edit a Profile";
         this.profileServices.fetchProfile(this.profileId, this.type).subscribe(
           (profileData : ProfileModel) => 
         {
@@ -87,53 +103,17 @@ export class ProfilesCreateComponent implements OnInit {
           this.profileForm.controls.additionalPhone.setValue(profileData.Profile.AdditionalPhone);
           this.profileForm.controls.type.setValue(profileData.Profile.Type);
           this.profileForm.controls.deleted.setValue(profileData.Profile.Deleted);
-
-
-          // this.existingProfile = profileData.Profile;
-          // // this.profileForm = this.formBuilder.group({
-          // //   firstName: [profileData.Profile.FirstName, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-          // //   lastName: [profileData.Profile.LastName, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-          // //   streetAddress1: [profileData.Profile.StreetAddress1, [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
-          // //   streetAddress2: [profileData.Profile.StreetAddress2, [Validators.maxLength(50)]],
-          // //   suburb: [profileData.Profile.Suburb, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-          // //   state: [profileData.Profile.State, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-          // //   postcode: [profileData.Profile.Postcode, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-          // //   //password: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
-          // //   //passwordConfirmed: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
-          // //   type: [profileData.Profile.Type, [Validators.minLength(2), Validators.maxLength(50)]],
-          // //   phone: [profileData.Profile.Phone, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-          // //   email: [profileData.Profile.Email, [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"), Validators.maxLength(50)]],
-          // //   additionalEmail: [profileData.Profile.AdditionalEmail, [Validators.minLength(2), Validators.maxLength(50)]],
-          // //   additionalPhone: [profileData.Profile.AdditionalPhone, [Validators.minLength(2), Validators.maxLength(50)]],
-          // //   deleted: ['N', [Validators.minLength(2), Validators.maxLength(50)]],
-          // // });
         });
     }
     else 
     {
-
-      // this.profileForm = this.formBuilder.group({
-      //   email: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"), Validators.maxLength(50)]],
-      //   //password: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
-      //   //passwordConfirmed: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
-      //   type: ['', [Validators.minLength(2), Validators.maxLength(50)]],
-      //   firstName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      //   lastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      //   phone: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      //   suburb: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      //   state: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      //   postcode: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      //   additionalEmail: ['', [Validators.minLength(2), Validators.maxLength(50)]],
-      //   additionalPhone: ['', [Validators.minLength(2), Validators.maxLength(50)]],
-      //   deleted: ['', [Validators.minLength(2), Validators.maxLength(50)]],
-      // });
-
+      this.heading = "Create a Profile";
     }
   }
 
   saveProfile()
   {
-    this.findInvalidControls();
+    // this.findInvalidControls();
     if(this.profileId !== null && this.profileId !== undefined)
     {
         this.editProfile(this.profileForm);
