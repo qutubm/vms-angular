@@ -1,17 +1,18 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import {  ReactiveFormsModule, FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 import { Observable, OperatorFunction } from 'rxjs';
 import { debounceTime, distinctUntilChanged, map } from 'rxjs/operators';
 
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProfilesService } from '../profiles.service';
+import { Profile, ProfileModel } from '../profiles.model';
 
 
 const states = ['Victoria', 'New South Wales', 'Tasmania', 'Queensland'];
 
 @Component({
-  selector: 'app-profiles-create',
+  selector: 'profiles-create',
   templateUrl: './profiles-create.component.html',
   styleUrls: ['./profiles-create.component.css']
 })
@@ -19,31 +20,130 @@ const states = ['Victoria', 'New South Wales', 'Tasmania', 'Queensland'];
 export class ProfilesCreateComponent implements OnInit {
 
   isProfileValid: boolean;
-  profileForm: FormGroup;
+  // public profileForm: FormGroup;
+  public profileForm = this.formBuilder.group({
+    Id: ['', []],
+    firstName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+    lastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+    streetAddress1: ['', [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
+    streetAddress2: ['', [ Validators.maxLength(50)]],
+    suburb: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+    state: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+    postcode: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+    email: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"), Validators.maxLength(50)]],
+    phone: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+    type: ['', [Validators.minLength(2), Validators.maxLength(50)]],
+    additionalEmail: ['', [Validators.minLength(2), Validators.maxLength(50)]],
+    additionalPhone: ['', [Validators.minLength(2), Validators.maxLength(50)]],
+    deleted: ['N', []],
+    //password: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
+    //passwordConfirmed: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
+  });
+
+
+  profileId = this.activatedRoute.snapshot.params['id'];
+  type = this.activatedRoute.snapshot.params['type'];
+  
+  // Form Values for Edit Mode
+  existingProfile : Profile;
+  firstName : string;
+  lastName : string;
+  streetAddress1 : string;
+  streetAddress2 : string;
+  suburb : string;
+  postcode : string;
+  email : string;
+  phone : string;
+  additionalEmail : string;
+  additionalPhone : string;
+
+
 
   constructor(private formBuilder: FormBuilder, private profileServices: ProfilesService, private activatedRoute: ActivatedRoute, private router: Router) {
-
   }
 
-  ngOnInit(): void {
-    this.profileForm = this.formBuilder.group({
-      email: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"), Validators.maxLength(50)]],
-      //password: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
-      //passwordConfirmed: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
-      type: ['', [Validators.minLength(2), Validators.maxLength(50)]],
-      firstName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      lastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      phone: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      suburb: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      state: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      postcode: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
-      additionalEmail: ['', [Validators.minLength(2), Validators.maxLength(50)]],
-      additionalPhone: ['', [Validators.minLength(2), Validators.maxLength(50)]],
-      deleted: ['', [Validators.minLength(2), Validators.maxLength(50)]],
-    });
+  ngOnInit(): void 
+  {
+
+    console.log("profileId : ", this.profileId);
+    console.log("type : ", this.type);
+    this.profileForm.controls.Id.setValue(this.profileId);
+
+    if((this.profileId != null && this.profileId != undefined && this.profileId != '' ) && (this.type != null && this.type != undefined && this.type != ''))
+    {
+        this.profileServices.fetchProfile(this.profileId, this.type).subscribe(
+          (profileData : ProfileModel) => 
+        {
+          this.profileForm.controls.firstName.setValue(profileData.Profile.FirstName);
+          this.profileForm.controls.lastName.setValue(profileData.Profile.LastName);
+          this.profileForm.controls.streetAddress1.setValue(profileData.Profile.StreetAddress1);
+          this.profileForm.controls.streetAddress2.setValue(profileData.Profile.StreetAddress2);
+          this.profileForm.controls.suburb.setValue(profileData.Profile.Suburb);
+          this.profileForm.controls.state.setValue(profileData.Profile.State);
+          this.profileForm.controls.postcode.setValue(profileData.Profile.Postcode);
+          this.profileForm.controls.email.setValue(profileData.Profile.Email);
+          this.profileForm.controls.phone.setValue(profileData.Profile.Phone);
+          this.profileForm.controls.additionalEmail.setValue(profileData.Profile.AdditionalEmail);
+          this.profileForm.controls.additionalPhone.setValue(profileData.Profile.AdditionalPhone);
+          this.profileForm.controls.type.setValue(profileData.Profile.Type);
+          this.profileForm.controls.deleted.setValue(profileData.Profile.Deleted);
+
+
+          // this.existingProfile = profileData.Profile;
+          // // this.profileForm = this.formBuilder.group({
+          // //   firstName: [profileData.Profile.FirstName, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+          // //   lastName: [profileData.Profile.LastName, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+          // //   streetAddress1: [profileData.Profile.StreetAddress1, [Validators.required, Validators.minLength(5), Validators.maxLength(50)]],
+          // //   streetAddress2: [profileData.Profile.StreetAddress2, [Validators.maxLength(50)]],
+          // //   suburb: [profileData.Profile.Suburb, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+          // //   state: [profileData.Profile.State, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+          // //   postcode: [profileData.Profile.Postcode, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+          // //   //password: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
+          // //   //passwordConfirmed: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
+          // //   type: [profileData.Profile.Type, [Validators.minLength(2), Validators.maxLength(50)]],
+          // //   phone: [profileData.Profile.Phone, [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+          // //   email: [profileData.Profile.Email, [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"), Validators.maxLength(50)]],
+          // //   additionalEmail: [profileData.Profile.AdditionalEmail, [Validators.minLength(2), Validators.maxLength(50)]],
+          // //   additionalPhone: [profileData.Profile.AdditionalPhone, [Validators.minLength(2), Validators.maxLength(50)]],
+          // //   deleted: ['N', [Validators.minLength(2), Validators.maxLength(50)]],
+          // // });
+        });
+    }
+    else 
+    {
+
+      // this.profileForm = this.formBuilder.group({
+      //   email: ['', [Validators.required, Validators.pattern("^[a-z0-9._%+-]+@[a-z0-9.-]+\\.[a-z]{2,4}$"), Validators.maxLength(50)]],
+      //   //password: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
+      //   //passwordConfirmed: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
+      //   type: ['', [Validators.minLength(2), Validators.maxLength(50)]],
+      //   firstName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      //   lastName: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      //   phone: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      //   suburb: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      //   state: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      //   postcode: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(50)]],
+      //   additionalEmail: ['', [Validators.minLength(2), Validators.maxLength(50)]],
+      //   additionalPhone: ['', [Validators.minLength(2), Validators.maxLength(50)]],
+      //   deleted: ['', [Validators.minLength(2), Validators.maxLength(50)]],
+      // });
+
+    }
   }
 
-  
+  saveProfile()
+  {
+    this.findInvalidControls();
+    if(this.profileId !== null && this.profileId !== undefined)
+    {
+        this.editProfile(this.profileForm);
+    }
+    else
+    {
+        this.createProfile(this.profileForm);
+    }
+  }
+
   createProfile(profileForm: FormGroup) {
     if (profileForm.valid) {
       this.isProfileValid = true;
@@ -57,13 +157,53 @@ export class ProfilesCreateComponent implements OnInit {
     }
   }
 
+  editProfile(profileForm:FormGroup)
+  {
+    if (profileForm.valid) {
+      this.isProfileValid = true;
+      this.profileServices.editProfile(this.profileForm.value).subscribe((data: {}) => {
+        this.router.navigate(['/profiles'], { relativeTo: this.activatedRoute });
+      })
+      console.log(this.profileForm.value);
+    } else {
+      
+      console.log("Invalid Form!");
+    }
+  }
 
-  search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>) =>
-    text$.pipe(
-      debounceTime(200),
-      distinctUntilChanged(),
-      map(term => term.length < 2 ? []
-        : states.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
-    )
+  fetchProfile(profileId : string, type : string)
+  {
+    this.profileServices.fetchProfile(profileId, type).subscribe(
+      (profileData : ProfileModel) => 
+      {
+        this.existingProfile = profileData.Profile;
+      });
+  }
+
+  public findInvalidControls() {
+    const invalid = [];
+    const controls = this.profileForm.controls;
+    for (const name in controls) {
+        if (controls[name].invalid) {
+            invalid.push(name);
+            console.log("Invalid Control : ", name);
+        }
+    }
+    return invalid;
+}
+
+
+onCancel()
+{
+  this.router.navigate(['/profiles']);
+}
+
+  // search: OperatorFunction<string, readonly string[]> = (text$: Observable<string>) =>
+  //   text$.pipe(
+  //     debounceTime(200),
+  //     distinctUntilChanged(),
+  //     map(term => term.length < 2 ? []
+  //       : states.filter(v => v.toLowerCase().indexOf(term.toLowerCase()) > -1).slice(0, 10))
+  //   )
 
 }

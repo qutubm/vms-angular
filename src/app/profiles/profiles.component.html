@@ -4,80 +4,57 @@
         <p class="lead">Manage Profiles Here.</p>
         <hr class="my-3">
         <div class="lead">
-            <button type="button"
+            <!-- <button type="button"
                     class="btn btn-primary mr-2"
                     routerLink="/profiles/profiles-invite">
                 Invite To Create A Profile
-            </button>
+            </button> -->
             <button type="button"
                     class="btn btn-primary mr-2"
-                    routerLink="/profiles/profiles-create">
+                    routerLink="/profiles-create">
                 Create A Profile
-            </button>
+            </button>  <!-- routerLink="/profiles-create"> -->
         </div>
     </div>
 
-    <p *ngIf="!ProfilesModel || ProfilesModel.length === 0"
+    <!-- <p *ngIf="profiles === null || profiles === undefined || profiles.length === 0"
        class="border border-primary rounded text-center">
         The profile is empty or can't load from server.
-    </p>
-
-
+    </p> -->
 </div>
+
 <div class="container align-items-center">
-    <div class="row ">
-        <div class="card bg-light thumbnail"
-             *ngFor="let showProfiles of ProfilesModel">
+    <div class="row">
+        <div class="card bg-light thumbnail" *ngFor="let profile of profiles" >
             <div class="card-body col-md-6">
-                <h3>{{showProfiles.FirstName + " " + showProfiles.LastName}}</h3>
-                <div>Email: {{showProfiles.Email}} </div>
-                <div>Phone: {{showProfiles.Phone}}</div>
-                <!-- <h3>{{showProfiles.profile_firstName + " " + showProfiles.profile_lastName}}</h3>
-                <div>Email: {{showProfiles.profile_email}} </div>
-                <div>Phone: {{showProfiles.profile_phone}}</div>
+                <h3>{{profile.FirstName + " " + profile.LastName}}</h3>
+                <div>Email: {{profile.Email}} </div>
+                <div>Phone: {{profile.Phone}}</div>
+                <div>Type: {{profile.Type}}</div>
+                <!-- <h3>{{profile.profile_firstName + " " + profile.profile_lastName}}</h3>
+                <div>Email: {{profile.profile_email}} </div>
+                <div>Phone: {{profile.profile_phone}}</div>
                 <hr>-->
 
             </div>
             <div class="d-flex">
+                
                 <!-- <button type="button"
                         class="btn btn-primary mr-2"
-                        (click)="openVideoPopup()"
-                        routerLink="profiles-detail/1"
+                        
+                        routerLink="profiles-detail/{{this.profile.Id}}"
                         skipLocationChange>
                     View Profile
                 </button> -->
-                <button type="button"
-                        class="btn btn-primary mr-2"
-                        
-                        routerLink="profiles-detail/{{this.showProfiles.Id}}"
-                        skipLocationChange>
-                    View Profile
-                </button>
+
                 <button type="button"
                         class="btn btn-danger mr-2"
-                        routerLink="profiles-edit/{{this.showProfiles.Id}}"
+                        routerLink="/profiles-create/{{this.profile.Id}}/{{this.profile.Type}}"
                 >
                     Edit Profile
                 </button>
             </div>
         </div>
     </div>
-
-    <table class="table table-sm">
-        <thead>
-            <tr>
-                <th scope="col">#</th>
-                <th scope="col">First</th>
-                <th scope="col">Last</th>
-                <th scope="col">Handle</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <th scope="row">1</th>
-                <td>Mark</td>
-                <td>Otto</td>
-                <td>@mdo</td>
-            </tr>
-        </tbody>
-    </table>
+</div>
+  

@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
 import { retry, catchError } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-
-import { ProfilesExtra } from './profiles.model';
-import { Profile } from './profiles.model';
+import { GetProfileInputModel, Profile, ProfileModel, ProfilesModel } from './profiles.model';
 
 
 @Injectable({
@@ -13,7 +11,7 @@ import { Profile } from './profiles.model';
 
 export class ProfilesService {
 
-  ProfilesModel: ProfilesExtra[] = []; //Can be used to determine
+  // ProfilesModel: ProfilesExtra[] = []; //Can be used to determine
   rest_locationProfile = 'https://vmswebapi20210604233544.azurewebsites.net/api/Profile/';
 
   constructor(private http: HttpClient) { }
@@ -30,8 +28,8 @@ export class ProfilesService {
   }
 
 
-  getProfiles(): Observable<ProfilesExtra> {
-    return this.http.get<ProfilesExtra>(this.rest_locationProfile + 'GetProfiles')
+  getProfiles(): Observable<ProfilesModel> {
+    return this.http.get<ProfilesModel>(this.rest_locationProfile + 'GetProfiles')
       .pipe(
         retry(1),
         catchError(this.handleError));
@@ -53,11 +51,26 @@ export class ProfilesService {
   }
 
   editProfile(profile) {
+    console.log("Edit Profile : ", profile);
     return this.http.post<Profile>(this.rest_locationProfile + 'EditProfile', JSON.stringify(profile), this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)
     )
+  }
+
+  fetchProfile(id : string, type: string) : Observable<ProfileModel>
+  {
+      let inputModel : GetProfileInputModel = { id:  id, type : type }; 
+      //console.log("InputModel in FetchProfile() : ", inputModel);
+      
+      // , this.httpOptions
+
+      return this.http.get<ProfileModel>(this.rest_locationProfile + 'FetchProfile?id=' + id + '&type=' + type) // JSON.stringify(inputModel)) 
+      .pipe(
+        retry(1),
+        catchError(this.handleError)
+      )
   }
 
   // deleteProfileByID(id){

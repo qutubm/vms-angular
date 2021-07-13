@@ -1,24 +1,18 @@
 import { Component, OnInit } from '@angular/core';
-
 import { ActivatedRoute, Router } from '@angular/router';
-
-import { ProfilesDetailComponent } from './profiles-detail/profiles-detail.component';
 import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-
-import { Profile } from './profiles.model';
-import { ProfilesExtra } from './profiles.model';
-
+import { Profile, ProfilesModel } from './profiles.model';
 import { ProfilesService } from './profiles.service';
 
 @Component({
-  selector: 'app-profiles',
+  selector: 'profiles',
   templateUrl: './profiles.component.html',
   styleUrls: ['./profiles.component.css']
 })
 
 export class ProfilesComponent implements OnInit {
 
-  ProfilesModel: Profile[] = []; // ProfilesModel[] = [];
+  profiles: Profile[] = []; 
 
   constructor(private profilesServices: ProfilesService, public modalService: NgbModal) {   }
 
@@ -28,12 +22,12 @@ export class ProfilesComponent implements OnInit {
 
   loadAllProfiles() {
     this.profilesServices.getProfiles().subscribe(
-      (profiles_data: ProfilesExtra) => {
-        this.ProfilesModel = profiles_data.Profiles;
-        //console.log("1st Profile : " + this.ProfilesModel[0]);
+      (profilesModel: ProfilesModel) => {
+        this.profiles = profilesModel.Profiles;
+        console.log(this.profiles);
       },
       (err: any) => console.log(err),
-      () => console.log(this.ProfilesModel),
+      // () => console.log(this.profiles),
     );
   }
 
@@ -45,12 +39,6 @@ export class ProfilesComponent implements OnInit {
   //     })
   //   }
   // }
-
-  //Modal Experiment
-  openVideoPopup(link) {
-    const modalRef = this.modalService.open(ProfilesDetailComponent);
-    modalRef.componentInstance.src = link;
-  }
 
   
 }

@@ -2,10 +2,136 @@
   <div>
     <h1>Create A Profile</h1>
   </div>
-  <form [formGroup]="profileForm"
-        (ngSubmit)="createProfile(profileForm)" #profileCreateForm="ngForm">
+  
+  <form [formGroup]="profileForm" (ngSubmit)="saveProfile()" > 
+   
+
     <div class="form-group">
-      <span class="float-right text-danger">*Required</span>
+      <label for="firstName">First Name</label>
+      <em class="float-right">*Required</em>
+      <input id="firstName"
+             name="firstName"
+             formControlName="firstName"
+             placeholder="Enter First Name"
+             type="text"
+             class="form-control">
+      <!-- <div
+           *ngIf="profileForm.get('firstName').invalid && (profileForm.get('firstName').dirty || profileForm.get('firstName').touched)">
+        <span class="invalid-feedback d-block" *ngIf="profileForm.firstName.errors">
+          {{profileForm.firstName.errors[0]}}
+           FirstName is required 
+        </span>
+      </div> -->
+     
+      <div class="col-12"><span id="firstNameError"></span></div>
+      <div class="col-12"><bfv-messages></bfv-messages></div>
+    </div>
+    <!-- Last Name -->
+    <div class="form-group">
+      <label for="lastName">Last Name</label>
+      <em class="float-right">*Required</em>
+      <input id="lastName"
+             name="lastName"
+             formControlName="lastName"
+             placeholder="Enter Last Name"
+             type="text"
+             class="form-control">
+      <!-- <div
+           *ngIf="profileForm.get('lastName').invalid && (profileForm.get('lastName').dirty || profileForm.get('lastName').touched)">
+        <span class="text-danger" *ngIf="profileForm.get('lastName').hasError('required')">
+          Last Name is required
+        </span>
+      </div> -->
+
+      <div class="col-12"><bfv-messages></bfv-messages></div>
+    </div>
+
+    <div class="form-group">
+      <label for="streetAddress1">Street Address 1</label>
+      <em class="float-right">*Required</em>
+      <input id="streetAddress1"
+             name="streetAddress1"
+             formControlName="streetAddress1"
+             placeholder="Enter Street Address 1"
+             type="text"
+             class="form-control">
+      <!-- <div
+           *ngIf="profileForm.get('streetAddress1').invalid && (profileForm.get('streetAddress1').dirty || profileForm.get('streetAddress1').touched)">
+        <span class="text-danger" *ngIf="profileForm.get('streetAddress1').hasError('required')">
+          Street Address 1 is required
+        </span>
+      </div> -->
+      <div class="col-12"><bfv-messages></bfv-messages></div>
+    </div>
+
+    <div class="form-group">
+      <label for="streetAddress2">Street Address 2</label>
+      <em class="float-right">Optional</em>
+      <input id="streetAddress2"
+             name="streetAddress2"
+             formControlName="streetAddress2"
+             placeholder="Enter Street Address 2"
+             type="text"
+             class="form-control">
+             <div class="col-12"><bfv-messages></bfv-messages></div>
+    </div>
+
+    <div class="form-group">
+      <label for="suburb">Suburb</label>
+      <em class="float-right">*Required</em>
+      <input type="text"
+             class="form-control"
+             id="suburb"
+             name="suburb"
+             placeholder="Enter Suburb"
+             formControlName="suburb">
+       <div class="col-12"><bfv-messages></bfv-messages></div>
+       <!-- <div
+             *ngIf="profileForm.get('suburb').invalid && (profileForm.get('suburb').dirty || profileForm.get('suburb').touched)">
+          <span class="text-danger" *ngIf="profileForm.get('suburb').hasError('required')">
+            Suburb is required
+          </span>
+        </div> -->
+    </div>
+
+    <div class="form-group">
+      <label for="state">State</label>
+      <em class="float-right">*Required</em>
+      <input id="state"
+             name="state"
+             type="text"
+             class="form-control"
+             formControlName="state"
+             placeholder="Enter State" />
+      <div class="col-12"><bfv-messages></bfv-messages></div>
+      <!-- <div
+             *ngIf="profileForm.get('state').invalid && (profileForm.get('state').dirty || profileForm.get('state').touched)">
+          <span class="text-danger" *ngIf="profileForm.get('state').hasError('required')">
+            State is required
+          </span>
+        </div> -->
+    </div>
+
+    <div class="form-group">
+      <label for="postcode">Postcode</label>
+      <em class="float-right">*Required</em>
+      <input type="tel"
+             class="form-control"
+             id="postcode"
+             name="postcode"
+             placeholder="Enter Postcode"
+             formControlName="postcode">
+      <div class="col-12"><bfv-messages></bfv-messages></div>
+      <!-- <div
+             *ngIf="profileForm.get('postcode').invalid && (profileForm.get('postcode').dirty || profileForm.get('postcode').touched)">
+          <span class="text-danger" *ngIf="profileForm.get('postcode').hasError('required')">
+            Postcode is required
+          </span>
+        </div> -->
+    </div>
+
+    <div class="form-group">
+      <em class="float-right">*Required</em>
       <label for="email">Email address</label>
       <input id="email"
              name="email"
@@ -13,155 +139,71 @@
              placeholder="Enter email"
              type="email"
              class="form-control">
-      <div
+
+      <div class="col-12"><bfv-messages></bfv-messages></div>
+      <!-- <div
            *ngIf="profileForm.get('email').invalid && (profileForm.get('email').dirty || profileForm.get('email').touched)">
         <div *ngIf="profileForm.get('email').hasError('required')">
-          Email is required!
-        </div>
-      </div>
+          Email is required
+        </div> 
+      </div> -->
     </div>
 
-    <!-- <div class="form-group">
-      <span class="float-right text-danger">*Required</span>
-      <label for="password">Password</label>
-      <input id="password"
-             name="password"
-             formControlName="password"
-             placeholder="Enter Password"
-             type="password"
-             class="form-control">
-    </div>
-    <div class="form-group">
-      <span class="float-right text-danger">*Required</span>
-      <label for="profile_passwordConfirmed">Confirm Password</label>
-      <input id="profile_passwordConfirmed"
-             name="profile_passwordConfirmed"
-             formControlName="profile_passwordConfirmed"
-             placeholder="Confirm Password"
-             type="password"
-             class="form-control">
-    </div> -->
-    <div class="form-group">
-      <label for="firstName">First Name:</label>
-      <span class="float-right text-danger">*Required</span>
-      <input id="firstName"
-             name="firstName"
-             formControlName="firstName"
-             placeholder="Enter First Name"
-             type="text"
-             class="form-control">
-      <div
-           *ngIf="profileForm.get('firstName').invalid && (profileForm.get('firstName').dirty || profileForm.get('firstName').touched)">
-        <div *ngIf="profileForm.get('firstName').hasError('required')">
-          FirstName is required!
-        </div>
-      </div>
-    </div>
-    <!-- Last Name -->
-    <div class="form-group">
-      <label for="lastName">Last Name:</label>
-      <span class="float-right text-danger">*Required</span>
-      <input id="lastName"
-             name="lastName"
-             formControlName="lastName"
-             placeholder="Enter Last Name"
-             type="text"
-             class="form-control">
-    </div>
     <div class="form-group">
       <label for="phone">Phone</label>
-      <span class="float-right text-danger">*Required</span>
+      <em class="float-right">*Required</em>
       <input id="phone"
              name="phone"
              formControlName="phone"
              placeholder="Enter Phone"
              type="tel"
              class="form-control">
+      <div class="col-12"><bfv-messages></bfv-messages></div>
     </div>
-    <div class="form-group">
-      <label for="suburb">Suburb</label>
-      <span class="float-right text-danger">*Required</span>
-      <input type="text"
-             class="form-control"
-             id="suburb"
-             name="suburb"
-             placeholder="Enter Suburb"
-             formControlName="suburb">
-    </div>
-    <div class="form-group">
-      <label for="state">State</label>
-      <span class="float-right text-danger">*Required</span>
-      <input id="state"
-             name="state"
-             type="text"
-             class="form-control"
-             formControlName="state"
-             placeholder="Enter State" />
-      <!-- <input id="state"
-             name="state"
-             type="text"
-             class="form-control"
-             [ngbTypeahead]="search"
-             formControlName="state"
-             placeholder="Enter State" /> -->
-    </div>
-    <div class="form-group">
-      <label for="postcode">Postcode</label>
-      <span class="float-right text-warning">*Optional</span>
-      <input type="tel"
-             class="form-control"
-             id="postcode"
-             name="postcode"
-             placeholder="Enter Phone"
-             formControlName="postcode">
-    </div>
+   
     <hr>
     <div class="form-group">
       <label for="additionalEmail">Additional Email (Optional)</label>
-      <span class="float-right text-warning">*Optional</span>
+      <em class="float-right">Optional</em>
       <input id="additionalEmail"
              name="additionalEmail"
              formControlName="additionalEmail"
              placeholder="Enter Email"
              type="email"
              class="form-control">
+      <div class="col-12"><bfv-messages></bfv-messages></div>
     </div>
+
     <div class="form-group">
       <label for="additionalPhone">Additional Phone (Optional)</label>
-      <span class="float-right text-warning">*Optional</span>
+      <em class="float-right">Optional</em>
       <input type="tel"
              class="form-control"
              id="additionalPhone"
              name="additionalPhone"
              placeholder="Enter Phone"
              formControlName="additionalPhone">
+      <div class="col-12"><bfv-messages></bfv-messages></div>
     </div>
-    <input hidden
-           value="Volunteer"
-           formControlName="deleted">
-    <input hidden
-           value="N"
-           formControlName="deleted">
+
+    <div class="form-group">
+      <label for="type">Profile Type</label>
+      <em class="float-right">*Required</em>
+      <input type="tel"
+             class="form-control"
+             id="type"
+             name="type"
+             placeholder="Enter Type"
+             formControlName="type">
+       <div class="col-12"><bfv-messages></bfv-messages></div>
+    </div>
+   
     <button type="submit"
-            class="btn btn-primary">Submit</button>
+            class="btn btn-primary">Submit</button> 
+            &nbsp;&nbsp;&nbsp;
+    <button type="button"
+            class="btn btn-primary" (click)="onCancel()" >Cancel</button>            
+
   </form>
 
-  <ng-container *ngIf="profileForm.valid && profileCreateForm.submitted; then thenBlock else elseBlock">
-    This content is not shown
-  </ng-container>
-  <br>
-  <div *ngIf=""></div>
-  <ng-template #thenBlock>
-    <div class="alert alert-danger">
-      content to render when the condition is true.
-    </div>
-  </ng-template>
-
-  <ng-template #elseBlock>
-    <div class="alert alert-danger">
-      content to render when the condition is false.
-    </div>
-  </ng-template>
-
-  <!-- {{ this.profileForm.status | json}} -->
 </div>
