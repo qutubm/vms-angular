@@ -1,6 +1,12 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~bootstrap/dist/css/bootstrap.min.css";
 @import "~bootstrap-icons/font/bootstrap-icons.css";
+@import "~@ng-select/ng-select/themes/default.theme.css";
+
+* {
+  padding: 0;
+  margin: 0;
+}
 
 div.card-header {
  font-size: large;

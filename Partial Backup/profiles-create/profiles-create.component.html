@@ -1,0 +1,146 @@
+<div class="container mt-5">
+  <div>
+    <h1>{{heading}}</h1>
+  </div>
+
+  <form [formGroup]="profileForm" (ngSubmit)="saveProfile()">
+
+
+    <div class="form-group">
+      <label for="firstName">First Name</label>
+      <em class="float-right">*Required</em>
+      <input id="firstName" name="firstName" formControlName="firstName" placeholder="Enter First Name" type="text"
+        class="form-control">
+      <!-- <div
+           *ngIf="profileForm.get('firstName').invalid && (profileForm.get('firstName').dirty || profileForm.get('firstName').touched)">
+        <span class="invalid-feedback d-block" *ngIf="profileForm.firstName.errors">
+          {{profileForm.firstName.errors[0]}}
+           FirstName is required 
+        </span>
+      </div> -->
+
+      <div class="col-12"><span id="firstNameError"></span></div>
+      <div class="col-12">
+        <bfv-messages></bfv-messages>
+      </div>
+    </div>
+    <!-- Last Name -->
+    <div class="form-group">
+      <label for="lastName">Last Name</label>
+      <em class="float-right">*Required</em>
+      <input id="lastName" name="lastName" formControlName="lastName" placeholder="Enter Last Name" type="text"
+        class="form-control">
+      <div class="col-12">
+        <bfv-messages></bfv-messages>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="streetAddress1">Street Address 1</label>
+      <em class="float-right">*Required</em>
+      <input id="streetAddress1" name="streetAddress1" formControlName="streetAddress1"
+        placeholder="Enter Street Address 1" type="text" class="form-control">
+      <div class="col-12">
+        <bfv-messages></bfv-messages>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="streetAddress2">Street Address 2</label>
+      <em class="float-right">Optional</em>
+      <input id="streetAddress2" name="streetAddress2" formControlName="streetAddress2"
+        placeholder="Enter Street Address 2" type="text" class="form-control">
+      <div class="col-12">
+        <bfv-messages></bfv-messages>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="suburb">Suburb</label>
+      <em class="float-right">*Required</em>
+      <input type="text" class="form-control" id="suburb" name="suburb" placeholder="Enter Suburb"
+        formControlName="suburb">
+      <div class="col-12">
+        <bfv-messages></bfv-messages>
+      </div>
+    </div>
+    
+    <div class="form-group">
+      <label for="state">State</label>
+      <em class="float-right">*Required</em>
+      <!-- <input id="state" name="state" type="text" class="form-control" formControlName="state"
+        placeholder="Enter State" /> -->
+      <ng-select [items]="states" bindLabel="Text" bindValue="Value" [(ngModel)]="states">
+      </ng-select>
+      <!-- <div class="col-12">
+        <bfv-messages></bfv-messages>
+      </div> -->
+    </div>
+
+    <div class="form-group">
+      <label for="postcode">Postcode</label>
+      <em class="float-right">*Required</em>
+      <input type="tel" class="form-control" id="postcode" name="postcode" placeholder="Enter Postcode"
+        formControlName="postcode">
+      <div class="col-12">
+        <bfv-messages></bfv-messages>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <div class="form-group"></div>
+      <em class="float-right">*Required</em>
+      <label for="email">Email address</label>
+      <input id="email" name="email" formControlName="email" placeholder="Enter email" type="email"
+        class="form-control">
+      <div class="col-12">
+        <bfv-messages></bfv-messages>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="phone">Phone</label>
+      <em class="float-right">*Required</em>
+      <input id="phone" name="phone" formControlName="phone" placeholder="Enter Phone" type="tel" class="form-control">
+      <div class="col-12">
+        <bfv-messages></bfv-messages>
+      </div>
+    </div>
+
+    <hr>
+    <div class="form-group">
+      <label for="additionalEmail">Additional Email (Optional)</label>
+      <em class="float-right">Optional</em>
+      <input id="additionalEmail" name="additionalEmail" formControlName="additionalEmail" placeholder="Enter Email"
+        type="email" class="form-control">
+      <div class="col-12">
+        <bfv-messages></bfv-messages>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="additionalPhone">Additional Phone (Optional)</label>
+      <em class="float-right">Optional</em>
+      <input type="tel" class="form-control" id="additionalPhone" name="additionalPhone" placeholder="Enter Phone"
+        formControlName="additionalPhone">
+      <div class="col-12">
+        <bfv-messages></bfv-messages>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="type">Profile Type</label>
+      <em class="float-right">*Required</em>
+      <input type="tel" class="form-control" id="type" name="type" placeholder="Enter Type" formControlName="type">
+      <div class="col-12">
+        <bfv-messages></bfv-messages>
+      </div>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+    &nbsp;&nbsp;&nbsp;
+    <button type="button" class="btn btn-primary" (click)="onCancel()">Cancel</button>
+
+  </form>
+
+</div>

@@ -5,8 +5,9 @@ import { Component } from '@angular/core';
   template: `
             <nav-bar></nav-bar>
             <div class='container-fluid'>
-              <router-outlet></router-outlet>
+            <router-outlet></router-outlet>
             </div>
+            
             `,
             
   styleUrls: ['./vms-app.component.css']
