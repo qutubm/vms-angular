@@ -36,7 +36,9 @@
                 <div class="d-flex">
                   <button type="button"
                           class="btn btn-primary mr-2"
-                          [routerLink]="[viewProjects.Id, 'project-view']">
+                          routerLink="/project-view/{{this.viewProjects.Id}}"
+                          >
+
                     <i class="bi bi-info-square-fill"> View</i>
                   </button>
                   <button type="button"

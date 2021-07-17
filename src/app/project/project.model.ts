@@ -30,7 +30,6 @@ export class Projects {
     Type: string;
     SkillsRequired: string;
     Completed: string;
-    
 }
 
 export class ProjectTasksExtra {
