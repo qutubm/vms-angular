@@ -39,3 +39,10 @@ export class Projects {
     Completed: string;
     
 }
+
+export class ProjectTaskMappingsExtra {
+
+}
+export class ProjectTaskMappings {
+    
+}

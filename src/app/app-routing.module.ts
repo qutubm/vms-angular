@@ -1,10 +1,19 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ProfilesCreateComponent } from './profiles/profiles-create/profiles-create.component';
-import { ProfilesComponent } from './profiles/profiles.component';
 
+//Profiles component import.
+import { ProfilesComponent } from './profiles/profiles.component';
+import { ProfilesCreateComponent } from './profiles/profiles-create/profiles-create.component';
+
+//Project component import.
+import { ProjectComponent } from './project/project.component';
+import { ProjectCreateEditComponent } from './project/project-create-edit/project-create-edit.component';
+import { ProjectViewComponent } from './project/project-view/project-view.component'
 
 const routes: Routes = [
+  { path: 'project', component: ProjectComponent},
+  { path: 'project-view/:id/', component: ProjectViewComponent },
+  //{ path: 'project-create-edit', component: ProjectCreateEditComponent },
   { path: 'profiles', component: ProfilesComponent },
   { path: 'profiles-create', component: ProfilesCreateComponent },
   { path: 'profiles-create/:id/:type', component: ProfilesCreateComponent },
@@ -12,16 +21,12 @@ const routes: Routes = [
   // { path: 'meeting', loadChildren: () => import('./meeting/meeting.module').then(m => m.MeetingModule) },
   //{ path: 'profiles', loadChildren: () => import('./profiles/profiles.module').then(m => m.ProfilesModule) },
   //{ path: 'notification', loadChildren: () => import('./notification/notification.module').then(m => m.NotificationModule) },
-  { path: '', redirectTo: 'Dashboard', pathMatch: 'full' },
-  { path: '**', redirectTo: 'project', pathMatch: 'full' }
-  
+  { path: '', redirectTo: 'project', pathMatch: 'full' },
+  { path: '**', redirectTo: 'project', pathMatch: 'full' },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { 
-
-  
-}
+export class AppRoutingModule {}

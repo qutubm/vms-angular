@@ -1,0 +1,48 @@
+<!-- This is just the houses the project task, project members, and the project faq-->
+
+<div class="container">
+  <div class="jumbotron" *ngFor="let viewProject of ProjectsView">
+    <h1 class="display-sm-3">Project Name: {{ viewProject.Name }}</h1>
+    <p class="lead">Manage Task Here!</p>
+    <hr class="my-3" />
+    <div class="lead float-sm-right">
+      <button
+        type="button"
+        class="btn btn-primary mr-2"
+        routerLink="project-create"
+      >
+        <i class="bi bi-file-earmark-plus-fill">Create Task</i>
+      </button>
+    </div>
+  </div>
+  <nav ngbNav #nav="ngbNav" class="nav-tabs" [(activeId)]="active">
+    <!--Shows the project task information of the selected project-->
+    <ng-container [ngbNavItem]="1">
+      <a ngbNavLink>Task Information</a>
+      <ng-template ngbNavContent>
+        {{ active }}
+      </ng-template>
+    </ng-container>
+    <!---->
+    <!--Shows the project information-->
+    <ng-container [ngbNavItem]="2">
+      <a ngbNavLink>Project Information</a>
+      <ng-template ngbNavContent>
+        Todo: Lazy Load Task Here!
+        {{ active }}
+      </ng-template>
+    </ng-container>
+    <!---->
+    <!--Shows the project members-->
+    <ng-container [ngbNavItem]="3">
+      <a ngbNavLink>Project Members</a>
+      <ng-template ngbNavContent>
+        Todo: Lazy Load Project Members information Here
+        {{ active }}
+      </ng-template>
+    </ng-container>
+    <!---->
+  </nav>
+
+  <div [ngbNavOutlet]="nav" class="mt-2"></div>
+</div>

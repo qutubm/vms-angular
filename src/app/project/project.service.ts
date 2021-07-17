@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { Projects, ProjectsExtra } from './project.model';
+import { Projects, ProjectsExtra } from '../../../Partial Backup/project/project.model';
 import { ProjectTaskModel } from '../shared/models/project-task.model'
 
 import { retry, catchError } from 'rxjs/operators';
@@ -42,13 +42,7 @@ export class ProjectService {
         catchError(this.handleError));
   }
 
-  //getProjectByID(id): Observable<ProjectsExtra> {
-  //   return this.http.get<ProjectsExtra>(this.rest_locationProject + '/' + id)
-  //     .pipe(
-  //       retry(1),
-  //       catchError(this.handleError)
-  //     );
-  // }
+  
 
   createProject(projectData): Observable<Projects> {
     return this.http.post<Projects>(this.rest_locationProject + 'AddProject', JSON.stringify(projectData), this.httpOptions)
@@ -58,22 +52,14 @@ export class ProjectService {
     )
   }
 
+  // editProject(projectEdit): Observable<Projects> {
+  //   return this.http.post<Projects>(this.rest_locationProject + 'AddProject', JSON.stringify(projectData), this.httpOptions)
+  //   .pipe(
+  //     retry(1),
+  //     catchError(this.handleError)
+  //   )
+  // }
 
-  deleteProjectByID(id){
-    return this.http.delete<Projects>(this.rest_locationProject + '/' + id)
-    .pipe(
-      retry(1),
-      catchError(this.handleError)
-    )
-  }
-
-  getProjectTask(): Observable<ProjectTaskModel[]> {
-    return this.http.get<ProjectTaskModel[]>(this.rest_locationProject)
-      .pipe(
-        retry(1),
-        catchError(this.handleError));
-
-  }
 
   handleError(error) {
     let errorMessage = '';

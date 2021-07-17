@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup, FormControl, FormBuilder, Validators } from '@angular/forms';
-import { ProjectService } from '../project.service';
+import { ProjectService } from '../';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
@@ -48,11 +48,6 @@ export class ProjectCreateComponent implements OnInit {
     } else {
       console.log("Invalid Form!");
     }
-  }
-
-  deleteVolunteerFromList(emailIndex) {
-    //const index: number = this.listStaffMembers.indexOf(emailIndex);
-    //this.listStaffMembers.splice(index, 1);
   }
 
   viewProjectTask(projectIndex){
