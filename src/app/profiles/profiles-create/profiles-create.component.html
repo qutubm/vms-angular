@@ -70,7 +70,8 @@
         <em class="float-right">*Required</em>
         <!-- <input id="state" name="state" type="text" class="form-control" formControlName="state"
           placeholder="Enter State" /> -->
-        <ng-select [items]="states" bindLabel="Text" bindValue="Value" [(ngModel)]="states">
+        <ng-select [clearable]="false" formControlName="state" >  <!-- [items]="states" bindLabel="Text" bindValue="Value" [(ngModel)]="states" -->
+          <ng-option *ngFor="let state of states" [value]="state.Value">{{state.Text}} </ng-option>
         </ng-select>
         <!-- <div class="col-12">
           <bfv-messages></bfv-messages>
@@ -131,7 +132,10 @@
       <div class="form-group">
         <label for="type">Profile Type</label>
         <em class="float-right">*Required</em>
-        <input type="tel" class="form-control" id="type" name="type" placeholder="Enter Type" formControlName="type">
+        <!-- <input type="tel" class="form-control" id="type" name="type" placeholder="Enter Type" formControlName="type"> -->
+        <ng-select [clearable]="false" formControlName="type" >  <!-- [items]="states" bindLabel="Text" bindValue="Value" [(ngModel)]="states" -->
+          <ng-option *ngFor="let type of profileTypes" [value]="type.Value">{{type.Text}} </ng-option>
+        </ng-select>
         <div class="col-12">
           <bfv-messages></bfv-messages>
         </div>
