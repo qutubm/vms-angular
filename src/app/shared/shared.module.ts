@@ -14,7 +14,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     SharedRoutingModule,
     HttpClientModule,
-    NgbModule,
+    NgbModule
   ],
   exports: [
     CommonModule,
@@ -22,6 +22,7 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule,
     NgbModule,
+    
   ]
 })
 export class SharedModule { }

@@ -55,7 +55,7 @@ export class ProfilesCreateComponent implements OnInit {
   ];
   
   profileId = this.activatedRoute.snapshot.params['id'];
-  authorityType = this.activatedRoute.snapshot.params['type'];
+  profileType = this.activatedRoute.snapshot.params['type'];
 
   // Form Values for Edit Mode
   existingProfile: Profile;
@@ -92,12 +92,12 @@ export class ProfilesCreateComponent implements OnInit {
     });
 
     console.log("profileId : ", this.profileId);
-    console.log("type : ", this.authorityType);
+    console.log("type : ", this.profileType);
     this.profileForm.controls.Id.setValue(this.profileId);
 
-    if ((this.profileId != null && this.profileId != undefined && this.profileId != '') && (this.authorityType != null && this.authorityType != undefined && this.authorityType != '')) {
+    if ((this.profileId != null && this.profileId != undefined && this.profileId != '') && (this.profileType != null && this.profileType != undefined && this.profileType != '')) {
       this.heading = "Edit a Profile";
-      this.profileServices.fetchProfile(this.profileId, this.authorityType).subscribe(
+      this.profileServices.fetchProfile(this.profileId, this.profileType).subscribe(
         (profileData: ProfileModel) => {
           this.profileForm.controls.firstName.setValue(profileData.Profile.FirstName);
           this.profileForm.controls.lastName.setValue(profileData.Profile.LastName);

@@ -6,13 +6,15 @@ import { AppRoutingModule } from './app-routing.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { VmsAppComponent } from './vms-app.component';
 import { NavBarComponent } from './nav/nav-bar.component';
-import { SharedModule } from './shared/shared.module';
+
+//import { SharedModule } from './shared/shared.module';
+import { NgbDateCustomParserFormatter, SharedModule } from './shared/index';
 
 import { CommonModule } from '@angular/common';
 import { ProfilesComponent } from './profiles/profiles.component';
 import { ProfilesCreateComponent} from './profiles/profiles-create/profiles-create.component';
 import { NgBootstrapFormValidationModule } from 'ng-bootstrap-form-validation';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbModule, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { ProjectComponent } from './project/project.component';
 import { ProjectCreateEditComponent } from './project/project-create-edit/project-create-edit.component';
 import { ProjectViewComponent } from './project/project-view/project-view.component';
@@ -42,6 +44,11 @@ import { ProjectTaskComponent } from './project/project-view/project-task/projec
     CommonModule,
     AppRoutingModule,
     NgBootstrapFormValidationModule.forRoot(),
+    NgBootstrapFormValidationModule
+    
+  ],
+  providers: [
+    { provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter }  
   ],
   exports: [
     SharedModule,

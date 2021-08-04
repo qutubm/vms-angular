@@ -68,14 +68,9 @@
       <div class="form-group">
         <label for="state">State</label>
         <em class="float-right">*Required</em>
-        <!-- <input id="state" name="state" type="text" class="form-control" formControlName="state"
-          placeholder="Enter State" /> -->
-        <ng-select [clearable]="false" formControlName="state" >  <!-- [items]="states" bindLabel="Text" bindValue="Value" [(ngModel)]="states" -->
+        <ng-select [clearable]="false" formControlName="state" > 
           <ng-option *ngFor="let state of states" [value]="state.Value">{{state.Text}} </ng-option>
         </ng-select>
-        <!-- <div class="col-12">
-          <bfv-messages></bfv-messages>
-        </div> -->
       </div>
   
       <div class="form-group">

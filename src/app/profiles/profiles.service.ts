@@ -62,11 +62,6 @@ export class ProfilesService {
 
   fetchProfile(id : string, type: string) : Observable<ProfileModel>
   {
-      let inputModel : GetProfileInputModel = { id:  id, type : type }; 
-      //console.log("InputModel in FetchProfile() : ", inputModel);
-      
-      // , this.httpOptions
-
       return this.http.get<ProfileModel>(this.rest_locationProfile + 'FetchProfile?id=' + id + '&type=' + type) // JSON.stringify(inputModel)) 
       .pipe(
         retry(1),

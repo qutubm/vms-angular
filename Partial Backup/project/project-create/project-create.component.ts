@@ -10,7 +10,21 @@ import { ActivatedRoute, Router } from '@angular/router';
 })
 export class ProjectCreateComponent implements OnInit {
 
-  
+  projectId = this.activatedRoute.snapshot.params['id'];
+
+   // Form Values for Edit Mode
+   existingProject: Project;
+   firstName: string;
+   lastName: string;
+   streetAddress1: string;
+   streetAddress2: string;
+   suburb: string;
+   postcode: string;
+   email: string;
+   phone: string;
+   additionalEmail: string;
+   additionalPhone: string;
+
   projectCreate: FormGroup;
   constructor(private formBuilder: FormBuilder, private projectServices: ProjectService, private activatedRoute: ActivatedRoute, private router: Router) {
   }

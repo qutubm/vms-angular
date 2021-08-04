@@ -5,7 +5,7 @@ import {
   //ViewContainerRef,
 } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { Projects, ProjectsExtra } from '../project.model';
+import { Project  } from '../project.model';
 import { ProjectService } from '../project.service';
 //import { ProjectTaskDetailComponent } from './project-task/project-task-detail.component';
 
@@ -22,25 +22,25 @@ export class ProjectViewComponent implements OnInit {
     //private cfr: ComponentFactoryResolver
   ) {}
 
-  ProjectsView: Projects[] = [];
+  ProjectsView: Project[] = [];
   active = 1;
   projectID = this.projectIDActingRoute.snapshot.params['id'];
 
   ngOnInit(): void {}
 
   loadAllProjects() {
-    this.projectServices.getAllProjects().subscribe(
-      (projects_data: ProjectsExtra) => {
-        this.ProjectsView = projects_data.Projects;
-        let projectObjectExtraction = this.ProjectsView.filter(
-          (x) => x.Id === this.projectID
-        );
-        this.ProjectsView = projectObjectExtraction;
-        //console.log("1st Profile : " + this.ProfilesModel[0]
-      },
-      (err: any) => console.log(err),
-      () => console.log(this.ProjectsView)
-    );
+    // this.projectServices.getAllProjects().subscribe(
+    //   (projects_data: ProjectsExtra) => {
+    //     this.ProjectsView = projects_data.Projects;
+    //     let projectObjectExtraction = this.ProjectsView.filter(
+    //       (x) => x.Id === this.projectID
+    //     );
+    //     this.ProjectsView = projectObjectExtraction;
+    //     //console.log("1st Profile : " + this.ProfilesModel[0]
+    //   },
+    //   (err: any) => console.log(err),
+    //   () => console.log(this.ProjectsView)
+    // );
   }
 
   async getLazy1() {

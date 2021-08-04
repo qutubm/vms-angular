@@ -12,9 +12,8 @@ import { ProjectViewComponent } from './project/project-view/project-view.compon
 
 const routes: Routes = [
   { path: 'project', component: ProjectComponent},
-  { path: 'project-view/:id', component: ProjectViewComponent },
   { path: 'project-create-edit', component: ProjectCreateEditComponent },
-
+  { path: 'project-create-edit/:id', component: ProjectCreateEditComponent },
 
   { path: 'profiles', component: ProfilesComponent },
   { path: 'profiles-create', component: ProfilesCreateComponent },

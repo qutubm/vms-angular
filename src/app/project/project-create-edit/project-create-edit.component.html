@@ -1,146 +1,163 @@
-<div class="container mt-5">
-    <!-- <div>
-      <h1>{{heading}}</h1>
-    </div> -->
-  
-    <!-- <form [formGroup]="profileForm" (ngSubmit)="saveProfile()"> -->
-  
-  
-      <div class="form-group">
-        <label for="firstName">First Name</label>
-        <em class="float-right">*Required</em>
-        <input id="firstName" name="firstName" formControlName="firstName" placeholder="Enter First Name" type="text"
-          class="form-control">
-        <!-- <div
-             *ngIf="profileForm.get('firstName').invalid && (profileForm.get('firstName').dirty || profileForm.get('firstName').touched)">
-          <span class="invalid-feedback d-block" *ngIf="profileForm.firstName.errors">
-            {{profileForm.firstName.errors[0]}}
-             FirstName is required 
-          </span>
-        </div> -->
-  
-        <div class="col-12"><span id="firstNameError"></span></div>
-        <div class="col-12">
-          <bfv-messages></bfv-messages>
-        </div>
+<div class="container">
+  <form (ngSubmit)="saveProject()" [formGroup]="projectForm">
+      <div class="container mt-5">
+          <div class="container row">
+              <div class="col">
+                  <h3>{{heading}}</h3>
+              </div>
+              <!-- <button class="btn btn-primary">Create Project</button> -->
+          </div>
       </div>
-      <!-- Last Name -->
-      <div class="form-group">
-        <label for="lastName">Last Name</label>
-        <em class="float-right">*Required</em>
-        <input id="lastName" name="lastName" formControlName="lastName" placeholder="Enter Last Name" type="text"
-          class="form-control">
-        <div class="col-12">
-          <bfv-messages></bfv-messages>
-        </div>
-      </div>
-  
-      <div class="form-group">
-        <label for="streetAddress1">Street Address 1</label>
-        <em class="float-right">*Required</em>
-        <input id="streetAddress1" name="streetAddress1" formControlName="streetAddress1"
-          placeholder="Enter Street Address 1" type="text" class="form-control">
-        <div class="col-12">
-          <bfv-messages></bfv-messages>
-        </div>
-      </div>
-  
-      <div class="form-group">
-        <label for="streetAddress2">Street Address 2</label>
-        <em class="float-right">Optional</em>
-        <input id="streetAddress2" name="streetAddress2" formControlName="streetAddress2"
-          placeholder="Enter Street Address 2" type="text" class="form-control">
-        <div class="col-12">
-          <bfv-messages></bfv-messages>
-        </div>
-      </div>
-  
-      <div class="form-group">
-        <label for="suburb">Suburb</label>
-        <em class="float-right">*Required</em>
-        <input type="text" class="form-control" id="suburb" name="suburb" placeholder="Enter Suburb"
-          formControlName="suburb">
-        <div class="col-12">
-          <bfv-messages></bfv-messages>
-        </div>
-      </div>
-      
-      <!-- <div class="form-group">
-        <label for="state">State</label>
-        <em class="float-right">*Required</em>
-        <input id="state" name="state" type="text" class="form-control" formControlName="state"
-          placeholder="Enter State" /> 
-        <ng-select [items]="states" bindLabel="Text" bindValue="Value" [(ngModel)]="states">
-        </ng-select>
-        <div class="col-12">
-          <bfv-messages></bfv-messages>
-        </div> 
-      </div> -->
-  
-      <div class="form-group">
-        <label for="postcode">Postcode</label>
-        <em class="float-right">*Required</em>
-        <input type="tel" class="form-control" id="postcode" name="postcode" placeholder="Enter Postcode"
-          formControlName="postcode">
-        <div class="col-12">
-          <bfv-messages></bfv-messages>
-        </div>
-      </div>
-  
-      <div class="form-group">
-        <div class="form-group"></div>
-        <em class="float-right">*Required</em>
-        <label for="email">Email address</label>
-        <input id="email" name="email" formControlName="email" placeholder="Enter email" type="email"
-          class="form-control">
-        <div class="col-12">
-          <bfv-messages></bfv-messages>
-        </div>
-      </div>
-  
-      <div class="form-group">
-        <label for="phone">Phone</label>
-        <em class="float-right">*Required</em>
-        <input id="phone" name="phone" formControlName="phone" placeholder="Enter Phone" type="tel" class="form-control">
-        <div class="col-12">
-          <bfv-messages></bfv-messages>
-        </div>
-      </div>
-  
       <hr>
       <div class="form-group">
-        <label for="additionalEmail">Additional Email (Optional)</label>
-        <em class="float-right">Optional</em>
-        <input id="additionalEmail" name="additionalEmail" formControlName="additionalEmail" placeholder="Enter Email"
-          type="email" class="form-control">
-        <div class="col-12">
-          <bfv-messages></bfv-messages>
-        </div>
+          <label for="Name">Project Name: </label>
+          <input type="text"
+                 class="form-control col"
+                 id="Name"
+                 name="Name"
+                 formControlName="projectName"
+                 placeholder="Enter Project Name" >
+      </div>
+      <div class="form-group">
+          <label for="SkillsRequired">Skills Required: </label>
+          <input type="text"
+                 class="form-control col"
+                 id="SkillsRequired"
+                 name="SkillsRequired"
+                 formControlName="skillsRequired"
+                 placeholder="Enter Skills Required for this Project" >
+          <div class="col-12">
+                  <bfv-messages></bfv-messages>
+          </div>
       </div>
   
       <div class="form-group">
-        <label for="additionalPhone">Additional Phone (Optional)</label>
-        <em class="float-right">Optional</em>
-        <input type="tel" class="form-control" id="additionalPhone" name="additionalPhone" placeholder="Enter Phone"
-          formControlName="additionalPhone">
-        <div class="col-12">
-          <bfv-messages></bfv-messages>
-        </div>
+          <label for="estimatedCompletionDate">Estimated Completion Date: </label>
+          <input type="text"
+                 class="form-control col"
+                 formControlName="estimatedCompletionDate"
+                 ngbDatepicker #estimatedCompletionDate="ngbDatepicker"
+                 (click)="estimatedCompletionDate.toggle()" 
+                 placeholder="Enter Estimated Completion Date" />
+            <div class="col-12">
+                  <bfv-messages></bfv-messages>
+            </div>
       </div>
-  
+
       <div class="form-group">
-        <label for="type">Profile Type</label>
-        <em class="float-right">*Required</em>
-        <input type="tel" class="form-control" id="type" name="type" placeholder="Enter Type" formControlName="type">
+        <label for="actualCompletionDate">Actual Completion Date: </label>
+        <input type="type"
+               class="form-control col"
+               formControlName="actualCompletionDate"
+               ngbDatepicker #actualCompletionDate="ngbDatepicker"
+               (click)="actualCompletionDate.toggle()"
+               placeholder="Enter Actual Completion Date" />
         <div class="col-12">
-          <bfv-messages></bfv-messages>
+                <bfv-messages></bfv-messages>
+        </div>
+    </div>
+
+    <button type="button" class="btn btn-primary" (click)="openTaskDialog()">Add Task</button>  <!-- openTask() -->
+    &nbsp;&nbsp;&nbsp;
+    <button type="submit" class="btn btn-primary">Submit</button>
+    &nbsp;&nbsp;&nbsp;
+    <button type="button" class="btn btn-primary" (click)="onCancel()">Cancel</button>
+
+    <br/>
+    <br/>
+    <div class="row">
+        <div class="col-12">
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Task Name:</th>
+                <th scope="col">Resource:</th>
+                <th scope="col">Completed:</th>
+                <th scope="col">Expected Finish Date:</th>
+                <th scope="col">Actual Finish Date:</th>
+                <th scope="col">Actions:</th>
+              </tr>
+            </thead>
+            <tbody *ngFor="let task of tasks">
+              <tr>
+                <th scope="row">{{task.Name}}</th>
+                <td>{{task.Resource}}</td>
+                <td>{{task.Completed}} </td>
+                <td>{{task.EstimatedCompletionDate.substring(6,8)}}-{{task.EstimatedCompletionDate.substring(4,6)}}-{{task.EstimatedCompletionDate.substring(0,4)}}</td>
+                <td>{{task.ActualCompletionDate.substring(6,8)}}-{{task.ActualCompletionDate.substring(4,6)}}-{{task.ActualCompletionDate.substring(0,4)}}</td>
+                <td>
+                    <button type="button"
+                            class="btn btn-success mr-2"
+                            (click)="editTaskDetails(task.Id)">
+                      <i class="bi bi-pencil-square"> Edit</i>
+                    </button>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
-  
-      <button type="submit" class="btn btn-primary">Submit</button>
-      &nbsp;&nbsp;&nbsp;
-      <!-- <button type="button" class="btn btn-primary" (click)="onCancel()">Cancel</button> -->
-  
-    <!-- </form> -->
-  
+     
+  </form>
   </div>
+  <!-- {{ projectCreate.value | json }} -->
+  <ng-template #taskDialog let-modal style="width:360px;">
+      <form class='form-horizontal' [formGroup]="projectTaskForm" (onSubmit)="saveTask()" > 
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Project Task</h4>
+            <button type="button" class="btn btn-link close" aria-label="Close" (click)="closeModal()">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <div class="form-group">
+                    <label for="Name">Task Name: </label>
+                    <input type="text"
+                           class="form-control col"
+                           id="TaskName"
+                           name="TaskName"
+                           formControlName="taskName"
+                           placeholder="Enter Task Name" >
+            </div>
+
+            <div class="form-group">
+                <label for="resource">Resource</label>
+                <em class="float-right">*Required</em>
+                <ng-select [clearable]="false" formControlName="resource" placeholder="Enter a Resource"  > 
+                  <ng-option *ngFor="let resource of resources" [value]="resource.Value">{{resource.Text}} </ng-option>
+                </ng-select>
+              </div>
+
+            <div class="form-group">
+                <label for="estimatedCompletionDate">Estimated Task Completion Date: </label>
+                <input type="text"
+                       class="form-control col"
+                       formControlName="estimatedTaskCompletionDate"
+                       ngbDatepicker #estimatedTaskCompletionDate="ngbDatepicker"
+                       (click)="estimatedTaskCompletionDate.toggle()" 
+                       placeholder="Enter Estimated Task Completion Date" />
+            </div>
+      
+            <div class="form-group">
+              <label for="actualCompletionDate">Actual Task Completion Date: </label>
+              <input type="type"
+                     class="form-control col"
+                     formControlName="actualTaskCompletionDate"
+                     ngbDatepicker #actualTaskCompletionDate="ngbDatepicker"
+                     (click)="actualTaskCompletionDate.toggle()"
+                     placeholder="Enter Actual Task Completion Date" />
+            </div>
+      
+            <div class="form-check">
+                <input type="checkbox" class="form-check-input" formControlName="taskCompleted" id="taskCompleted">
+                <label class="form-check-label" for="taskCompleted">Completed</label>
+            </div>
+
+            <!-- <div>Completed: <strong>{{ taskCompleted.value }}</strong></div> -->
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="btn btn-outline-dark" (click)="saveTask()">Save Task</button>  <!-- toggleModalPopup('closeTask') -->
+            <button type="button" class="btn btn-outline-dark" (click)="closeModal()">Cancel</button>
+        </div>
+      </form>
+  </ng-template>
