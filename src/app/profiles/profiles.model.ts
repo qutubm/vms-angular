@@ -20,6 +20,8 @@ export class Profile {
     AdditionalPhone: string;
     Type: string;
     Password: string;
+    Interests:string;
+    Strengths: string;
     CanAccessProfiles: string;
     CanAddProfile : string;
     CanEditProfile : string;

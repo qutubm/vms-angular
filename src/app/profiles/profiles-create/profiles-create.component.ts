@@ -44,6 +44,8 @@ export class ProfilesCreateComponent implements OnInit {
     additionalEmail: ['', [Validators.minLength(2), Validators.maxLength(50)]],
     additionalPhone: ['', [Validators.minLength(2), Validators.maxLength(50)]],
     password: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(10)]],
+    interests: ['', [Validators.maxLength(200)]],
+    strengths: ['', [Validators.maxLength(200)]],
     canAccessProfiles: ['', [Validators.required]],
     canAddProfile : ['', [Validators.required]],
     canEditProfile : ['', [Validators.required]],
@@ -80,6 +82,8 @@ export class ProfilesCreateComponent implements OnInit {
   additionalEmail: string;
   additionalPhone: string;
   password: string;
+  interests: string;
+  strengths: string;
   canAccessProfiles: string;
   canAddProfile : string;
   canEditProfile :string;
@@ -138,6 +142,8 @@ export class ProfilesCreateComponent implements OnInit {
           this.profileForm.controls.additionalPhone.setValue(profileData.Profile.AdditionalPhone);
           this.profileForm.controls.type.setValue(profileData.Profile.Type);
           this.profileForm.controls.password.setValue(profileData.Profile.Password);
+          this.profileForm.controls.interests.setValue(profileData.Profile.Interests);
+          this.profileForm.controls.strengths.setValue(profileData.Profile.Strengths);
           this.profileForm.controls.canAccessProfiles.setValue(profileData.Profile.CanAccessProfiles);
           this.profileForm.controls.canAddProfile.setValue(profileData.Profile.CanAddProfile);
           this.profileForm.controls.canEditProfile.setValue(profileData.Profile.CanEditProfile);
