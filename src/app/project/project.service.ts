@@ -20,13 +20,13 @@ Project Services gets all the information about the project. It will ask the fol
 */
 export class ProjectService {
   
-  // profileApi = 'https://vmswebapi20210604233544.azurewebsites.net/api/Profile/';
-  // projectApi = 'https://vmswebapi20210604233544.azurewebsites.net/api/Project/';
-  // taskApi = 'https://vmswebapi20210604233544.azurewebsites.net/api/Task/';
+  profileApi = 'https://vmswebapi20210604233544.azurewebsites.net/api/Profile/';
+  projectApi = 'https://vmswebapi20210604233544.azurewebsites.net/api/Project/';
+  taskApi = 'https://vmswebapi20210604233544.azurewebsites.net/api/Task/';
 
-  profileApi = 'https://localhost:7001/api/Profile/';
-  projectApi = 'https://localhost:7001/api/Project/';
-  taskApi = 'https://localhost:7001/api/Task/';
+  // profileApi = 'https://localhost:7001/api/Profile/';
+  // projectApi = 'https://localhost:7001/api/Project/';
+  // taskApi = 'https://localhost:7001/api/Task/';
 
   constructor(private http: HttpClient) { }
 

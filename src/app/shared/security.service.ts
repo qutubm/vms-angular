@@ -11,8 +11,8 @@ import { LOGIN_MOCKS } from './models/LOGIN_MOCKS';
   })
 export class SecurityService {
 
-    // securityApi = 'https://vmswebapi20210604233544.azurewebsites.net/api/Security/';
-    securityApi = 'https://localhost:7001/api/Security/';
+    securityApi = 'https://vmswebapi20210604233544.azurewebsites.net/api/Security/';
+    // securityApi = 'https://localhost:7001/api/Security/';
     securityObject: AppUserAuth = new AppUserAuth();
 
     constructor(private http: HttpClient){

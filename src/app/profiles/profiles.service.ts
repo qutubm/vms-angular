@@ -13,8 +13,8 @@ import { SecurityService } from '../shared/security.service';
 
 export class ProfilesService {
 
-  // rest_locationProfile = 'https://vmswebapi20210604233544.azurewebsites.net/api/Profile/';
-  rest_locationProfile = 'https://localhost:7001/api/Profile/';
+  rest_locationProfile = 'https://vmswebapi20210604233544.azurewebsites.net/api/Profile/';
+  // rest_locationProfile = 'https://localhost:7001/api/Profile/';
 
   constructor(private http: HttpClient) { }
 
