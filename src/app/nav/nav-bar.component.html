@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
   <a class="navbar-brand"
-     [routerLink]="'.'">Responsive navbar</a>
+     [routerLink]="'.'">The Break's VMS </a>
 
   <!-- Step 3: Toggle the value of the property when the toggler button is clicked. -->
   <button class="navbar-toggler"
@@ -16,6 +16,7 @@
       <li class="nav-item active">
         <a routerLinkActive='active'
            routerLink='/project'
+           *ngIf="securityObject.canAccessProjects == 'Y'"
            class="nav-link"
            (click)="isMenuCollapsed = true">Project</a>
       </li>
@@ -23,14 +24,37 @@
         <a class='nav-link'
            routerLinkActive='active'
            routerLink='/profiles'
+           *ngIf="securityObject.canAccessProfiles == 'Y'"
            (click)="isMenuCollapsed = true">Profiles</a>
       </li>
-      <li class="nav-item">
+
+      <!-- <li class="nav-item">
         <a routerLinkActive='active'
            routerLink='/meeting'
            class="nav-link"
            (click)="isMenuCollapsed = true">Meeting</a>
+      </li> -->
 
+      <!-- <li class="nav-item pull-right">
+        <a routerLinkActive='active'
+           routerLink='/login'
+           class="nav-link"
+           (click)="isMenuCollapsed = true">Login</a>
+      </li> -->
+    </ul>
+
+    <ul class="navbar-nav ml-auto">
+      <li class="nav-item pull-right">
+        <a routerLinkActive='active'
+           routerLink='/login'
+           *ngIf="!securityObject.isAuthenticated"
+           class="nav-link"
+           (click)="isMenuCollapsed = true">Login</a>
+
+        <a href="#" (click)="logout()"
+            *ngIf="securityObject.isAuthenticated">
+            Logout {{securityObject.UserName}}
+        </a>
       </li>
     </ul>
   </div>

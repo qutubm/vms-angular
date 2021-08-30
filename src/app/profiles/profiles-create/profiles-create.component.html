@@ -135,11 +135,88 @@
           <bfv-messages></bfv-messages>
         </div>
       </div>
+
+      <div class="form-group">
+        <label for="phone">Password</label>
+        <em class="float-right">*Required</em>
+        <input id="password" name="password" formControlName="password" placeholder="Enter Password" class="form-control">
+        <div class="col-12">
+          <bfv-messages></bfv-messages>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="type">Can Access Profiles</label>
+        <em class="float-right">*Required</em>
+        <ng-select [clearable]="false" formControlName="canAccessProfiles" >  
+          <ng-option *ngFor="let item of yesNo" [value]="item.Value">{{item.Text}} </ng-option>
+        </ng-select>
+        <div class="col-12">
+          <bfv-messages></bfv-messages>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="type">Can Add Profile</label>
+        <em class="float-right">*Required</em>
+        <ng-select [clearable]="false" formControlName="canAddProfile" >  
+          <ng-option *ngFor="let item of yesNo" [value]="item.Value">{{item.Text}} </ng-option>
+        </ng-select>
+        <div class="col-12">
+          <bfv-messages></bfv-messages>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="type">Can Edit Profile</label>
+        <em class="float-right">*Required</em>
+        <ng-select [clearable]="false" formControlName="canEditProfile" >  
+          <ng-option *ngFor="let item of yesNo" [value]="item.Value">{{item.Text}} </ng-option>
+        </ng-select>
+        <div class="col-12">
+          <bfv-messages></bfv-messages>
+        </div>
+      </div>
   
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <div class="form-group">
+        <label for="type">Can Access Projects</label>
+        <em class="float-right">*Required</em>
+        <ng-select [clearable]="false" formControlName="canAccessProjects" >  
+          <ng-option *ngFor="let item of yesNo" [value]="item.Value">{{item.Text}} </ng-option>
+        </ng-select>
+        <div class="col-12">
+          <bfv-messages></bfv-messages>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="type">Can Add Project</label>
+        <em class="float-right">*Required</em>
+        <ng-select [clearable]="false" formControlName="canAddProject" >  
+          <ng-option *ngFor="let item of yesNo" [value]="item.Value">{{item.Text}} </ng-option>
+        </ng-select>
+        <div class="col-12">
+          <bfv-messages></bfv-messages>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="type">Can Edit Project</label>
+        <em class="float-right">*Required</em>
+        <ng-select [clearable]="false" formControlName="canEditProject" >  
+          <ng-option *ngFor="let item of yesNo" [value]="item.Value">{{item.Text}} </ng-option>
+        </ng-select>
+        <div class="col-12">
+          <bfv-messages></bfv-messages>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary" *ngIf="securityObject.canAddProfile || securityObject.canEditProfile">Submit</button>
       &nbsp;&nbsp;&nbsp;
       <button type="button" class="btn btn-primary" (click)="onCancel()">Cancel</button>
   
+      <br/>
+      <br/>
     </form>
   
   </div>

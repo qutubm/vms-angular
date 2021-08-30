@@ -4,7 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { ProjectTaskModel } from '../shared/models/project-task.model'
 
 import { retry, catchError } from 'rxjs/operators';
-import { Project, ProjectModel, ProjectsModel, ResourcesModel, Task, TaskModel, TasksModel } from './project.model';
+import { CreateProjectModel, Project, ProjectModel, ProjectsModel, ResourcesModel, Task, TaskModel, TasksModel } from './project.model';
 import { THIS_EXPR } from '@angular/compiler/src/output/output_ast';
 
 @Injectable({
@@ -20,10 +20,13 @@ Project Services gets all the information about the project. It will ask the fol
 */
 export class ProjectService {
   
-  profileApi = 'https://vmswebapi20210604233544.azurewebsites.net/api/Profile/';
-  projectApi = 'https://vmswebapi20210604233544.azurewebsites.net/api/Project/';
-  taskApi = 'https://vmswebapi20210604233544.azurewebsites.net/api/Task/';
+  // profileApi = 'https://vmswebapi20210604233544.azurewebsites.net/api/Profile/';
+  // projectApi = 'https://vmswebapi20210604233544.azurewebsites.net/api/Project/';
+  // taskApi = 'https://vmswebapi20210604233544.azurewebsites.net/api/Task/';
 
+  profileApi = 'https://localhost:7001/api/Profile/';
+  projectApi = 'https://localhost:7001/api/Project/';
+  taskApi = 'https://localhost:7001/api/Task/';
 
   constructor(private http: HttpClient) { }
 
@@ -47,8 +50,8 @@ export class ProjectService {
                       catchError(this.handleError));
   }
 
-  createProject(project) {
-    return this.http.post<Project>(this.projectApi + 'AddProject', JSON.stringify(project), this.httpOptions)
+  createProject(project) : Observable<CreateProjectModel> {
+    return this.http.post<CreateProjectModel>(this.projectApi + 'AddProject', JSON.stringify(project), this.httpOptions)
     .pipe(
       retry(1),
       catchError(this.handleError)

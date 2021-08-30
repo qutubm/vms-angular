@@ -4,6 +4,7 @@ import { retry, catchError } from 'rxjs/operators';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { GetProfileInputModel, Profile, ProfileModel, ProfilesModel } from './profiles.model';
 import { SelectListItem } from '../shared/models/selectListItem';
+import { SecurityService } from '../shared/security.service';
 
 
 @Injectable({
@@ -12,8 +13,8 @@ import { SelectListItem } from '../shared/models/selectListItem';
 
 export class ProfilesService {
 
-  // ProfilesModel: ProfilesExtra[] = []; //Can be used to determine
-  rest_locationProfile = 'https://vmswebapi20210604233544.azurewebsites.net/api/Profile/';
+  // rest_locationProfile = 'https://vmswebapi20210604233544.azurewebsites.net/api/Profile/';
+  rest_locationProfile = 'https://localhost:7001/api/Profile/';
 
   constructor(private http: HttpClient) { }
 
@@ -30,18 +31,12 @@ export class ProfilesService {
 
 
   getProfiles(): Observable<ProfilesModel> {
+  
     return this.http.get<ProfilesModel>(this.rest_locationProfile + 'GetProfiles')
       .pipe(
         retry(1),
         catchError(this.handleError));
   }
-
-  // getProfilesByID(id): Observable<Profiles> {
-  //   return this.http.get<Profiles>(this.rest_locationProfile + '/' + id)
-  //     .pipe(
-  //       retry(1),
-  //       catchError(this.handleError));
-  // }
 
   createProfile(profile) {
     return this.http.post<Profile>(this.rest_locationProfile + 'AddProfile', JSON.stringify(profile), this.httpOptions)
@@ -89,6 +84,14 @@ export class ProfilesService {
     profileTypes.push(Object.assign(new SelectListItem(), {Text : "Staff", Value : "Staff", Selected : false }));
     profileTypes.push(Object.assign(new SelectListItem(), {Text : "Volunteer", Value : "Volunteer", Selected : false }));
     return of(profileTypes);
+  }
+
+  fetchYesNo() : Observable<SelectListItem[]>
+  {
+    let yesNo : SelectListItem[] = [];
+    yesNo.push(Object.assign(new SelectListItem(), {Text : "Yes", Value : "Y", Selected : false }));
+    yesNo.push(Object.assign(new SelectListItem(), {Text : "No", Value : "N", Selected : false }));
+    return of(yesNo);
   }
 
   // deleteProfileByID(id){

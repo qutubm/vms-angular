@@ -46,7 +46,7 @@
 
       <div class="form-group">
         <label for="actualCompletionDate">Actual Completion Date: </label>
-        <input type="type"
+        <input type="text"
                class="form-control col"
                formControlName="actualCompletionDate"
                ngbDatepicker #actualCompletionDate="ngbDatepicker"
@@ -57,9 +57,9 @@
         </div>
     </div>
 
-    <button type="button" class="btn btn-primary" (click)="openTaskDialog()">Add Task</button>  <!-- openTask() -->
+    <button type="button" class="btn btn-primary" *ngIf="projectId != null && projectId != undefined && projectId != ''" (click)="openTaskDialog()">Add Task</button>  <!-- openTask() -->
     &nbsp;&nbsp;&nbsp;
-    <button type="submit" class="btn btn-primary">Submit</button>
+    <button type="submit" class="btn btn-primary" *ngIf="securityObject.canAddProject == 'Y' || securityObject.canEditProject == 'Y'">Submit</button>
     &nbsp;&nbsp;&nbsp;
     <button type="button" class="btn btn-primary" (click)="onCancel()">Cancel</button>
 
@@ -84,7 +84,8 @@
                 <td>{{task.Resource}}</td>
                 <td>{{task.Completed}} </td>
                 <td>{{task.EstimatedCompletionDate.substring(6,8)}}-{{task.EstimatedCompletionDate.substring(4,6)}}-{{task.EstimatedCompletionDate.substring(0,4)}}</td>
-                <td>{{task.ActualCompletionDate.substring(6,8)}}-{{task.ActualCompletionDate.substring(4,6)}}-{{task.ActualCompletionDate.substring(0,4)}}</td>
+                <td *ngIf="task.ActualCompletionDate !== null && task.ActualCompletionDate !== undefined && task.ActualCompletionDate !== ''">{{task.ActualCompletionDate.substring(6,8)}}-{{task.ActualCompletionDate.substring(4,6)}}-{{task.ActualCompletionDate.substring(0,4)}}</td>
+                <td *ngIf="task.ActualCompletionDate !== null || task.ActualCompletionDate !== undefined || task.ActualCompletionDate !== ''">{{task.ActualCompletionDate}}</td>
                 <td>
                     <button type="button"
                             class="btn btn-success mr-2"
@@ -97,7 +98,7 @@
           </table>
         </div>
       </div>
-     
+      <br/>
   </form>
   </div>
   <!-- {{ projectCreate.value | json }} -->
@@ -129,7 +130,7 @@
               </div>
 
             <div class="form-group">
-                <label for="estimatedCompletionDate">Estimated Task Completion Date: </label>
+                <label for="estimatedTaskCompletionDate">Estimated Task Completion Date: </label>
                 <input type="text"
                        class="form-control col"
                        formControlName="estimatedTaskCompletionDate"
@@ -138,14 +139,32 @@
                        placeholder="Enter Estimated Task Completion Date" />
             </div>
       
+            <!--
             <div class="form-group">
-              <label for="actualCompletionDate">Actual Task Completion Date: </label>
-              <input type="type"
+              <label for="actualCompletionDate">Actual Completion Date: </label>
+              <input type="text"
+                     class="form-control col"
+                     formControlName="actualCompletionDate"
+                     ngbDatepicker #actualCompletionDate="ngbDatepicker"
+                     (click)="actualCompletionDate.toggle()"
+                     placeholder="Enter Actual Completion Date" />
+              <div class="col-12">
+                      <bfv-messages></bfv-messages>
+              </div>
+          </div>
+        -->
+
+            <div class="form-group">
+              <label for="actualTaskCompletionDate">Actual Task Completion Date: </label>
+              <input type="text"
                      class="form-control col"
                      formControlName="actualTaskCompletionDate"
                      ngbDatepicker #actualTaskCompletionDate="ngbDatepicker"
                      (click)="actualTaskCompletionDate.toggle()"
                      placeholder="Enter Actual Task Completion Date" />
+              <div class="col-12">
+                      <bfv-messages></bfv-messages>
+              </div>
             </div>
       
             <div class="form-check">
@@ -159,5 +178,8 @@
             <button type="submit" class="btn btn-outline-dark" (click)="saveTask()">Save Task</button>  <!-- toggleModalPopup('closeTask') -->
             <button type="button" class="btn btn-outline-dark" (click)="closeModal()">Cancel</button>
         </div>
+
+        <br/>
+        <br/>
       </form>
   </ng-template>

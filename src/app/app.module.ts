@@ -7,7 +7,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { VmsAppComponent } from './vms-app.component';
 import { NavBarComponent } from './nav/nav-bar.component';
 
-//import { SharedModule } from './shared/shared.module';
+// import { SharedModule } from './shared/shared.module';
 import { NgbDateCustomParserFormatter, SharedModule } from './shared/index';
 
 import { CommonModule } from '@angular/common';
@@ -19,7 +19,10 @@ import { ProjectComponent } from './project/project.component';
 import { ProjectCreateEditComponent } from './project/project-create-edit/project-create-edit.component';
 import { ProjectViewComponent } from './project/project-view/project-view.component';
 import { ProjectTaskComponent } from './project/project-view/project-task/project-task.component';
-//import { ProfileCreateComponent } from './profile/profile-create/profile-create.component';
+import { LoginComponent } from './security/login.component';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpRequestInterceptor } from './shared/http-interceptor';
+import { ErrorInterceptor } from './shared/error.interceptor';
 
 
 @NgModule({
@@ -32,7 +35,7 @@ import { ProjectTaskComponent } from './project/project-view/project-task/projec
     ProjectCreateEditComponent,
     ProjectViewComponent,
     ProjectTaskComponent,
-    //ProfileCreateComponent
+    LoginComponent,
   ],
   imports: [
     BrowserModule,
@@ -44,11 +47,12 @@ import { ProjectTaskComponent } from './project/project-view/project-task/projec
     CommonModule,
     AppRoutingModule,
     NgBootstrapFormValidationModule.forRoot(),
-    NgBootstrapFormValidationModule
-    
+    NgBootstrapFormValidationModule,
   ],
   providers: [
-    { provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter }  
+    { provide: NgbDateParserFormatter, useClass: NgbDateCustomParserFormatter },
+    { provide: HTTP_INTERCEPTORS, useClass : HttpRequestInterceptor, multi: true },
+    { provide: HTTP_INTERCEPTORS, useClass : ErrorInterceptor, multi: true },
   ],
   exports: [
     SharedModule,

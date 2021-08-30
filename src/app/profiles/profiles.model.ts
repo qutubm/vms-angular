@@ -19,6 +19,13 @@ export class Profile {
     AdditionalEmail: string;
     AdditionalPhone: string;
     Type: string;
+    Password: string;
+    CanAccessProfiles: string;
+    CanAddProfile : string;
+    CanEditProfile : string;
+    CanAccessProjects : string;
+    CanAddProject : string;
+    CanEditProject : string;
     Deleted: string;
 }
 

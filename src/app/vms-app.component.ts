@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AppUserAuth } from './shared/models/appUserAuth';
+import { SecurityService } from './shared/security.service';
 
 @Component({
   selector: 'vms-app',
@@ -14,4 +16,14 @@ import { Component } from '@angular/core';
 })
 export class VmsAppComponent {
   title = 'vms-angular';
+  securityObject: AppUserAuth = null;
+
+  constructor(private securityService: SecurityService){
+    this.securityObject = securityService.securityObject;
+  }
+
+  logout(): void{
+    this.securityService.logout();
+  }
+
 }

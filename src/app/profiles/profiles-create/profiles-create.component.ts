@@ -9,6 +9,8 @@ import { ProfilesService } from '../profiles.service';
 import { Profile, ProfileModel } from '../profiles.model';
 import { SelectListItem } from '../../shared/models/selectListItem';
 import { NgSelectConfig } from '@ng-select/ng-select';
+import { AppUserAuth } from 'src/app/shared/models/appUserAuth';
+import { SecurityService } from 'src/app/shared/security.service';
 
 
 
@@ -24,6 +26,7 @@ export class ProfilesCreateComponent implements OnInit {
   heading: string;
   states: SelectListItem[];
   profileTypes: SelectListItem[];
+  yesNo: SelectListItem[];
 
   // public profileForm: FormGroup;
   public profileForm = this.formBuilder.group({
@@ -40,6 +43,13 @@ export class ProfilesCreateComponent implements OnInit {
     type: ['', [Validators.minLength(2), Validators.maxLength(50)]],
     additionalEmail: ['', [Validators.minLength(2), Validators.maxLength(50)]],
     additionalPhone: ['', [Validators.minLength(2), Validators.maxLength(50)]],
+    password: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(10)]],
+    canAccessProfiles: ['', [Validators.required]],
+    canAddProfile : ['', [Validators.required]],
+    canEditProfile : ['', [Validators.required]],
+    canAccessProjects : ['', [Validators.required]],
+    canAddProject : ['', [Validators.required]],
+    canEditProject : ['', [Validators.required]],
     deleted: ['N', []],
     //password: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
     //passwordConfirmed: ['', [Validators.required, Validators.minLength(2), Validators.maxLength(25)]],
@@ -69,10 +79,22 @@ export class ProfilesCreateComponent implements OnInit {
   phone: string;
   additionalEmail: string;
   additionalPhone: string;
+  password: string;
+  canAccessProfiles: string;
+  canAddProfile : string;
+  canEditProfile :string;
+  canAccessProjects : string;
+  canAddProject : string;
+  canEditProject : string;
+
+  securityObject : AppUserAuth = null;
 
 
-
-  constructor(private formBuilder: FormBuilder, private profileServices: ProfilesService, private activatedRoute: ActivatedRoute, private router: Router, ) {
+  constructor(private formBuilder: FormBuilder, private profileServices: ProfilesService, 
+              private activatedRoute: ActivatedRoute, private router: Router, 
+              private securityService : SecurityService) {
+                
+       this.securityObject = securityService.securityObject;
     // private config: NgSelectConfig
     // this.config.notFoundText = 'Custom not found';
     // this.config.appendTo = 'body';
@@ -89,6 +111,10 @@ export class ProfilesCreateComponent implements OnInit {
     this.profileServices.fetchProfileTypes().subscribe(data => {
       this.profileTypes = data;
       console.log("ProfileTypes : ", this.profileTypes);
+    });
+
+    this.profileServices.fetchYesNo().subscribe(data => {
+       this.yesNo = data;
     });
 
     console.log("profileId : ", this.profileId);
@@ -111,6 +137,13 @@ export class ProfilesCreateComponent implements OnInit {
           this.profileForm.controls.additionalEmail.setValue(profileData.Profile.AdditionalEmail);
           this.profileForm.controls.additionalPhone.setValue(profileData.Profile.AdditionalPhone);
           this.profileForm.controls.type.setValue(profileData.Profile.Type);
+          this.profileForm.controls.password.setValue(profileData.Profile.Password);
+          this.profileForm.controls.canAccessProfiles.setValue(profileData.Profile.CanAccessProfiles);
+          this.profileForm.controls.canAddProfile.setValue(profileData.Profile.CanAddProfile);
+          this.profileForm.controls.canEditProfile.setValue(profileData.Profile.CanEditProfile);
+          this.profileForm.controls.canAccessProjects.setValue(profileData.Profile.CanAccessProjects);
+          this.profileForm.controls.canAddProject.setValue(profileData.Profile.CanAddProject);
+          this.profileForm.controls.canEditProject.setValue(profileData.Profile.CanEditProject);
           this.profileForm.controls.deleted.setValue(profileData.Profile.Deleted);
         });
     }

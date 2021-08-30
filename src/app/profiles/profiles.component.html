@@ -11,6 +11,7 @@
             </button> -->
             <button type="button"
                     class="btn btn-primary mr-2"
+                    *ngIf="securityObject.canAddProfile == 'Y'"
                     routerLink="/profiles-create">
                 Create A Profile
             </button>  <!-- routerLink="/profiles-create"> -->
@@ -47,6 +48,7 @@
                 <button type="button"
                         class="btn btn-danger mr-2"
                         routerLink="/profiles-create/{{this.profile.Id}}/{{this.profile.Type}}"
+                        *ngIf="securityObject.canEditProfile == 'Y'"
                 >
                     Edit Profile
                 </button>

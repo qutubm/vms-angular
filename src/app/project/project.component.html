@@ -13,7 +13,8 @@
 
         <button type="button"
                 class="btn btn-primary mr-2"
-                routerLink="/project-create-edit">
+                routerLink="/project-create-edit"
+                *ngIf="securityObject.canAddProject == 'Y'">
           <i class="bi bi-file-earmark-plus-fill"> Create Project</i>
         </button>
       </div>
@@ -38,7 +39,8 @@
               <td>{{project.SkillsRequired}}</td>
               <td>{{project.Completed}}</td>
               <td>{{project.EstimatedCompletionDate.substring(6,8)}}-{{project.EstimatedCompletionDate.substring(4,6)}}-{{project.EstimatedCompletionDate.substring(0,4)}}</td>
-              <td>{{project.ActualCompletionDate.substring(6,8)}}-{{project.ActualCompletionDate.substring(4,6)}}-{{project.ActualCompletionDate.substring(0,4)}}</td>
+              <td *ngIf="project.ActualCompletionDate !== null && project.ActualCompletionDate !== undefined && project.ActualCompletionDate !== ''">{{project.ActualCompletionDate.substring(6,8)}}-{{project.ActualCompletionDate.substring(4,6)}}-{{project.ActualCompletionDate.substring(0,4)}}</td>
+              <td *ngIf="project.ActualCompletionDate !== null || project.ActualCompletionDate !== undefined || project.ActualCompletionDate !== ''">{{project.ActualCompletionDate}}</td>
               <td>
                 <div class="d-flex">
                   <!-- <button type="button"
@@ -50,7 +52,8 @@
                   </button> -->
                   <button type="button"
                           class="btn btn-success mr-2"
-                          routerLink="/project-create-edit/{{this.project.Id}}">
+                          routerLink="/project-create-edit/{{this.project.Id}}"
+                          *ngIf="securityObject.canEditProject == 'Y'">
                     <i class="bi bi-pencil-square"> Edit</i>
                   </button>
                   <!-- <button type="button"

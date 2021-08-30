@@ -31,6 +31,20 @@ export class ProjectsModel {
     Projects: Project[];
  }
 
+
+ export class CreateProjectModel {
+   success: boolean;
+   Message : string;
+   Errors : string[];
+   ProjectId: string;
+ }
+
+ export class EditProjectModel {
+   success: boolean;
+   Message : string;
+   Errors : string[];
+ }
+
  export class Task
  {
     Id: string;
