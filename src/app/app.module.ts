@@ -17,8 +17,6 @@ import { NgBootstrapFormValidationModule } from 'ng-bootstrap-form-validation';
 import { NgbModule, NgbDateParserFormatter } from '@ng-bootstrap/ng-bootstrap';
 import { ProjectComponent } from './project/project.component';
 import { ProjectCreateEditComponent } from './project/project-create-edit/project-create-edit.component';
-import { ProjectViewComponent } from './project/project-view/project-view.component';
-import { ProjectTaskComponent } from './project/project-view/project-task/project-task.component';
 import { LoginComponent } from './security/login.component';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { HttpRequestInterceptor } from './shared/http-interceptor';
@@ -33,8 +31,6 @@ import { ErrorInterceptor } from './shared/error.interceptor';
     ProfilesCreateComponent,
     ProjectComponent,
     ProjectCreateEditComponent,
-    ProjectViewComponent,
-    ProjectTaskComponent,
     LoginComponent,
   ],
   imports: [

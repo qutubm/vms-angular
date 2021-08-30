@@ -8,7 +8,6 @@ import { ProfilesCreateComponent } from './profiles/profiles-create/profiles-cre
 //Project component import.
 import { ProjectComponent } from './project/project.component';
 import { ProjectCreateEditComponent } from './project/project-create-edit/project-create-edit.component';
-import { ProjectViewComponent } from './project/project-view/project-view.component'
 import { LoginComponent } from './security/login.component';
 import { AuthGuard } from './security/auth.guard';
 
