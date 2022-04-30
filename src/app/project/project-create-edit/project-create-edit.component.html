@@ -5,7 +5,7 @@
               <div class="col">
                   <h3>{{heading}}</h3>
               </div>
-              <!-- <button class="btn btn-primary">Create Project</button> -->
+              <!-- <button class="btn btn-primary btn-round">Create Project</button> -->
           </div>
       </div>
       <hr>
@@ -57,11 +57,11 @@
         </div>
     </div>
 
-    <button type="button" class="btn btn-primary" *ngIf="projectId != null && projectId != undefined && projectId != ''" (click)="openTaskDialog()">Add Task</button>  <!-- openTask() -->
+    <button type="button" class="btn btn-primary btn-round" *ngIf="projectId != null && projectId != undefined && projectId != ''" (click)="openTaskDialog()">Add Task</button>  <!-- openTask() -->
     &nbsp;&nbsp;&nbsp;
-    <button type="submit" class="btn btn-primary" *ngIf="securityObject.canAddProject == 'Y' || securityObject.canEditProject == 'Y'">Submit</button>
+    <button type="submit" class="btn btn-primary btn-round" *ngIf="securityObject.canAddProject == 'Y' || securityObject.canEditProject == 'Y'">Submit</button>
     &nbsp;&nbsp;&nbsp;
-    <button type="button" class="btn btn-primary" (click)="onCancel()">Cancel</button>
+    <button type="button" class="btn btn-primary btn-round" (click)="onCancel()">Cancel</button>
 
     <br/>
     <br/>
@@ -88,7 +88,7 @@
                 <td *ngIf="task.ActualCompletionDate !== null || task.ActualCompletionDate !== undefined || task.ActualCompletionDate !== ''">{{task.ActualCompletionDate}}</td>
                 <td>
                     <button type="button"
-                            class="btn btn-success mr-2"
+                            class="btn btn-outline-primary btn-round mr-2"
                             (click)="editTaskDetails(task.Id)">
                       <i class="bi bi-pencil-square"> Edit</i>
                     </button>
@@ -106,7 +106,7 @@
       <form class='form-horizontal' [formGroup]="projectTaskForm" (onSubmit)="saveTask()" > 
         <div class="modal-header">
             <h4 class="modal-title" id="modal-basic-title">Project Task</h4>
-            <button type="button" class="btn btn-link close" aria-label="Close" (click)="closeModal()">
+            <button type="button" class="btn btn-link btn-round close" aria-label="Close" (click)="closeModal()">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
@@ -175,8 +175,8 @@
             <!-- <div>Completed: <strong>{{ taskCompleted.value }}</strong></div> -->
         </div>
         <div class="modal-footer">
-            <button type="submit" class="btn btn-outline-dark" (click)="saveTask()">Save Task</button>  <!-- toggleModalPopup('closeTask') -->
-            <button type="button" class="btn btn-outline-dark" (click)="closeModal()">Cancel</button>
+            <button type="submit" class="btn btn-outline-dark btn-round" (click)="saveTask()">Save Task</button>  <!-- toggleModalPopup('closeTask') -->
+            <button type="button" class="btn btn-outline-dark btn-round" (click)="closeModal()">Cancel</button>
         </div>
 
         <br/>

@@ -1,5 +1,4 @@
 /* You can add global styles to this file, and also import other style files */
-@import "~bootstrap/dist/css/bootstrap.min.css";
 @import "~bootstrap-icons/font/bootstrap-icons.css";
 @import "~@ng-select/ng-select/themes/default.theme.css";
 
@@ -9,10 +8,25 @@
 }
 
 div.card-header {
- font-size: large;
+  font-size: large;
 }
 
 div.card {
-  margin-top: 10px
+  margin-top: 10px;
 }
 
+.jumbotron {
+  background-color: #e2e4e5;
+  box-shadow: 0 6px 10px -4px rgb(0 0 0 / 15%);
+  padding: 2rem !important;
+}
+
+/* overrides style set by paper-dashboard theme */
+.navbar .navbar-nav .nav-link {
+  text-transform: none !important;
+  font-size: 1rem !important;
+}
+
+.navbar .navbar-nav .nav-link fa-icon {
+  margin-right: 0.25rem !important;
+}

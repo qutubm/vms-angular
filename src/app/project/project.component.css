@@ -1,0 +1,4 @@
+.table {
+    /* landscape phone max width breakpoint is 768 px */
+    min-width: 760px;
+}

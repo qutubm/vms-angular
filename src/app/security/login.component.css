@@ -1,0 +1,13 @@
+form {
+    height: calc(100vh - 90px);
+}
+
+form .jumbotron {
+    min-width: 450px;
+}
+
+@media (max-width: 576px) {
+    form .jumbotron {
+        min-width: calc(100vw - 30px);
+    }
+}

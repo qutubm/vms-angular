@@ -1,74 +1,76 @@
-<div class="container mt-5">
+<div class="row mt-5">
+  <div class="col-12">
     <div class="jumbotron">
       <h1 class="display-sm-3">Project</h1>
       <p class="lead">Manage Projects Here</p>
       <hr class="my-3">
-      <div class="lead float-sm-right">
-
+      <div>
         <!-- <button type="button"
-        class="btn btn-primary mr-2"
-        routerLink="/profiles-create">
-    Create A Profile
-      </button> -->
-
+          class="btn btn-primary mr-2"
+          routerLink="/profiles-create">
+      Create A Profile
+        </button> -->
         <button type="button"
-                class="btn btn-primary mr-2"
+                class="btn btn-primary btn-round mr-2"
                 routerLink="/project-create-edit"
                 *ngIf="securityObject.canAddProject == 'Y'">
           <i class="bi bi-file-earmark-plus-fill"> Create Project</i>
         </button>
       </div>
     </div>
-  
-    <div class="row">
-      <div class="col-12">
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col">Project Name:</th>
-              <th scope="col">Skills Required:</th>
-              <th scope="col">Completed:</th>
-              <th scope="col">Expected Due Date:</th>
-              <th scope="col">Real Due Date:</th>
-              <th scope="col">Actions:</th>
-            </tr>
-          </thead>
-          <tbody *ngFor="let project of projects">
-            <tr>
-              <th scope="row">{{project.Name}}</th>
-              <td>{{project.SkillsRequired}}</td>
-              <td>{{project.Completed}}</td>
-              <td>{{project.EstimatedCompletionDate.substring(6,8)}}-{{project.EstimatedCompletionDate.substring(4,6)}}-{{project.EstimatedCompletionDate.substring(0,4)}}</td>
-              <td *ngIf="project.ActualCompletionDate !== null && project.ActualCompletionDate !== undefined && project.ActualCompletionDate !== ''">{{project.ActualCompletionDate.substring(6,8)}}-{{project.ActualCompletionDate.substring(4,6)}}-{{project.ActualCompletionDate.substring(0,4)}}</td>
-              <td *ngIf="project.ActualCompletionDate !== null || project.ActualCompletionDate !== undefined || project.ActualCompletionDate !== ''">{{project.ActualCompletionDate}}</td>
-              <td>
-                <div class="d-flex">
-                  <!-- <button type="button"
-                          class="btn btn-primary mr-2"
+  </div>
+
+  <div class="col-12">
+    <table class="table">
+      <thead>
+        <tr>
+          <th scope="col">Project Name:</th>
+          <th scope="col">Skills Required:</th>
+          <th scope="col">Completed:</th>
+          <th scope="col">Expected Due Date:</th>
+          <th scope="col">Real Due Date:</th>
+          <th scope="col">Actions:</th>
+        </tr>
+      </thead>
+      <tbody *ngFor="let project of projects">
+        <tr>
+          <th scope="row">{{project.Name}}</th>
+          <td>{{project.SkillsRequired}}</td>
+          <td>{{project.Completed}}</td>
+          <td>
+            {{project.EstimatedCompletionDate.substring(6,8)}}-{{project.EstimatedCompletionDate.substring(4,6)}}-{{project.EstimatedCompletionDate.substring(0,4)}}
+          </td>
+          <td
+              *ngIf="project.ActualCompletionDate !== null && project.ActualCompletionDate !== undefined && project.ActualCompletionDate !== ''">
+            {{project.ActualCompletionDate.substring(6,8)}}-{{project.ActualCompletionDate.substring(4,6)}}-{{project.ActualCompletionDate.substring(0,4)}}
+          </td>
+          <td
+              *ngIf="project.ActualCompletionDate !== null || project.ActualCompletionDate !== undefined || project.ActualCompletionDate !== ''">
+            {{project.ActualCompletionDate}}</td>
+          <td>
+            <div class="d-flex">
+              <!-- <button type="button"
+                          class="btn btn-primary btn-round mr-2"
                           routerLink="/project-view/{{this.viewProjects.Id}}"
                           >
 
                     <i class="bi bi-info-square-fill"> View</i>
                   </button> -->
-                  <button type="button"
-                          class="btn btn-success mr-2"
-                          routerLink="/project-create-edit/{{this.project.Id}}"
-                          *ngIf="securityObject.canEditProject == 'Y'">
-                    <i class="bi bi-pencil-square"> Edit</i>
-                  </button>
-                  <!-- <button type="button"
-                          class="btn btn-danger mr-2"
+              <button type="button"
+                      class="btn btn-outline-primary btn-round mr-2"
+                      routerLink="/project-create-edit/{{this.project.Id}}"
+                      *ngIf="securityObject.canEditProject == 'Y'">
+                <i class="bi bi-pencil-square"> Edit</i>
+              </button>
+              <!-- <button type="button"
+                          class="btn btn-danger btn-round mr-2"
                           (click)="deleteProjectByID(viewProjects.Id)">
                     <i class="bi bi-trash-fill"> Delete</i>
                   </button> -->
-                </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </div>
-
-
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
   </div>
-<router-outlet></router-outlet>
+</div>

@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light mb-3">
+<nav class="navbar navbar-expand-lg navbar-transparent">
   <a class="navbar-brand"
      [routerLink]="'.'">The Break's VMS </a>
 
@@ -13,19 +13,25 @@
   <div [ngbCollapse]="isMenuCollapsed"
        class="collapse navbar-collapse">
     <ul class="navbar-nav">
-      <li class="nav-item active">
+      <li class="nav-item">
         <a routerLinkActive='active'
            routerLink='/project'
            *ngIf="securityObject.canAccessProjects == 'Y'"
            class="nav-link"
-           (click)="isMenuCollapsed = true">Project</a>
+           (click)="isMenuCollapsed = true">
+          <fa-icon [icon]="faProjectDiagram"></fa-icon>
+          Project
+        </a>
       </li>
       <li class="nav-item">
         <a class='nav-link'
            routerLinkActive='active'
            routerLink='/profiles'
            *ngIf="securityObject.canAccessProfiles == 'Y'"
-           (click)="isMenuCollapsed = true">Profiles</a>
+           (click)="isMenuCollapsed = true">
+          <fa-icon [icon]="faIdBadge"></fa-icon>
+          Profiles
+        </a>
       </li>
 
       <!-- <li class="nav-item">
@@ -45,15 +51,12 @@
 
     <ul class="navbar-nav ml-auto">
       <li class="nav-item pull-right">
-        <a routerLinkActive='active'
-           routerLink='/login'
-           *ngIf="!securityObject.isAuthenticated"
+        <a href="#"
+           (click)="logout()"
            class="nav-link"
-           (click)="isMenuCollapsed = true">Login</a>
-
-        <a href="#" (click)="logout()"
-            *ngIf="securityObject.isAuthenticated">
-            Logout {{securityObject.UserName}}
+           *ngIf="securityObject.isAuthenticated">
+          <fa-icon [icon]="faSignOutAlt"></fa-icon>
+          Logout {{securityObject.UserName}}
         </a>
       </li>
     </ul>
