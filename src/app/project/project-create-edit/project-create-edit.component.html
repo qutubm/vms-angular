@@ -106,7 +106,7 @@
       <form class='form-horizontal' [formGroup]="projectTaskForm" (onSubmit)="saveTask()" > 
         <div class="modal-header">
             <h4 class="modal-title" id="modal-basic-title">Project Task</h4>
-            <button type="button" class="btn btn-link btn-round close" aria-label="Close" (click)="closeModal()">
+            <button type="button" class="btn btn-link" aria-label="Close" (click)="closeModal()">
                 <span aria-hidden="true">&times;</span>
             </button>
         </div>
@@ -167,9 +167,9 @@
               </div>
             </div>
       
-            <div class="form-check">
-                <input type="checkbox" class="form-check-input" formControlName="taskCompleted" id="taskCompleted">
-                <label class="form-check-label" for="taskCompleted">Completed</label>
+            <div class="form-group">
+                <input type="checkbox" formControlName="taskCompleted" id="taskCompleted">
+                <label class="ml-1 mb-0 form-check-label" for="taskCompleted">Completed</label>
             </div>
 
             <!-- <div>Completed: <strong>{{ taskCompleted.value }}</strong></div> -->
