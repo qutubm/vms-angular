@@ -1,20 +1,22 @@
-<div class="container mt-5">
-    <div class="jumbotron">
-        <h1 class="display-sm-3">Profiles List</h1>
-        <p class="lead">Manage Profiles Here.</p>
-        <hr class="my-3">
-        <div class="lead">
-            <!-- <button type="button"
-                    class="btn btn-primary mr-2"
-                    routerLink="/profiles/profiles-invite">
-                Invite To Create A Profile
-            </button> -->
-            <button type="button"
-                    class="btn btn-primary mr-2"
-                    *ngIf="securityObject.canAddProfile == 'Y'"
-                    routerLink="/profiles-create">
-                Create A Profile
-            </button>  <!-- routerLink="/profiles-create"> -->
+<div class="row mt-5">
+    <div class="col-12">
+        <div class="jumbotron">
+            <h1 class="display-sm-3">Profiles List</h1>
+            <p class="lead">Manage Profiles Here</p>
+            <hr class="my-3">
+            <div>
+                <!-- <button type="button"
+                        class="btn btn-primary btn-round mr-2"
+                        routerLink="/profiles/profiles-invite">
+                    Invite To Create A Profile
+                </button> -->
+                <button type="button"
+                        class="btn btn-primary btn-round mr-2"
+                        *ngIf="securityObject.canAddProfile == 'Y'"
+                        routerLink="/profiles-create">
+                    Create A Profile
+                </button> <!-- routerLink="/profiles-create"> -->
+            </div>
         </div>
     </div>
 
@@ -24,36 +26,33 @@
     </p> -->
 </div>
 
-<div class="container align-items-center">
-    <div class="row">
-        <div class="card bg-light thumbnail" *ngFor="let profile of profiles" >
-            <div class="card-body col-md-6">
-                <h3>{{profile.FirstName + " " + profile.LastName}}</h3>
-                <div>Email: {{profile.Email}} </div>
-                <div>Phone: {{profile.Phone}}</div>
-                <div>Type: {{profile.Type}}</div>
-                <!-- <h3>{{profile.profile_firstName + " " + profile.profile_lastName}}</h3>
+<div class="row">
+    <div class="card bg-light thumbnail"
+         *ngFor="let profile of profiles">
+        <div class="card-body">
+            <h3>{{profile.FirstName + " " + profile.LastName}}</h3>
+            <div>Email: {{profile.Email}} </div>
+            <div>Phone: {{profile.Phone}}</div>
+            <div>Type: {{profile.Type}}</div>
+            <!-- <h3>{{profile.profile_firstName + " " + profile.profile_lastName}}</h3>
                 <div>Email: {{profile.profile_email}} </div>
                 <div>Phone: {{profile.profile_phone}}</div>
                 <hr>-->
-            </div>
-            <div class="d-flex">
-                <!-- <button type="button"
-                        class="btn btn-primary mr-2"
+        </div>
+        <div class="card-footer">
+            <!-- <button type="button"
+                        class="btn btn-primary btn-round mr-2"
                         routerLink="profiles-detail/{{this.profile.Id}}"
                         skipLocationChange>
                     View Profile
                 </button> -->
 
-                <button type="button"
-                        class="btn btn-danger mr-2"
-                        routerLink="/profiles-create/{{this.profile.Id}}/{{this.profile.Type}}"
-                        *ngIf="securityObject.canEditProfile == 'Y'"
-                >
-                    Edit Profile
-                </button>
-            </div>
+            <button type="button"
+                    class="btn btn-outline-primary btn-round mr-2"
+                    routerLink="/profiles-create/{{this.profile.Id}}/{{this.profile.Type}}"
+                    *ngIf="securityObject.canEditProfile == 'Y'">
+                Edit Profile
+            </button>
         </div>
     </div>
 </div>
-  

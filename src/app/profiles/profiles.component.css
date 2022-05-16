@@ -1,10 +1,12 @@
-.thumbnail
-{
-    min-height : 200px;
-    margin-left : 30px;
-    margin-bottom : 20px;
-    width: 25rem;
+.thumbnail {
+    min-height: 300px;
+    min-width: 340px;
+    margin: 0px 0px 30px 30px;
     flex-wrap: wrap;
 }
 
-
+@media (max-width: 576px) {
+    .thumbnail {
+        margin: 0px auto 30px auto;
+    }
+}

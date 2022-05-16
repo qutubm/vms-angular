@@ -12,33 +12,29 @@ import { ProjectService } from './project.service';
 export class ProjectComponent implements OnInit {
 
   projects: Project[] = [];
-  securityObject : AppUserAuth = null;
-  
+  securityObject: AppUserAuth = null;
+
   @Input() single_ProjectData: Project[]
   //listStaffMembers: any[] = [];
-  
-  constructor(private projectServices: ProjectService, private ngxSpinner: NgxSpinnerService, 
-              private securityService : SecurityService) {
-                this.securityObject = securityService.securityObject;
-              }  
+
+  constructor(private projectServices: ProjectService, private ngxSpinner: NgxSpinnerService,
+    private securityService: SecurityService) {
+    this.securityObject = securityService.securityObject;
+  }
 
   ngOnInit(): void {
     this.loadAllProjects();
   }
-  
-  loadAllProjects() {
+
+  async loadAllProjects() {
     this.ngxSpinner.show();
 
     this.projectServices.getAllProjects().subscribe(
-      (projectModel: ProjectsModel) => {   
+      (projectModel: ProjectsModel) => {
         this.projects = projectModel.Projects;
-        this.ngxSpinner.hide();
-
-        //console.log(this.ProjectsView[2].Name);
-        //console.log("1st Profile : " + this.ProfilesModel[0]
       },
-      (err: any) => console.log(err),
-      () => console.log(this.projects),
+      (err: any) => { console.log(err); this.ngxSpinner.hide(); },
+      () => { console.log(this.projects); this.ngxSpinner.hide(); },
     );
 
   }
